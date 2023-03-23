@@ -1,0 +1,2 @@
+class BandPostsController < ApplicationController
+end
