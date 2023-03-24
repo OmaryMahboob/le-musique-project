@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def index
-    "test"
+    "test 2"
   end
 end
