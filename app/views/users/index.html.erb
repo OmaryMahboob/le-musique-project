@@ -1,0 +1,10 @@
+<% @users.each do |user|%>
+  <div class="card d-flex w-25">
+    <div class="card-body ">
+      <h2> <%=link_to user.full_name, user %></h2>
+      <h4> <%=user.email%></h4>
+      <h4> <%=user.description%></h4>
+    </div>
+  </div>
+
+<% end %>

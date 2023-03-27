@@ -1,0 +1,15 @@
+<%= simple_form_for user do |f| %>
+  <%= f.input :email  %>
+  <%= f.input :full_name  %>
+  <%= f.input :nickname %>
+  <%= f.input :phone %>
+  <%= f.input :address %>
+  <%= f.input :profile_picture, as: :file %>
+  <%= f.input :multimedia %>
+  <%= f.input :description %>
+  <%= f.input :looking_for_band %>
+  <%= f.input :skills %>
+  <%= f.input :style %>
+  <%= f.input :experience %>
+  <%= f.button :submit %>
+<% end %>
