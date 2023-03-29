@@ -1,0 +1,27 @@
+
+<div class="d-flex">
+  <div>
+    <h2><%= @user.full_name%> Profile</h2>
+    <h3>Name: <%= @user.full_name  %></h3>
+    <p>Email: <strong><%= @user.email  %></p></strong>
+    <p>Nickname: <strong><%= @user.nickname  %></p></strong>
+    <p>Phone: <strong><%= @user.phone  %></p></strong>
+    <p>Address: <strong><%= @user.address  %></p></strong>
+    <p>Profile Picture: <strong><%= @user.profile_picture  %></p></strong>
+    <p>multimedia: <strong><%= @user.multimedia  %></p></strong>
+    <p>Available: <strong><%= @user.looking_for_band  %></p></strong>
+    <p>skills: <strong><%= @user.skills  %></p></strong>
+    <p>style: <strong><%= @user.style  %></p></strong>
+    <p>experience: <strong><%= @user.experience  %></p></strong>
+  </div>
+  <div>
+  <%= render "bands/user_bands", bands: @bands %>
+  </div>
+</div>
+
+
+<h3><%= link_to "Edit your profile",  edit_user_path %></h3>
+<h3><%= link_to "View all bands", user_bands_path(user_id: @user.id) %></h3>
+<h3><%= link_to "Create your band", new_user_band_path(user_id: @user.id) %></h3>
+
+<%= link_to "View all profiles",  users_path %>
