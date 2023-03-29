@@ -5,13 +5,15 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @band = Band.new
+    @bands = Band.all
+    @user_id = current_user
   end
 
 
 
   def edit
-
+    @user = User.find(params[:id])
   end
 
   def update

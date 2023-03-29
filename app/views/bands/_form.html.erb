@@ -1,0 +1,11 @@
+<%= simple_form_for [user, band] do |f|%>
+  <%= f.input :band_name %>
+  <%= f.input :band_style %>
+  <%= f.input :looking_for_member%>
+  <%= f.input :multimedia %>
+  <%= f.input :experience %>
+  <%= f.input :content %>
+  <%= f.input :city %>
+  <%= f.button :submit, class: "btn btn_primary"%>
+
+<% end %>
