@@ -1,0 +1,23 @@
+<div>
+
+  <div class="card" style="width: 10rem;">
+    <div class="card-body">
+    <p class="card-title"><%= @band.band_name %></p>
+    <p><%= @band.band_style %></p>
+    <p><%= @band.looking_for_member %></p>
+    <p><%= @band.multimedia %></p>
+    <p><%= @band.experience %></p>
+    <p><%= @band.content %></p>
+    <p><%= @band.city %></p>
+    <p><%= @band.user_id %></p>
+    </div>
+  </div>
+
+</div>
+
+
+<h3><%= link_to "Edit this band", edit_user_band_path(user_id: @band.user_id, id: @band.id) %></h3>
+<h3><%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %></h3>
+
+
+<%= link_to "Go back to your profile", user_path(id: @user_id) %>
