@@ -1,3 +1,4 @@
 class Band < ApplicationRecord
-  belongs_to :user_id
+  has_many :band_members
+  has_many_attached :photos
 end

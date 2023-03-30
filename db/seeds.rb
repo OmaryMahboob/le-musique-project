@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
+require "faker"
+Band.destroy_all
+User.destroy_all
+
 
 mahboob = User.create!(
   full_name: "mahboob",
@@ -25,11 +29,10 @@ mahboob.save
 
 mahboob_Band = Band.create!(
   band_name: "Electric",
-  band_style: "The perfect rubab for lease is an instrument with a warm, resonant sound and a beautiful, polished
-                finish.",
-  price: rand(2.0..20.0).round(2),
-  user: mahboob,
-  address: mahboob.address
+  band_style: "Fusion of Electric and dancehall.",
+  # price: rand(2.0..20.0).round(2),
+  user_id: mahboob.id,
+  # address: mahboob.address
 )
 
 mahboob_Band.photos.attach(
@@ -65,9 +68,8 @@ jane = User.create(
 jane_Band = Band.create!(
   band_name: "Neon skies",
   band_style: "Fusion of Electric and Blues",
-  price: rand(2.0..20.0).round(2),
-  user: jane,
-  address: jane.address
+  user_id: jane.id,
+  # address: jane.address
 )
 
 jane_Band.photos.attach(
@@ -103,9 +105,9 @@ roger.save
 roger_Band = Band.create!(
   band_name: "Whiskey Rebels",
   band_style: "Fusion of alternative and psychedelic rock.",
-  price: rand(2.0..20.0).round(2),
-  user: roger,
-  address: roger.address
+  # price: rand(2.0..20.0).round(2),
+  user_id: roger.id,
+  # address: roger.address
 )
 roger_Band.photos.attach(
   io: URI.open("https://musiculum.de/wp-content/uploads/2021/02/Charango.jpg"),
@@ -142,35 +144,85 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   )
   new_user.profile_picture.attach(
     io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
-    filename: "profile_picture_#{new_user.first_name}.jpeg",
+    filename: "profile_picture_#{new_user.full_name}.jpeg",
     content_type: "image/jpg"
   )
   new_user.save
-  p new_user.first_name
+  p new_user.full_name
 end
 
-instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "cello", "flute", "bass guitar", "ukulele",
-               "clarinet", "harmonica", "accordion", "trombone", "banjo", "mandolin", "harmonium", "xylophone",
-               "marimba", "didgeridoo", "bagpipes", "organ", "synthesizer", "harp", "oboe", "bassoon", "French horn",
-               "electric guitar", "acoustic guitar", "steel drum", "conga drum", "timpani", "tabla", "dulcimer",
-               "sitar", "kazoo", "bongos", "glockenspiel", "chimes", "vibraphone", "pan flute", "baglama", "oud",
-               "djembe", "thumb piano", "pandeiro", "tambourine"]
+bands = ["Crimson Horizon", "The Velvet Tides", "Sonic Serenade", "Moonlit Symphony", "Electric Stardust",
+          "Cosmic Echoes", "Retrograde Renegades", "Neon Nightscape", "Siren's Song", "Spectrum Shifters",
+          "Echoes the Abyss", "The Mystic Muses",
+          "Ghosts of the Past", "Twisted Whispers", "Firelight Frenzy", "Phoenix Rising", "The Fading Suns", "Technicolor Dreamers", "The Golden Hour",
+          "Abyssal Ascension", "Electric Aura", "Dark Carnival", "Starlight Strangers", "Visions of Tomorrow",
+          "Shadowplay Syndicate", "Mystic Melodies", "Twilight Tempest", "Electric Masquerade", "The Infinite Groove", "Phantom Phunk"]
 
-39.times do
+band_images =
+          ["https://m.media-amazon.com/images/I/51N2zTP-LqL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/91CS0eGcsXL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71p3Ts9D6JL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/81oRpoLLvYL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/61cbqPP8P-L._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/71zGEA8lL4L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61KqTV+V7IL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71V9djmrrNL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61pNQNpgC1L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61quGhuk1tL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/710O-XQN7ZL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81f5B2cnJkL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61NqSqEIgTL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71z3WEWEMLL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71Yx4zg7o+L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/711+cXsrKTL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/815mHicG39L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81gr9+IPivL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61e6GcvDk9L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/61cyIX8JSwL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/717qmGlA7ZL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71us2RZxgnL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/51vYRaJxxmL._AC_.jpg",
+          "https://m.media-amazon.com/images/I/71ZOQVzDjEL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71gV69XL34L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/819WldTQU8S._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/614THlKS2RL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/51WLd4L7nxL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/51uzv21J8XL._AC_.jpg",
+          "https://m.media-amazon.com/images/I/41MQV30G26L._AC_.jpg",
+          "https://m.media-amazon.com/images/I/71PdY8+X-AL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/51qoe5x-IlL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81qddT9HsnL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/81x18tRmGlL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/41jbJJZ56BL._AC_.jpg",
+          "https://m.media-amazon.com/images/I/51KdNjiqy8L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81hpF2tyj5L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71Ust+3JFVL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71CQjIaXEQL._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/81E-oqRzzwL._AC_SY879_.jpg",
+          "https://m.media-amazon.com/images/I/61R6K+TVJ1L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71ehq28SC8L._AC_SX679_.jpg",
+          "https://m.media-amazon.com/images/I/71KnfDnTvQL._AC_SX679_.jpg"]
+
+
+30.times do
   actual_user = User.order("RANDOM()").first
-  instrument = instruments.shift
-  instrument_image = instrument_images.shift
+  band = bands.shift
+  band_image = band_images.shift
 
-  new_instrument = Band.create!(
-    band_name: instrument.capitalize,
-    band_style: "Lease a high-quality #{instrument} today and start playing your favorite tunes! This #{instrument}
+  new_band = Band.create!(
+    band_name: band,
+    band_style: "Join a high-quality #{band} today and start playing your favorite tunes! This #{band}
                   is super professional and I keep it ready for your use. Whether you're a beginner or an
-                  experienced player, this #{instrument} is perfect for your level.",
-    price: rand(2.0..20.0).round(2),
-    user: actual_user,
-    address: actual_user.address,
-    photo: instrument_image
+                  experienced player, this #{band} is perfect for your level.",
+    # price: rand(2.0..20.0).round(2),
+    user_id: actual_user.id,
+    city: ['Berlin', 'Leipzig', 'Dresden', 'Hamburg', 'Gelsenkirchen'].sample,
+    # photo: band_image
   )
-  new_instrument.save
-  p new_instrument.title
+  new_band.save
+  p new_band.band_name
 end
