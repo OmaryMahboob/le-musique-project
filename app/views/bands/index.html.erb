@@ -2,6 +2,7 @@
 
 <div>
   <% @bands.each do |band| %>
+
   <a href= <%= user_band_path(user_id: band.user_id, id: band.id) %> style="text-decoration: none, color: inherit">
     <div class="card" style="width: 10rem;">
       <div class="card-body">
