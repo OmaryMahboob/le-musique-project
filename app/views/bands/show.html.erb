@@ -1,6 +1,5 @@
-<div>
-
-  <div class="card" style="width: 10rem;">
+<div class="d-flex">
+  <div class="card" style="width: 50%;">
     <div class="card-body">
     <p class="card-title"><%= @band.band_name %></p>
     <p><%= @band.band_style %></p>
@@ -15,11 +14,19 @@
     </div>
   </div>
 
+
+  <div class="card" style="width: 50%;">
+    <%= render "band_members/band_members", band_members: @band_members %>
+  </div>
 </div>
-
-
-<h3><%= link_to "Edit this band", edit_user_band_path(user_id: @band.user_id, id: @band.id) %></h3>
-<h3><%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %></h3>
-
-
-<%= link_to "Go back to your profile", user_path(id: @user_id) %>
+<div class=" container">
+  <div class="card" style="width: 50%;">
+    <% if @current_user.id ==  @band.user_id%>
+      <h3><%= link_to "Edit this band", edit_user_band_path(user_id: @band.user_id, id: @band.id) %></h3>
+      <h3><%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %></h3>
+    <% else %>
+      <h3><%= button_to "Join this band create", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post%></h3>
+    <% end %>
+  </div>
+  <%= link_to "Go back to your profile", user_path(id: @owner) %>
+</div>

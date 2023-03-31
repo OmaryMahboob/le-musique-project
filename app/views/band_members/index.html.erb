@@ -1,0 +1,7 @@
+<h1>this are the members of this band</h1>
+
+<% @band_members.each do |member| %>
+  <h3><%= @user.full_name %></h3>
+
+<% end %>
+<h3><%= link_to "got back to the band", user_band_path(user_id: @band.user_id, id: @band.id) %></h3>
