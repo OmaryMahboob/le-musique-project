@@ -7,8 +7,14 @@
     <p>Nickname: <strong><%= @user.nickname  %></p></strong>
     <p>Phone: <strong><%= @user.phone  %></p></strong>
     <p>Address: <strong><%= @user.address  %></p></strong>
-    <p>Profile Picture: <strong><%= @user.profile_picture  %></p></strong>
-    <p>multimedia: <strong><%= @user.multimedia  %></p></strong>
+    <p>Profile Picture:</p> <br>
+    <% if @user.profile_picture.attached? %>
+      <%= cl_image_tag @user.profile_picture.key %>
+    <% end %>
+    <p>multimedia:</p> <br>
+    <% @user.multimedia.each do |photo| %>
+      <%= cl_image_tag photo.key %>
+    <% end %>
     <p>Available: <strong><%= @user.looking_for_band  %></p></strong>
     <p>skills: <strong><%= @user.skills  %></p></strong>
     <p>style: <strong><%= @user.style  %></p></strong>
