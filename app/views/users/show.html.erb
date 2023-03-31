@@ -1,5 +1,5 @@
 
-<div class="d-flex">
+<div class="d-flex ">
   <div>
     <h2><%= @user.full_name%> Profile</h2>
     <h3>Name: <%= @user.full_name  %></h3>
@@ -14,14 +14,14 @@
     <p>style: <strong><%= @user.style  %></p></strong>
     <p>experience: <strong><%= @user.experience  %></p></strong>
   </div>
-  <div>
+  <div class="">
   <%= render "bands/user_bands", bands: @bands %>
   </div>
 </div>
 
-
-<h3><%= link_to "Edit your profile",  edit_user_path %></h3>
+<% if @user ==  @owner%>
+  <h3><%= link_to "Edit your profile",  edit_user_path %></h3>
+  <h3><%= link_to "Create your band", new_user_band_path(user_id: @user.id) %></h3>
+<% end %>
 <h3><%= link_to "View all bands", user_bands_path(user_id: @user.id) %></h3>
-<h3><%= link_to "Create your band", new_user_band_path(user_id: @user.id) %></h3>
-
 <%= link_to "View all profiles",  users_path %>

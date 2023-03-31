@@ -1,10 +1,10 @@
 
-<h1>this is the bands index page</h1>
- <% @user_bands = @bands.where(user_id: current_user.id) %>
+<h1>Your bands</h1>
+ <%     @user_bands = @bands.where(user_id: params[:id]) %>
 
 <div>
   <% @user_bands.each do |band| %>
-  <a href= <%= user_band_path(user_id: band.user_id, id: band.id) %> style="text-decoration: none, color: inherit">
+    <a href= <%= user_band_path(user_id: band.user_id, id: band.id) %> style="text-decoration: none, color: inherit">
     <div class="card" style="width: 10rem;">
       <div class="card-body">
       <%# <%= link_to 'band.band_name', user_band_path %>
@@ -17,7 +17,6 @@
       <p><%= band.city %></p>
       </div>
     </div>
-  </a>
-
+    </a>
   <% end %>
 </div>
