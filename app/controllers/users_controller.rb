@@ -2,15 +2,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   def index
     @users = User.all
+    @user = current_user
   end
 
   def show
     @band = Band.new
     @bands = Band.all
-    @user_id = current_user
+    @user = current_user
+    @owner = User.find(params[:id])
   end
-
-
 
   def edit
     @user = User.find(params[:id])
@@ -30,8 +30,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params
-    params.require(:user).permit(:email, :full_name, :nickname, :phone, :address, :multimedia, :description, :looking_for_band, :skills, :style, :experience, profile_picture: [] )
+  def band_params
+    params.require(:user).permit(:id)
   end
 
+  def user_params
+    params.require(:user).permit(:email, :full_name, :nickname, :phone, :address, :description,
+                                 :looking_for_band, :skills, :style, :experience, :profile_picture, multimedia: [])
+  end
 end

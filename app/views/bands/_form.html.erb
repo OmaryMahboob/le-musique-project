@@ -2,7 +2,7 @@
   <%= f.input :band_name %>
   <%= f.input :band_style %>
   <%= f.input :looking_for_member%>
-  <%= f.input :multimedia %>
+  <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
   <%= f.input :experience %>
   <%= f.input :content %>
   <%= f.input :city %>

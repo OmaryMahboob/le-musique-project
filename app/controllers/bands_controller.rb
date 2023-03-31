@@ -2,6 +2,7 @@ class BandsController < ApplicationController
 
   def new
     @band = Band.new
+    @bands = Band.all
     @band.user = current_user
     @user = current_user
   end
@@ -17,13 +18,17 @@ class BandsController < ApplicationController
   end
 
   def show
-    @user_id = current_user
+    # @user_id = current_user
     @band = Band.find(params[:id])
+    @band_members = BandMember.all
+    @owner = User.find(params[:user_id])
+    @current_user = current_user
   end
 
   def create
     @user = current_user
     @band = @user.bands.build(band_params)
+    @band.user_id = current_user.id
 
     if @band.save
       redirect_to user_path(id: current_user.id)
@@ -53,6 +58,7 @@ class BandsController < ApplicationController
   end
 
   def band_params
-    params.require(:band).permit(:band_name, :band_style, :looking_for_member, :multimedia, :experience, :content, :city)
+    params.require(:band).permit(:band_name, :band_style, :looking_for_member, :experience, :content, :city,
+                                 multimedia: [])
   end
 end
