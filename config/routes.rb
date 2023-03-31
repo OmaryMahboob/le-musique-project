@@ -2,10 +2,19 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :users do
-    resources :bands
+    resources :bands do
+      resources :band_members
+      resources :band_posts
+    end
   end
+
   resources :bands, only: :index
 
+=======
+  # resources :bands do
+  #   resources :band_members
+  #   resources :band_posts
+  # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -1,0 +1,18 @@
+<% @users = User.all %>
+<div class="text-center">
+  <h1>members of this band</h1>
+    <% @band_members.each do |member| %>
+    <div>
+      <% if @band.id == member.band_id %>
+            <h3><%= @users.find(member.user_id).full_name %></h3>
+            <h3><%if member.approved %></h3>
+                  <%= "approved" %>
+                <% else %>
+                  <%= "pending for approval" %>
+                <% end %>
+            <% end %>
+    </div>
+
+    <% end %>
+
+</div>
