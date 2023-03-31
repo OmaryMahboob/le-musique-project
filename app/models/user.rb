@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :bands, through: :band_members
   has_many :band_members
-  has_many :bands
-
   has_one_attached :profile_picture
   has_many_attached :multimedia
+
 end
