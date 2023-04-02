@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @band = Band.new
     @bands = Band.all
-    @user = current_user
+    # @user = current_user
     @owner = User.find(params[:id])
   end
 
