@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :bands, through: :band_members
   has_many :band_members
+  has_many :chatrooms, foreign_key: :user1_id
+  has_many :chatrooms, foreign_key: :user2_id
   has_one_attached :profile_picture
   has_many_attached :multimedia
 

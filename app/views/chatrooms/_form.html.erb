@@ -1,0 +1,10 @@
+<%= simple_form_for @chatroom,
+  html: {class: "d-flex"} do |f|
+%>
+  <%= f.input :private_message,
+    label: false,
+    placeholder: "Message #{user2.full_name}",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+<% end %>

@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :users do
+    resources :chatrooms do
+      resources :messages
+    end
     resources :bands do
       resources :band_members
-      resources :band_posts
     end
   end
   # resources :bands do
