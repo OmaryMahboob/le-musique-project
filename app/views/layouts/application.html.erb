@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LeMusiqueProject</title>
+    <title>La Musique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,9 +13,7 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <h1>Hello... it's me</h1>
-    
-    <div class="container">
+    <div class="<%= params[:action] == 'home' ? '' : 'container mt-3 home-page' %>">
       <%= yield %>
     </div>
   </body>
