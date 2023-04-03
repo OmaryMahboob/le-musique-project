@@ -20,6 +20,7 @@ class BandsController < ApplicationController
   def show
     # @user_id = current_user
     @band = Band.find(params[:id])
+    @user = @band.user
     @band_members = BandMember.all
     @owner = User.find(params[:user_id])
     @current_user = current_user
