@@ -1,7 +1,7 @@
 .navbar-la-musique {
   height: 90px;
   background: #E0E9EB;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  // box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px inset;
 }
 
 .logo-navbar {
@@ -13,13 +13,10 @@
 }
 
 .profile-picture-small {
-  // position: absolute;
   height: 60px;
   width: 60px;
-  // right: 15px;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  border: white 1px solid;
 }
 
 .navbar-box {
@@ -44,5 +41,9 @@
   background: #E0E9EB;
   height: 90px;
   justify-content: center;
+}
 
+.searchbox {
+  text-decoration: none;
+  color: black;
 }
