@@ -1,12 +1,48 @@
-.navbar-lewagon {
+.navbar-la-musique {
+  height: 90px;
+  background: #E0E9EB;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.logo-navbar {
+  position: absolute;
+  left: 70px;
+  right: 92.06%;
+  top: 22.22%;
+  bottom: 22.22%;
+}
+
+.profile-picture-small {
+  // position: absolute;
+  height: 60px;
+  width: 60px;
+  // right: 15px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}
+
+.navbar-box {
+  display: flex;
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  width: 240px;
+  padding: 0 15px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.dropdown-menu {
+  background: #E0E9EB;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.card-body-navbar {
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  align-items: center;
+  top: 90px;
+  background: #E0E9EB;
+  height: 90px;
+  justify-content: center;
+
 }
