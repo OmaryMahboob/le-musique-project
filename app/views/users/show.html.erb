@@ -23,7 +23,10 @@
   <div class="">
   <%= render "bands/user_bands", bands: @bands %>
   </div>
+ 
+
 </div>
+
 
 <% if @current_user ==  @owner%>
   <h3><%= link_to "Edit your profile",  edit_user_path %></h3>
