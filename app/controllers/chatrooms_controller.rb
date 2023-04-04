@@ -7,7 +7,7 @@ class ChatroomsController < ApplicationController
 
   def show
 
-    @chatroom = Chatroom.find(params[:id])
+    # @chatroom = Chatroom.find(params[:id])
     @user = current_user
     @user1 = User.find(@chatroom.user1_id)
     @user2 = User.find(@chatroom.user2_id)
