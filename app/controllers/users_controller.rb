@@ -12,7 +12,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @owner = User.find(params[:id])
     @messages = Message.all
-    @chatroom = Chatroom.new
+    @message = Message.new
+    # @user2 = User.find(@chatroom.user2_id)
+    # @chatrooms = Chatroom.where(user2: @current_user)
+    # @chatroom = @chatrooms.find_by(user2: @user)
+
 
   end
 
