@@ -1,11 +1,46 @@
-<%= simple_form_for [user, band] do |f|%>
-  <%= f.input :band_name %>
-  <%= f.input :band_style %>
-  <%= f.input :looking_for_member%>
-  <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
-  <%= f.input :experience %>
-  <%= f.input :content %>
-  <%= f.input :city %>
-  <%= f.button :submit, class: "btn btn_primary"%>
-
-<% end %>
+<div class="card-header">
+  <h2 class="text-center m-4">
+    <% if band.new_record? %>
+      Create your band
+    <% else %>
+      Edit your band
+    <% end %>
+  </h2>
+</div>
+<div class="card-body">
+  <%= simple_form_for [user, band] do |f|%>
+    <div class="row g-3">
+      <div class="col-md-12">
+        <%= f.input :band_name %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :band_style %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :city %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :experience %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :content %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :looking_for_member%>
+      </div>
+    </div>
+    <div class="col text-center pt-3">
+      <% if band.new_record? %>
+        <%= f.button :submit, "Create band", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>
+      <% else %>
+        <%= f.button :submit, "Update band", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="col-12-md-4 pt-3">
+    <p>Not sure?  <%= link_to "Go back", user_path(id: @user) %> </p>
+  </div>
+</div>
