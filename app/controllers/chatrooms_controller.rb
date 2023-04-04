@@ -1,7 +1,8 @@
 class ChatroomsController < ApplicationController
   def index
     @chatrooms = Chatroom.where(user1_id: current_user.id)
-
+    @user = current_user
+    @user.chatrooms = @chatrooms
   end
 
   def show
@@ -19,9 +20,17 @@ class ChatroomsController < ApplicationController
     # @messages = Message.all
   end
 
-  # def create
-  #   @chatroom = Chatroom.create(chatroom_params)
-  #   @chatroom.save
-  # end
+  def create
 
+    @chatroom = Chatroom.new
+    @user1 = current_user
+    @user2 = User.find(params[:user2_id])
+    @chatroom.user1_id = @user1.id
+    @chatroom.user2_id = @user2.id
+    if @chatroom.save
+      redirect_to chatroom_path(@chatroom)
+    else
+      puts "error"
+    end
+  end
 end

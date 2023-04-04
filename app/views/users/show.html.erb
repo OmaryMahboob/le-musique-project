@@ -23,6 +23,7 @@
   <div class="">
   <%= render "bands/user_bands", bands: @bands %>
   </div>
+  <%= link_to "Start chat", chatrooms_path(user2_id: @user.id), data: { turbo_method: "post" } %>
 
 
 </div>
