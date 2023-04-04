@@ -8,5 +8,4 @@ class User < ApplicationRecord
   has_many :band_members
   has_one_attached :profile_picture
   has_many_attached :multimedia
-
 end

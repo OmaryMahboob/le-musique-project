@@ -1,4 +1,11 @@
-<h2>Fill all the information about your band</h2>
-<%= render 'form', band: @band, user: @user %>
-
-<%= link_to "Go back to your profile", user_path(id: @user) %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-2">
+        <div class="m-2">
+          <%= render 'form', band: @band, user: @user %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
