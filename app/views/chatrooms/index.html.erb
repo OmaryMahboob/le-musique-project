@@ -1,7 +1,6 @@
 
 <h3>index page</h3>
 <% @chatrooms.each do |chatroom| %>
-  <h2>test</h2>
-    <a href= <%= user_band_path(user_id: band.user_id, id: band.id) %> style="text-decoration: none, color: inherit">
+  <a href="<%= chatroom_path(chatroom) %>"><h2><%= User.find(chatroom.user2_id).full_name %></h2></a>
 
 <% end %>
