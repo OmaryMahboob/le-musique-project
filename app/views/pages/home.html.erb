@@ -28,25 +28,27 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% Band.all.sample(3).each do |band|%>
       <div class="col">
-        <div class="card card-bands">
-            <div class="box-image">
-              <% if band.multimedia.first.present? %>
-                <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
-              <% else %>
-                <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
-              <% end %>
-              <% if band.multimedia.attached? %>
-                <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
-              <% else %>
-                <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
-              <% end %>
-            </div>
-            <div class="card-body">
-              <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-              <p class="card-text"> <%= band.content %> </p>
-            </div>
+        <a href="<%= user_band_path(id: band.id, user_id: band.user_id) %>"class="link">
+          <div class="card card-bands">
+              <div class="box-image">
+                <% if band.multimedia.first.present? %>
+                  <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
+                <% else %>
+                  <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
+                <% end %>
+                <% if band.multimedia.attached? %>
+                  <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
+                <% else %>
+                  <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
+                <p class="card-text"> <%= band.content %> </p>
+              </div>
 
-        </div>
+          </div>
+        </a>
       </div>
     <% end %>
   </div>
