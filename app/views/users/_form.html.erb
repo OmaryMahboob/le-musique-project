@@ -26,16 +26,16 @@
         <%= f.input :description %>
       </div>
       <div class="col-md-12">
-        <%= f.input :looking_for_band %>
+        <%= f.input :looking_for_band, as: :radio_buttons %>
       </div>
       <div class="col-md-12">
-        <%= f.input :experience %>
+        <%= f.input :experience, collection: User::EXPERIENCE %>
       </div>
       <div class="col-md-6">
-        <%= f.input :skills %>
+        <%= f.input :skills, collection: User::SKILLS %>
       </div>
       <div class="col-md-6">
-        <%= f.input :style %>
+        <%= f.input :style, collection: User::STYLE, as: :check_boxes %>
       </div>
     </div>
     <div class="col text-center pt-3">
