@@ -1,15 +1,48 @@
-<%= simple_form_for user do |f| %>
-  <%= f.input :email  %>
-  <%= f.input :full_name  %>
-  <%= f.input :nickname %>
-  <%= f.input :phone %>
-  <%= f.input :address %>
-  <%= f.input :profile_picture, as: :file %>
-  <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
-  <%= f.input :description %>
-  <%= f.input :looking_for_band %>
-  <%= f.input :skills %>
-  <%= f.input :style %>
-  <%= f.input :experience %>
-  <%= f.button :submit %>
-<% end %>
+<div class="card-header">
+  <h2 class="text-center m-4">Edit your profile</h2>
+</div>
+<div class="card-body">
+  <%= simple_form_for user do |f| %>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <%= f.input :full_name  %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :nickname %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :phone %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :address %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :profile_picture, as: :file %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :description %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :looking_for_band, as: :radio_buttons %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :experience, collection: User::EXPERIENCE %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :skills, collection: User::SKILLS %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :style, collection: User::STYLE, as: :check_boxes %>
+      </div>
+    </div>
+    <div class="col text-center pt-3">
+      <%= f.button :submit, "Update my account", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>
+    </div>
+  <% end %>
+  <div class="col-12-md-4 pt-3">
+    <p>Don't want to change anything?  <%= link_to "Go back", :back, class: "ml-2" %> </p>
+  </div>
+</div>
