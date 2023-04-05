@@ -11,7 +11,9 @@ class UsersController < ApplicationController
     @current_user = current_user
     @user = User.find(params[:id])
     @owner = User.find(params[:id])
-
+    @messages = Message.all
+    @message = Message.new
+    @chatroom = Chatroom.find_chat_room(current_user, @user)
   end
 
   def edit

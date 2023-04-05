@@ -23,7 +23,15 @@
   <div class="">
   <%= render "bands/user_bands", bands: @bands %>
   </div>
+  <% if @user != current_user %>
+    <% if @chatroom.nil? %>
+      <%= link_to "Start chat", chatrooms_path(receiver: @user), data: { turbo_method: "post" } %>
+    <% else %>
+      <%= link_to "Go to chat", @chatroom %>
+    <% end %>
+  <% end %>
 </div>
+
 
 <% if @current_user ==  @owner%>
   <h3><%= link_to "Edit your profile",  edit_user_path %></h3>
