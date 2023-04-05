@@ -11,4 +11,5 @@ class Chatroom < ApplicationRecord
     chatroom ||= Chatroom.where(sender: other_user).find_by(receiver: current_user)
     chatroom
   end
+
 end
