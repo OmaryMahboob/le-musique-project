@@ -1,3 +1,11 @@
-<%= render 'form', user: @user %>
-
-<%= link_to "Go back to your profile", user_path(user_id: @user.id) %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-2">
+        <div class="m-2">
+          <%= render 'form', user: @user %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

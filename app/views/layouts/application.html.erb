@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%; ">
   <head>
-    <title>LeMusiqueProject</title>
+    <title>La Musique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body style="overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column;">
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <h1>Hello... it's me</h1>
-    
-    <div class="container">
+    <div class="<%= params[:action] == 'home' ? '' : 'container mt-3 home-page' %>">
       <%= yield %>
     </div>
+    <br>
   </body>
+  <footer style="margin-top: auto;">
+      <%= render 'shared/footer' %>
+  </footer>
 </html>

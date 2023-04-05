@@ -10,7 +10,6 @@ class Band < ApplicationRecord
   pg_search_scope :search_by_band_name_and_style,
   against: [ :band_name, :style ],
   using: { tsearch: { prefix: true } }
-=======
 
   has_many_attached :multimedia
 

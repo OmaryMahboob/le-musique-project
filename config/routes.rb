@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   resources :bands, only: :index
 
-=======
   # resources :bands do
   #   resources :band_members
   #   resources :band_posts
