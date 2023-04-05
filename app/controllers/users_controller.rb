@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @owner = User.find(params[:id])
     @messages = Message.all
     @message = Message.new
-    @chatroom = Chatroom.where(user1_id: current_user.id, user2_id: params[:id]).first
+    @chatroom = Chatroom.find_chat_room(current_user, @user)
   end
 
   def edit

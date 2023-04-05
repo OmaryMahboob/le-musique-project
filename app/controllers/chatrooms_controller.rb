@@ -1,31 +1,21 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = Chatroom.where(user1_id: current_user.id)
+    @user_chatrooms = Chatroom.where(sender: current_user).or(Chatroom.where(receiver: current_user))
     @user = current_user
-    @user.chatrooms = @chatrooms
   end
 
   def show
-
-    @chatroom = Chatroom.where(user1_id: current_user.id, user2_id: params[:id]).first
-    @user = current_user
-    @user1 = User.find(current_user.id)
-    @user2 = User.find(params[:id])
-    @chatroom_name = @user == @user1 ? "#{@user2.full_name} (#{@user2.nickname})" : "#{@user1.full_name} (#{@user1.nickname})"
+    @chatroom = Chatroom.find(params[:id])
+    @receiver = User.find(params[:id])
+    @chatroom_name = @chatroom.sender == current_user ? @chatroom.receiver.full_name : @chatroom.sender.full_name
     @message = Message.new
-
   end
 
   def create
     @chatroom = Chatroom.new
-    @user1 = current_user
-    @user2 = User.find(params[:user2_id])
-    @chatroom.user1_id = @user1.id
-    @chatroom.user2_id = @user2.id
-    if @chatroom.save
-      redirect_to chatroom_path(@chatroom)
-    else
-      puts "error"
-    end
+    @receiver = User.find(params[:receiver])
+    @chatroom.sender = current_user
+    @chatroom.receiver = @receiver
+    redirect_to chatroom_path(@chatroom) if @chatroom.save!
   end
 end

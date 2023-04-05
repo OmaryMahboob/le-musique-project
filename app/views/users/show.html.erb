@@ -25,9 +25,9 @@
   </div>
   <% if @user != current_user %>
     <% if @chatroom.nil? %>
-      <%= link_to "Start chat", chatrooms_path(user2_id: @user.id), data: { turbo_method: "post" } %>
+      <%= link_to "Start chat", chatrooms_path(receiver: @user), data: { turbo_method: "post" } %>
     <% else %>
-      <%= link_to "Go to chat", chatroom_path%>
+      <%= link_to "Go to chat", @chatroom %>
     <% end %>
   <% end %>
 </div>

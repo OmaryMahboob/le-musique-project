@@ -78,10 +78,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_153724) do
   create_table "chatrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user1_id"
-    t.bigint "user2_id"
-    t.index ["user1_id"], name: "index_chatrooms_on_user1_id"
-    t.index ["user2_id"], name: "index_chatrooms_on_user2_id"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.index ["receiver_id"], name: "index_chatrooms_on_receiver_id"
+    t.index ["sender_id"], name: "index_chatrooms_on_sender_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -123,8 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_153724) do
   add_foreign_key "band_members", "users"
   add_foreign_key "band_posts", "bands"
   add_foreign_key "bands", "users"
-  add_foreign_key "chatrooms", "users", column: "user1_id"
-  add_foreign_key "chatrooms", "users", column: "user2_id"
+  add_foreign_key "chatrooms", "users", column: "receiver_id"
+  add_foreign_key "chatrooms", "users", column: "sender_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
 end
