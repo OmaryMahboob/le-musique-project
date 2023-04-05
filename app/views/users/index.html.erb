@@ -1,11 +1,28 @@
-<% @users.each do |user|%>
-  <div class="card d-flex w-25">
-    <div class="card-body ">
-      <h2> <%= @user.id == user.id ? "*" : "" %> <%=link_to user.full_name, user %> </h2>
-      <h4> <%=user.email%></h4>
-
-      <h4> <%=user.description%></h4>
-    </div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% User.all.each do |user|%>
+      <div class="col">
+        <div class="card card-bands">
+          <a href="<%= user_path(user) %>" class="link">
+            <div class="box-image">
+              <% if user.profile_picture.present? %>
+                <div class="background-image" style="background-image: url('<%= cl_image_path(user.profile_picture.key, :effect=>"blur:200") %>');"></div>
+              <% else %>
+                <div class="background-image" style="background-image: url('<%= image_path("no-profile-picture.jpg", :effect=>"blur:200") %>');"></div>
+              <% end %>
+              <% if user.profile_picture.attached? %>
+                <%= cl_image_tag user.profile_picture.key, class: "mh-100 image-card" %>
+              <% else %>
+                <%= image_tag "no-profile-picture.jpg", class: "mh-100 image-card" %>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <h4 style="margin-top: 5px;" ><strong><%= user.nickname %></strong></h4>
+              <p class="card-text"> <%= user.description %> </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-<% end %>
+</div>

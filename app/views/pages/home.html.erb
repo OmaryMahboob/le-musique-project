@@ -29,23 +29,23 @@
     <% Band.all.sample(3).each do |band|%>
       <div class="col">
         <div class="card card-bands">
-        <%# aca falta el path para las bandas %>
-          <div class="box-image">
-            <% if band.multimedia.first.present? %>
-              <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
-            <% else %>
-              <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
-            <% end %>
-            <% if band.multimedia.attached? %>
-              <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
-            <% else %>
-              <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
-            <% end %>
-          </div>
-          <div class="card-body">
-            <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-            <p class="card-text"> <%= band.content %> </p>
-          </div>
+            <div class="box-image">
+              <% if band.multimedia.first.present? %>
+                <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
+              <% else %>
+                <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
+              <% end %>
+              <% if band.multimedia.attached? %>
+                <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
+              <% else %>
+                <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
+              <p class="card-text"> <%= band.content %> </p>
+            </div>
+
         </div>
       </div>
     <% end %>
@@ -63,11 +63,13 @@
             <div class="box-image">
               <% if user.profile_picture.present? %>
                 <div class="background-image" style="background-image: url('<%= cl_image_path(user.profile_picture.key, :effect=>"blur:200") %>');"></div>
+              <% else %>
+                <div class="background-image" style="background-image: url('<%= image_path("no-profile-picture.jpg", :effect=>"blur:200") %>');"></div>
               <% end %>
               <% if user.profile_picture.attached? %>
                 <%= cl_image_tag user.profile_picture.key, class: "mh-100 image-card" %>
               <% else %>
-                <%= image_tag "no-profile-picture.png", class: "mh-100 image-card" %>
+                <%= image_tag "no-profile-picture.jpg", class: "mh-100 image-card" %>
               <% end %>
             </div>
             <div class="card-body">
