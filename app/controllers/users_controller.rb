@@ -13,11 +13,7 @@ class UsersController < ApplicationController
     @owner = User.find(params[:id])
     @messages = Message.all
     @message = Message.new
-    # @user2 = User.find(@chatroom.user2_id)
-    # @chatrooms = Chatroom.where(user2: @current_user)
-    # @chatroom = @chatrooms.find_by(user2: @user)
-
-
+    @chatroom = Chatroom.where(user1_id: current_user.id, user2_id: params[:id]).first
   end
 
   def edit
