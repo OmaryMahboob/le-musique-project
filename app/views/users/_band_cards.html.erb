@@ -1,0 +1,34 @@
+<% @user_bands = @bands.where(user_id: params[:id]) %>
+
+<section class="">
+	<div class="container py-2">
+    <% @user_bands.each do |band| %>
+        <article class="postcard light blue">
+          <a href= <%= user_band_path(user_id: band.user_id, id: band.id) %> class="postcard__img_link">
+            <% if band.multimedia.attached? %>
+              <%= cl_image_tag band.multimedia.first.key, class: "postcard__img" %>
+            <% else %>
+              <%= image_tag "no-image.png", class: "postcard__img" %>
+            <% end %>
+          </a>
+          <div class="postcard__text t-dark">
+            <h1 class="postcard__title"><%= band.band_name %></h1>
+            <div class="postcard__subtitle small">
+              <i class="my-2 fa fa-user-plus fa-lg"></i> <%= band.experience %> |
+              <i class="my-2 fa fa-map-marker fa-lg"></i> <%= band.city %> |
+              <% if band.looking_for_member %>
+                <i class="my-2 fa fa-check-square fa-lg"></i> <strong class="text-success">Looking for an integrant 😉</strong>
+              <% else %>
+                <i class="my-2 fa fa-window-close fa-lg"></i> <span class="text-danger">Not looking for anyone yet 🙁</span>
+              <% end %>
+            </div>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt"><%= band.content %></div>
+            <ul class="postcard__tagbox">
+              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+            </ul>
+          </div>
+        </article>
+    <% end %>
+  </div>
+</section>

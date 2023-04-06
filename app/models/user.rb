@@ -11,11 +11,11 @@ class User < ApplicationRecord
   # validates :full_name, presence: true
   # validates :nickname, presence: true
 
-  validates :nickname, length: { minimum: 4, maximum: 20 }, allow_blank: true
+  # validates :nickname, length: { minimum: 4, maximum: 20 }, allow_blank: true
   # validates :description, length: { maximum: 200 }
 
   validates :email, uniqueness: true
-  validates :nickname, uniqueness: true
+  # validates :nickname, uniqueness: true
 
   has_one_attached :profile_picture
   has_many_attached :multimedia
