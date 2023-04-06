@@ -207,7 +207,7 @@ end
 
 20.times do
   actual_user = User.order("RANDOM()").first
-  band = bands.shift
+  band = bands_name.shift
   band_image = band_images.shift
 
   new_band = Band.create!(
