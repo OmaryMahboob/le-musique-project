@@ -158,7 +158,7 @@ users = User.all
 
 cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
 
-description = [
+descriptions = [
     "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
     "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
     "Slow Steve is the Berlin-based, smooth sounding synth-pop band that is charming its horde of followers. With a mellow, indie pop tone and analogue synth, Slow Steve is the ever-so-cool group who are signed to influential Berlin indie label Morr Music.",
