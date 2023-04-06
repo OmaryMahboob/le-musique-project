@@ -8,7 +8,7 @@ class ChatroomsController < ApplicationController
     @user_chatrooms = Chatroom.where(sender: current_user).or(Chatroom.where(receiver: current_user))
 
     @chatroom = Chatroom.find(params[:id])
-    @receiver = User.find(params[:id])
+    #@receiver = User.find(params[:id])
     @chatroom_name = @chatroom.sender == current_user ? @chatroom.receiver.full_name : @chatroom.sender.full_name
     @message = Message.new
   end
