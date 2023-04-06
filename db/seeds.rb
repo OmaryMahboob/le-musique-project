@@ -15,10 +15,11 @@ description1 = "La Musique is a relatively new musical band that has recently em
 skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
           "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
           "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
-          styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
+styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
             "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
 
-
+experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
+              "Between 2 years to 5 years", "More than 5 years"]
 
 
 mahboob = User.create!(
@@ -156,8 +157,7 @@ band_images =
 users = User.all
 
 cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
-experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
-  "Between 2 years to 5 years", "More than 5 years"]
+
 description = [
     "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
     "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
