@@ -7,8 +7,50 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "faker"
+require "cloudinary"
+
 Band.destroy_all
 User.destroy_all
+description1 = "La Musique is a relatively new musical band that has recently emerged in the vibrant city of Berlin, Germany. Despite being a young band, they have already made a name for themselves by putting on outstanding musical shows that captivate their audience. Currently consisting of only three members, La Musique is quickly gaining popularity and it is only a matter of time before their fan base expands. Their unique sound and musical style have been praised by many, making them a rising star in the music industry. With their promising potential and talent, La Musique is definitely a band to watch out for."
+bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi"]
+band_images =
+          ["://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/3_dfdw1v.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816174/4_mgjqct.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816073/5_ghppgs.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816247/6_yucugn.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816232/8_mga8zi.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816184/9_uhhb0z.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816137/10_z6n7cs.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816233/11_kz7sk5.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
+            ]
+users = User.all
+styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
+  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
+cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
+experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
+  "Between 2 years to 5 years", "More than 5 years"]
+description = [
+    "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
+    "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
+    "Slow Steve is the Berlin-based, smooth sounding synth-pop band that is charming its horde of followers. With a mellow, indie pop tone and analogue synth, Slow Steve is the ever-so-cool group who are signed to influential Berlin indie label Morr Music.",
+    "Jahcoozi is a multicultural Berlin-based trio, offering up a fresh sound that shies away from the mainstream. Fronted by London-born Sasha Perera and backed by producers/multi-instrumentalists, Teuton Robot Koch and Oren Gerlitz, together they put on energetic performances and electric nights at some of the citys wildest clubs and bars. Their pop-electro sound and body-shaking songs are impossible not to dance to or love.",
+    "Seeed is a beloved eleven-person Berlin band. Known for their catchy contemporary fusion of German hip-hop, reggae and dancehall styles, this large band formed in 1998 and has found huge success in Germany and the surrounding countries. With a funky, unique sound, theyre a well-established Berlin band thats worth checking out.",
+    "Beatsteaks have been around since the mid-90s, blasting alternative German rock from Berlin. Playing alongside German punk legends Die Ärzte and Die Toten Hosen brought the band a wider audience. Theyre still rocking on today, touring and putting on huge shows for adoring and wild fans.",
+    "Jennifer Rostock is fronted by German-born singer and TV-host Jennifer Weist. Drawing on elements of hard rock, urban electronics and new-metal, the band produces a rocking, heavy and grunge sound with a female-driven point of view.",
+    "Super700 are a less well-known but amazing rock band from Berlin. Formed in 2003 by Ramadani and Michael Have, they have toured across Europe, and in Canada, Asia and America, bringing their English-sung rock hits across the globe.",
+    "Evvol is a darkwave electronic duo, comprised of Irish singer Julie Chance and Australian instrumentalist Jane Arnison. Currently based in Kreuzberg, they have stunned at their live shows and festivals appearances around the city. The band creates a unique sound under their prominent theme of the human condition.",
+    "Rammstein is Berlins most iconic and influential German rock band. Forming in 1994, they helped found a subgenre of German hard rock and metal that became known as Neue Deutsche Härte. Their influential style and German-centric songs are an insight into Berlins early rock scene and the evolving styles that came out of the city.",
+    "Wir Sind Helden, meaning We are Heroes in English, are a German pop-rock band established in Hamburg and based in Berlin. Their pop-rock sound has tones of the New German Wave style, deriving from punk roots but bringing a fresh, new sound. Popular in Berlin and around Germany, Wir Sind Helden shows the countrys love for new rock and thumping songs.",
+    "Laisse-Moi, a Berlin-based synth pop trio, was born in a analysts office. As a teenager, Manon Heugel grew up as the “girl singer” in “guys bands,” but got sick of singing the funk rock fashionable in 90s Paris, moved to Berlin, and found work as an actress. But then, in her analysts office, she decided she wanted to sing her own songs. She found a German bassist, Christina Riesenweber, and a classically-trained French pianist, Marie Klock, and with a drum machine and vintage analog synthesizers, they formed a synthpop band inspired by German no-wave and 80s French pop, narrating stories of Berlin nightlife with a sexy, feminist bent."
+]
+skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
+          "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
+          "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
+
+
 
 
 mahboob = User.create!(
@@ -17,7 +59,11 @@ mahboob = User.create!(
   phone: "098876544",
   address: "Magazinstraße 15-16, 10179 Berlin",
   email: "mahboob@gmail.com",
-  password: "123456"
+  password: "123456",
+  description: description1,
+  skills: skills.sample(3),
+  style: styles.sample,
+  experience: experience.sample
 )
 
 mahboob.profile_picture.attach(
@@ -62,7 +108,11 @@ jane = User.create!(
   phone: "098876544",
   address: "Straßmannstraße 1, 10249 Berlin",
   email: "martins@test.com",
-  password: "123456"
+  password: "0123423453456",
+  description: description1,
+  skills: skills.sample(3),
+  style: styles.sample,
+  experience: experience.sample
 )
 
 jane_Band = Band.create!(
@@ -92,7 +142,11 @@ roger = User.create(
   phone: "017676490923",
   address: "Goslarer Ufer 3, 10589 Berlin",
   email: "roger.silva@live.cl",
-  password: "123456"
+  password: "1986223456",
+  description: description1,
+  skills: skills.sample(3),
+  style: styles.sample,
+  experience: experience.sample
 )
 
 roger.profile_picture.attach(
@@ -129,7 +183,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
                   "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
                   "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
 
-30.times do
+13.times do
   street = sample_address.sample
   number = rand(1..70)
   full_address = "#{street} #{number}, Berlin"
@@ -151,64 +205,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   p new_user.full_name
 end
 
-bands = ["Crimson Horizon", "The Velvet Tides", "Sonic Serenade", "Moonlit Symphony", "Electric Stardust",
-          "Cosmic Echoes", "Retrograde Renegades", "Neon Nightscape", "Siren's Song", "Spectrum Shifters",
-          "Echoes the Abyss", "The Mystic Muses",
-          "Ghosts of the Past", "Twisted Whispers", "Firelight Frenzy", "Phoenix Rising", "The Fading Suns", "Technicolor Dreamers", "The Golden Hour",
-          "Abyssal Ascension", "Electric Aura", "Dark Carnival", "Starlight Strangers", "Visions of Tomorrow",
-          "Shadowplay Syndicate", "Mystic Melodies", "Twilight Tempest", "Electric Masquerade", "The Infinite Groove", "Phantom Phunk"]
-
-band_images =
-          ["https://m.media-amazon.com/images/I/51N2zTP-LqL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/91CS0eGcsXL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71p3Ts9D6JL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/81oRpoLLvYL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/61cbqPP8P-L._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/71zGEA8lL4L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61KqTV+V7IL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71V9djmrrNL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61pNQNpgC1L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61quGhuk1tL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/710O-XQN7ZL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81f5B2cnJkL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61NqSqEIgTL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71z3WEWEMLL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71Yx4zg7o+L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/711+cXsrKTL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/815mHicG39L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81gr9+IPivL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61e6GcvDk9L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/61cyIX8JSwL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/717qmGlA7ZL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71us2RZxgnL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/51vYRaJxxmL._AC_.jpg",
-          "https://m.media-amazon.com/images/I/71ZOQVzDjEL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71gV69XL34L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/819WldTQU8S._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/614THlKS2RL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/51WLd4L7nxL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/51uzv21J8XL._AC_.jpg",
-          "https://m.media-amazon.com/images/I/41MQV30G26L._AC_.jpg",
-          "https://m.media-amazon.com/images/I/71PdY8+X-AL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/51qoe5x-IlL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81qddT9HsnL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/81x18tRmGlL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/41jbJJZ56BL._AC_.jpg",
-          "https://m.media-amazon.com/images/I/51KdNjiqy8L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81hpF2tyj5L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71Ust+3JFVL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71CQjIaXEQL._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/81E-oqRzzwL._AC_SY879_.jpg",
-          "https://m.media-amazon.com/images/I/61R6K+TVJ1L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71ehq28SC8L._AC_SX679_.jpg",
-          "https://m.media-amazon.com/images/I/71KnfDnTvQL._AC_SX679_.jpg"]
-
-
-30.times do
+20.times do
   actual_user = User.order("RANDOM()").first
   band = bands.shift
   band_image = band_images.shift
