@@ -56,7 +56,7 @@ mahboob_Band.photos.attach(
 )
 mahboob.save
 
-jane = User.create(
+jane = User.create!(
   full_name: "Jane",
   nickname: "Eme",
   phone: "098876544",
