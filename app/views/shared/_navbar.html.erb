@@ -37,7 +37,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Go to profiles", users_path, class: "nav-link" %></li>
-              <li><%= link_to "Go to bands", user_bands_path(user_id: @user.id), class: "nav-link" %></li>
+              <li><%= link_to "Go to bands", user_bands_path(user_id: @user), class: "nav-link" %></li>
               <li><hr class="dropdown-divider"></li>
               <li><%= link_to "Go to my profile", user_path(current_user), class: "nav-link" %></li>
               <li><%= link_to "Edit my profile", edit_user_path(current_user), class: "nav-link" %></li>
