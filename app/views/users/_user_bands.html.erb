@@ -1,0 +1,32 @@
+<% @user_bands = @bands.where(user_id: params[:id]) %>
+<div class="container text-center">
+  <div class="row">
+    <div class="col align-self-center my-2">
+      <% if @user == current_user %>
+        <% if @user_bands.empty? %>
+          <h2 class="postcard__title blue">Hey <%= @user.nickname %>, you have no bands yet. Create one now! </h2>
+        <% else %>
+          <h2 class="postcard__title blue">Hey <%= @user.nickname %>, here are your bands: </h2>
+          <div class="col align-self-start">
+            <%= render "band_cards" %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if @user_bands.empty? %>
+          <h2 class="postcard__title blue">Looks like <%= @user.nickname %> doesn't have any bands yet </h2>
+        <% else %>
+          <h2 class="postcard__title blue">Hey <%= current_user.nickname %>, here are <%= @user.nickname %>'s bands: </h2>
+          <div class="col align-self-start">
+            <%= render "band_cards" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<%= link_to "Create your band", new_user_band_path(user_id: @user.id) %>
