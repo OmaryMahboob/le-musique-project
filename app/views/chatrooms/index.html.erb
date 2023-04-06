@@ -1,5 +1,12 @@
-
-<h3>index page</h3>
-<% @user_chatrooms.each do |chatroom| %>
-  <a href="<%= chatroom_path(chatroom, id: chatroom.id) %>"><h2>From: <%= User.find(chatroom.sender.id).full_name %> to: <%= User.find(chatroom.receiver.id).full_name %></h2></a>
-<% end %>
+<div class="d-flex">
+  <div>
+    <h2>Your Messages</h2>
+    <% @user_chatrooms.each do |chatroom| %>
+      <h2>
+        <a href="<%= chatroom_path(chatroom.id) %>">
+          <%= User.find(chatroom.receiver.id).full_name %> <%= User.find(chatroom.receiver.id).nickname %>
+        </a>
+      </h2>
+    <% end %>
+  </div>
+</div>

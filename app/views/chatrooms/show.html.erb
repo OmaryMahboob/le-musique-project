@@ -1,36 +1,50 @@
-<div class="container chatroom">
-  <h1>#<%= @chatroom_name %></h1>
 
-  <div class="messages">
-    <% @chatroom.messages.each do |message| %>
-      <% if message.user == @current_user %>
-        <div style="text-align: right;" id="message-<%= message.id %>">
-          <small>
-            <strong><%= message.user.full_name %></strong>
-            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-          </small>
-          <p><%= message.private_message %></p>
-        </div>
-          <% else %>
-            <div style="text-align: left;" id="message-<%= message.id %>">
-              <small>
-                <strong><%= message.user.full_name %></strong>
-                <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-              </small>
-              <p><%= message.private_message %></p>
-            </div>
-          <% end %>
+
+<div class="d-flex">
+ <div>
+    <h2>Your Messages</h2>
+    <% @user_chatrooms.each do |chatroom| %>
+      <h2>
+        <a href="<%= chatroom_path(chatroom.id) %>">
+          <%= User.find(chatroom.receiver.id).full_name %> <%= User.find(chatroom.receiver.id).nickname %>
+        </a>
+      </h2>
     <% end %>
   </div>
 
-  <%= simple_form_for [@chatroom, @message],
-  html: {class: "d-flex"} do |f|
-%>
-  <%= f.input :private_message,
-    label: false,
-    placeholder: "Message ##{@chatroom_name}",
-    wrapper_html: {class: "flex-grow-1"}
+  <div class="container chatroom">
+    <h1>#<%= @chatroom_name %></h1>
+    <div class="messages">
+      <% @chatroom.messages.each do |message| %>
+        <% if message.user == @current_user %>
+          <div style="text-align: right;" id="message-<%= message.id %>">
+            <small>
+              <strong><%= message.user.full_name %></strong>
+              <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+            </small>
+            <p><%= message.private_message %></p>
+          </div>
+            <% else %>
+              <div style="text-align: left;" id="message-<%= message.id %>">
+                <small>
+                  <strong><%= message.user.full_name %></strong>
+                  <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+                </small>
+                <p><%= message.private_message %></p>
+              </div>
+            <% end %>
+      <% end %>
+    </div>
+
+    <%= simple_form_for [@chatroom, @message],
+    html: {class: "d-flex"} do |f|
   %>
-  <%= f.submit  "Send", class: "btn btn-primary mb-3" %>
-<% end %>
+    <%= f.input :private_message,
+      label: false,
+      placeholder: "Message ##{@chatroom_name}",
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+    <%= f.submit  "Send", class: "btn btn-primary mb-3" %>
+    <% end %>
+  </div>
 </div>
