@@ -226,3 +226,21 @@ band_images =
   new_band.save
   p new_band.band_name
 end
+
+styles = ["Pop", "Rock", "Hip-hop", "Jazz", "Blues", "Country", "Electronic",
+  "Classical", "Reggae", "Folk", "Metal", "Punk", "Funk", "Soul", "Gospel",
+  "Opera", "Latin Music", "K-Pop", "J-Pop", "Indie", "Alternative", "Heavy Metal",
+  "Grunge", "Dubstep", "Techno", "House", "Trance", "Ambient"]
+28.times do
+  style = styles.shift
+  Style.create!(style: style)
+end
+
+skills = ["guitar", "Drums", "Piano", "Keyboard", "Violin", "Viola", "Cello", "Trumpet",
+  "Trombone", "Flute", "Saxophone", "Harmonica", "Accordion", "Banjo", "Xylophone", "Sitar"
+  ]
+
+16.times do
+  skill = skills.shift
+  Skill.create!(skill: skill)
+end

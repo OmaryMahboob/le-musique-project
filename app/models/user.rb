@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :band_members
   has_many :chatroom_senders, class_name: "Chatroom", foreign_key: :sender
   has_many :chatroom_receivers, class_name: "Chatroom", foreign_key: :recever
+  has_many :skills, through: :user_skills
 
   # validates :full_name, presence: true
   # validates :nickname, presence: true
