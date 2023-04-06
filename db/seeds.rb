@@ -15,6 +15,8 @@ description1 = "La Musique is a relatively new musical band that has recently em
 skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
           "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
           "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
+          styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
+            "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
 
 
 
@@ -152,8 +154,7 @@ band_images =
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
             ]
 users = User.all
-styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
+
 cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
   "Between 2 years to 5 years", "More than 5 years"]
