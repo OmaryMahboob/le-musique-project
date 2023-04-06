@@ -60,6 +60,6 @@ class BandsController < ApplicationController
 
   def band_params
     params.require(:band).permit(:band_name, :band_style, :looking_for_member, :experience, :content, :city,
-                                 multimedia: [])
+                                  multimedia: [])
   end
 end
