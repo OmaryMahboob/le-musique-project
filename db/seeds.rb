@@ -197,7 +197,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     address: full_address,
     email: Faker::Internet.unique.email,
     password: "123456",
-    description: description.shift,
+    description: descriptions.shift,
     skills: skills.sample(2),
     style: styles.sample,
     experience: experience.sample
@@ -214,7 +214,6 @@ end
 13.times do
   actual_user = User.order("RANDOM()").first
   band_name = bands_name.shift
-  description = descriptions.shift
   band_image = band_images.shift
 
   new_band = Band.create!(
@@ -223,8 +222,8 @@ end
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
-    content: description,
-    looking_for_member: [true, false].sample,
+    content: descriptions.shift,
+    looking_for_member: [true, false].sample
     #photo: band_image
   )
   new_band.save
