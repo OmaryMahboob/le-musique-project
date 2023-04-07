@@ -276,9 +276,10 @@ end
 10.times do
   actual_user = User.order("RANDOM()").first
   band_name = bands_name.shift
+  band_image = band_images.shift
   band_image = [
     {
-      io: URI.open(band_images.shift),
+      io: URI.open(band_image),
       filename: "#{band_name}image.png",
       content_type: "image/png"
     }
