@@ -38,6 +38,20 @@ bios = [
       "As a musician, I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
 ]
 
+user_images = [
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830278/ruel-del-jamorol-1Xr5v3kIYIQ-unsplash_htpjw6.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830276/sofie-jarvis-rBMb0vrwCqI-unsplash_fbfhvn.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830275/ryan-ancill-vT8mC3T6faE-unsplash_aakmwc.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830273/vidar-nordli-mathisen-Y8blSqNrxLU-unsplash_fqlyxz.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830270/taylor-vST3iSERj1g-unsplash_dsgdln.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830258/anastacia-dvi-CQ5p_jwA3DI-unsplash_lrs9nf.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830244/matthew-kalapuch-sqJ4tLBiurw-unsplash_jp7mcs.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830248/bobbie-m-bYjfI33nK6Y-unsplash_qfgq54.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830256/muha-ajjan-7hntt9oeebc-unsplash_qpj19c.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830242/kyle-wong-rrHtkX1rLP0-unsplash_1_wc8jhx.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830240/milo-bauman-oih02bWCm3Y-unsplash_sdlagl.jpg",
+  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830240/milo-bauman-oih02bWCm3Y-unsplash_sdlagl.jpg"
+]
 
 
 mahboob = User.create!(
@@ -59,27 +73,11 @@ mahboob.profile_picture.attach(
   filename: "profile_picture_mahboob.jpeg",
   content_type: "image/jpg"
 )
-# mahboob.multimedia.attach(
-#   io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
-#   filename: "profile_picture_mahboob.jpeg",
-#   content_type: "image/jpg"
-# )
-images = [
-  {
-    io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
-    filename: "image1.png",
-    content_type: "image/png"
-  },
-  {
-    io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816247/6_yucugn.png"),
-    filename: "image2.png",
-    content_type: "image/png"
-  }
-]
-
-images.each do |image|
-  mahboob.multimedia.attach(image)
-end
+mahboob.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "#{current_user.full_name}.jpeg",
+  content_type: "image/jpg"
+)
 
 mahboob.save
 
@@ -125,6 +123,11 @@ jane = User.create!(
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
+jane.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "#{current_user.full_name}.jpeg",
+  content_type: "image/jpg"
+)
 
 jane_Band = Band.create!(
   band_name: "Neon skies",
@@ -167,6 +170,12 @@ roger.profile_picture.attach(
   filename: "profile_picture_roger.jpeg",
   content_type: "image/jpg"
 )
+roger.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "#{current_user.full_name}.jpeg",
+  content_type: "image/jpg"
+)
+
 roger.save
 
 roger_Band = Band.create!(
@@ -233,6 +242,13 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   street = sample_address.sample
   number = rand(1..100)
   full_address = "#{street} #{number}, Berlin"
+  user_image = [
+    {
+      io: URI.open(user_images.shift),
+      filename: "#{first_names.sample}image.png",
+      content_type: "image/png"
+    }
+  ]
 
   new_user = User.create(
     full_name: first_names.sample,
@@ -252,6 +268,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     filename: "profile_picture_#{new_user.full_name}.jpeg",
     content_type: "image/jpg"
   )
+  new_user.multimedia.attach(user_image)
   new_user.save
   p new_user.full_name
 end
@@ -259,7 +276,13 @@ end
 10.times do
   actual_user = User.order("RANDOM()").first
   band_name = bands_name.shift
-  band_image = band_images.shift
+  band_image = [
+    {
+      io: URI.open(band_images.shift),
+      filename: "#{band_name}image.png",
+      content_type: "image/png"
+    }
+  ]
 
   new_band = Band.create!(
     band_name: band_name,
@@ -270,7 +293,7 @@ end
     content: descriptions.shift,
     looking_for_member: [true, false].sample,
     style: styles.sample,
-    #photo: band_image
+    multimedia: band_image
   )
   new_band.save
   p new_band.band_name
