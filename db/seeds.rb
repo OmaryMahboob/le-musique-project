@@ -251,9 +251,9 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     address: full_address,
     email: Faker::Internet.unique.email,
     password: "123456",
-    description: bios.sample,
+    description: bios.shift,
     skills: skills.sample(2),
-    style: styles.sample,
+    style: styles.shift,
     experience: experience.sample,
     looking_for_band: [true, false].sample
   )
