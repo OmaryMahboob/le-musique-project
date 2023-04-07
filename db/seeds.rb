@@ -106,7 +106,7 @@ jane = User.create!(
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample,
-  looking_for_member: [true, false].sample
+  looking_for_band: [true, false].sample
 )
 
 jane_Band = Band.create!(
@@ -141,7 +141,7 @@ roger = User.create(
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample,
-  looking_for_member: [true, false].sample
+  looking_for_band: [true, false].sample
 
 )
 
