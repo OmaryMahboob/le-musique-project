@@ -59,11 +59,28 @@ mahboob.profile_picture.attach(
   filename: "profile_picture_mahboob.jpeg",
   content_type: "image/jpg"
 )
-mahboob.multimedia.attach(
-  io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
-  filename: "profile_picture_mahboob.jpeg",
-  content_type: "image/jpg"
-)
+# mahboob.multimedia.attach(
+#   io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
+#   filename: "profile_picture_mahboob.jpeg",
+#   content_type: "image/jpg"
+# )
+images = [
+  {
+    io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
+    filename: "image1.png",
+    content_type: "image/png"
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816247/6_yucugn.png"),
+    filename: "image2.png",
+    content_type: "image/png"
+  }
+]
+
+images.each do |image|
+  mahboob.multimedia.attach(image)
+end
+
 mahboob.save
 
 mahboob_Band = Band.create!(
