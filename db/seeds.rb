@@ -195,7 +195,7 @@ roger.save
 
 bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
 band_images =
-          ["://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
+          ["https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/3_dfdw1v.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816174/4_mgjqct.png",
