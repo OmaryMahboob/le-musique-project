@@ -75,7 +75,7 @@ mahboob.profile_picture.attach(
 )
 mahboob.multimedia.attach(
   io: URI.open(user_images.sample),
-  filename: "#{current_user.full_name}.jpeg",
+  filename: "photo#{rand(1..60)}.jpeg",
   content_type: "image/jpg"
 )
 
@@ -125,7 +125,7 @@ jane = User.create!(
 )
 jane.multimedia.attach(
   io: URI.open(user_images.sample),
-  filename: "#{current_user.full_name}.jpeg",
+  filename: "photo#{rand(1..60)}.jpeg",
   content_type: "image/jpg"
 )
 
@@ -172,7 +172,7 @@ roger.profile_picture.attach(
 )
 roger.multimedia.attach(
   io: URI.open(user_images.sample),
-  filename: "#photo{rand(1..60)}.jpeg",
+  filename: "photo#{rand(1..60)}.jpeg",
   content_type: "image/jpg"
 )
 
