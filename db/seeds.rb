@@ -54,7 +54,7 @@ user_images = [
 ]
 
 
-mahboob = User.create!(
+mahboob = User.new(
   full_name: "mahboob",
   nickname: "omary",
   phone: "098876544",
@@ -110,7 +110,7 @@ mahboob.save
 # )
 # mahboob.save
 
-jane = User.create!(
+jane = User.new(
   full_name: "Jane",
   nickname: "Eme",
   phone: "098876544",
@@ -151,7 +151,7 @@ jane.save
 
 
 
-roger = User.create(
+roger = User.new(
   full_name: "Roger",
   nickname: "Silva",
   phone: "017676490923",
@@ -244,7 +244,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   number = rand(1..100)
   full_address = "#{street} #{number}, Berlin"
 
-  new_user = User.create(
+  new_user = User.new(
     full_name: first_names.sample,
     nickname: Faker::Name.last_name,
     phone: Faker::PhoneNumber.phone_number,
@@ -275,7 +275,7 @@ end
   actual_user = User.order("RANDOM()").first
   band_image = band_images.shift
 
-  new_band = Band.create!(
+  new_band = Band.new(
     band_name: bands_name.shift,
     band_style: styles.sample,
     user_id: actual_user.id,
