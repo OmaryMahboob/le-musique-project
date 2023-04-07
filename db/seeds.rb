@@ -81,34 +81,34 @@ mahboob.multimedia.attach(
 
 mahboob.save
 
-mahboob_Band = Band.create!(
-  band_name: "Electric",
-  band_style: "Fusion of Electric and dancehall.",
-  # price: rand(2.0..20.0).round(2),
-  user_id: mahboob.id,
-  # address: mahboob.address
-)
+# mahboob_Band = Band.create!(
+#   band_name: "Electric",
+#   band_style: "Fusion of Electric and dancehall.",
+#   # price: rand(2.0..20.0).round(2),
+#   user_id: mahboob.id,
+#   # address: mahboob.address
+# )
 
-mahboob_Band.photos.attach(
-  io: URI.open("https://dailymusicroll.s3.us-west-2.amazonaws.com/wp-content/uploads/2022/04/21160802/5499313034_11ba8fdcf8_b.jpg"),
-  filename: "photo_rubab1.jpeg",
-  content_type: "image/jpg"
-)
-mahboob.save
+# mahboob_Band.photos.attach(
+#   io: URI.open("https://dailymusicroll.s3.us-west-2.amazonaws.com/wp-content/uploads/2022/04/21160802/5499313034_11ba8fdcf8_b.jpg"),
+#   filename: "photo_rubab1.jpeg",
+#   content_type: "image/jpg"
+# )
+# mahboob.save
 
-mahboob_Band.photos.attach(
-  io: URI.open("https://i.guim.co.uk/img/media/bdc6551c0615762ef8e523dedfbe72a0daacc722/0_197_1791_1075/master/1791.jpg?width=1200&quality=85&auto=format&fit=max&s=1f7e5f7a7df79bf5936284cc52d2da18"),
-  filename: "photo_rubab2.jpeg",
-  content_type: "image/jpg"
-)
-mahboob.save
+# mahboob_Band.photos.attach(
+#   io: URI.open("https://i.guim.co.uk/img/media/bdc6551c0615762ef8e523dedfbe72a0daacc722/0_197_1791_1075/master/1791.jpg?width=1200&quality=85&auto=format&fit=max&s=1f7e5f7a7df79bf5936284cc52d2da18"),
+#   filename: "photo_rubab2.jpeg",
+#   content_type: "image/jpg"
+# )
+# mahboob.save
 
-mahboob_Band.photos.attach(
-  io: URI.open("https://i.ytimg.com/vi/RCabnDJ8Tgc/maxresdefault.jpg"),
-  filename: "photo_rubab3.jpeg",
-  content_type: "image/jpg"
-)
-mahboob.save
+# mahboob_Band.photos.attach(
+#   io: URI.open("https://i.ytimg.com/vi/RCabnDJ8Tgc/maxresdefault.jpg"),
+#   filename: "photo_rubab3.jpeg",
+#   content_type: "image/jpg"
+# )
+# mahboob.save
 
 jane = User.create!(
   full_name: "Jane",
@@ -128,27 +128,28 @@ jane.multimedia.attach(
   filename: "photo#{rand(1..60)}.jpeg",
   content_type: "image/jpg"
 )
-
-jane_Band = Band.create!(
-  band_name: "Neon skies",
-  band_style: "Fusion of Electric and Blues",
-  user_id: jane.id,
-  # address: jane.address
-)
-
-jane_Band.photos.attach(
-  io: URI.open("https://www.musicalortiz.com/wp-content/uploads/2021/11/Marimba.jpg"),
-  filename: "photo_marimba.jpeg",
-  content_type: "image/jpg"
-)
-jane.save
-
 jane.profile_picture.attach(
   io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667074864/tkaswximthoisj8cucbd.jpg"),
   filename: "profile_picture_jane.jpeg",
   content_type: "image/jpg"
 )
 jane.save
+
+# jane_Band = Band.create!(
+#   band_name: "Neon skies",
+#   band_style: "Fusion of Electric and Blues",
+#   user_id: jane.id,
+#   # address: jane.address
+# )
+
+# jane_Band.photos.attach(
+#   io: URI.open("https://www.musicalortiz.com/wp-content/uploads/2021/11/Marimba.jpg"),
+#   filename: "photo_marimba.jpeg",
+#   content_type: "image/jpg"
+# )
+# jane.save
+
+
 
 roger = User.create(
   full_name: "Roger",
@@ -178,19 +179,19 @@ roger.multimedia.attach(
 
 roger.save
 
-roger_Band = Band.create!(
-  band_name: "Whiskey Rebels",
-  band_style: "Fusion of alternative and psychedelic rock.",
-  # price: rand(2.0..20.0).round(2),
-  user_id: roger.id,
-  # address: roger.address
-)
-roger_Band.photos.attach(
-  io: URI.open("https://musiculum.de/wp-content/uploads/2021/02/Charango.jpg"),
-  filename: "photo_charango1.jpeg",
-  content_type: "image/jpg"
-)
-roger.save
+# roger_Band = Band.create!(
+#   band_name: "Whiskey Rebels",
+#   band_style: "Fusion of alternative and psychedelic rock.",
+#   # price: rand(2.0..20.0).round(2),
+#   user_id: roger.id,
+#   # address: roger.address
+# )
+# roger_Band.photos.attach(
+#   io: URI.open("https://musiculum.de/wp-content/uploads/2021/02/Charango.jpg"),
+#   filename: "photo_charango1.jpeg",
+#   content_type: "image/jpg"
+# )
+# roger.save
 
 
 bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
@@ -272,16 +273,15 @@ end
 
 10.times do
   actual_user = User.order("RANDOM()").first
-  band_name = bands_name.sample
-  band_image = band_images.sample
+  band_image = band_images.shift
 
   new_band = Band.create!(
-    band_name: band_name,
+    band_name: bands_name.shift,
     band_style: styles.sample,
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
-    content: descriptions.sample,
+    content: descriptions.shift,
     looking_for_member: [true, false].sample,
     style: styles.sample,
   )
