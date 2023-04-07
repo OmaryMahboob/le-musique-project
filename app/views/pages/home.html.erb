@@ -26,7 +26,7 @@
     <span class="hometext-green">new bands</span>
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% Band.all.sample.each do |band|%>
+    <% Band.all.sample(3).each do |band|%>
       <div class="col">
         <a href="<%= user_band_path(id: band.id, user_id: band.user_id) %>"class="link">
           <div class="card card-bands">
