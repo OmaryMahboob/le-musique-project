@@ -272,8 +272,8 @@ end
 
 10.times do
   actual_user = User.order("RANDOM()").first
-  band_name = bands_name.shift
-  band_image = band_images.shift
+  band_name = bands_name.sample
+  band_image = band_images.sample
 
   new_band = Band.create!(
     band_name: band_name,
@@ -281,7 +281,7 @@ end
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
-    content: descriptions.shift,
+    content: descriptions.sample,
     looking_for_member: [true, false].sample,
     style: styles.sample,
   )
