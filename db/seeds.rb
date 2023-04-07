@@ -242,13 +242,6 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   street = sample_address.sample
   number = rand(1..100)
   full_address = "#{street} #{number}, Berlin"
-  user_image = [
-    {
-      io: URI.open(user_images.shift),
-      filename: "#{first_names.sample}image.png",
-      content_type: "image/png"
-    }
-  ]
 
   new_user = User.create(
     full_name: first_names.sample,
@@ -268,7 +261,11 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     filename: "profile_picture_#{new_user.full_name}.jpeg",
     content_type: "image/jpg"
   )
-  new_user.multimedia.attach(user_image)
+  new_user.multimedia.attach(
+    io: URI.open(user_images.sample),
+    filename: "photo#{rand(1..60)}.jpeg",
+    content_type: "image/jpg"
+  )
   new_user.save
   p new_user.full_name
 end
@@ -277,13 +274,6 @@ end
   actual_user = User.order("RANDOM()").first
   band_name = bands_name.shift
   band_image = band_images.shift
-  band_image = [
-    {
-      io: URI.open(band_image),
-      filename: "#{band_name}image.png",
-      content_type: "image/png"
-    }
-  ]
 
   new_band = Band.create!(
     band_name: band_name,
@@ -294,7 +284,11 @@ end
     content: descriptions.shift,
     looking_for_member: [true, false].sample,
     style: styles.sample,
-    multimedia: band_image
+  )
+  new_band.multimedia.attach(
+    io: URI.open(band_image),
+    filename: "photo#{rand(1..60)}.jpeg",
+    content_type: "image/jpg"
   )
   new_band.save
   p new_band.band_name
