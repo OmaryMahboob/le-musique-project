@@ -15,7 +15,9 @@ class BandsController < ApplicationController
   def edit
     @user = current_user
     @band = Band.find(params[:id])
+
   end
+
 
   def show
     # @user_id = current_user
@@ -41,6 +43,7 @@ class BandsController < ApplicationController
   def update
     set_band
     @band.update(band_params)
+    redirect_to user_path(id: current_user.id), notice: "Band was successfully updated."
   end
 
   def destroy

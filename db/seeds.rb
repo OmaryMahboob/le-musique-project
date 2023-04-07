@@ -62,7 +62,7 @@ mahboob = User.create!(
   email: "mahboob@gmail.com",
   password: "123456",
   description: bios.sample,
-  skills: skills.sample(3),
+  skills: skills.sample,
   style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
@@ -116,9 +116,9 @@ jane = User.create!(
   phone: "098876544",
   address: "Straßmannstraße 1, 10249 Berlin",
   email: "martins@test.com",
-  password: "0123423453456",
+  password: "0123456",
   description: bios.sample,
-  skills: skills.sample(3),
+  skills: skills.sample,
   style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
@@ -157,9 +157,9 @@ roger = User.create(
   phone: "017676490923",
   address: "Goslarer Ufer 3, 10589 Berlin",
   email: "roger.silva@live.cl",
-  password: "1986223456",
+  password: "123456",
   description: bios.sample,
-  skills: skills.sample(3),
+  skills: skills.sample,
   style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
@@ -252,7 +252,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     email: Faker::Internet.unique.email,
     password: "123456",
     description: bios.shift,
-    skills: skills.sample(2),
+    skills: skills.sample,
     style: styles.shift,
     experience: experience.sample,
     looking_for_band: [true, false].sample
