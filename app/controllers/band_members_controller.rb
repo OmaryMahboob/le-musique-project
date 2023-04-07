@@ -3,18 +3,15 @@ class BandMembersController < ApplicationController
     @band = Band.find(params[:band_id])
     @band_members = BandMember.all
     @user = User.find(params[:user_id])
-    
-
   end
 
   def new
     @band_member = BandMember.new
-    # @band.id = Band.find(params[:id])
+  #  @band.id = Band.find(params[:id])
     create
   end
 
   def create
-
     @band_member = BandMember.new
     @band = Band.find(params[:band_id])
     @band_member.band = @band
@@ -27,6 +24,7 @@ class BandMembersController < ApplicationController
       flash[:alert] = "you have already submited your request to join this band."
       redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
     end
+
   end
 
   def destroy

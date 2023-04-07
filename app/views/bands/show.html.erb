@@ -37,7 +37,7 @@
               <%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), class:"btn btn-danger mx-2 my-2 btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %>
             <% end %>
             <% if @user != current_user %>
-              <%= link_to "Join to this band", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary mx-2" %>
+              <%= link_to "Join to this band", new_user_band_band_member_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary mx-2" %>
               <% if @chatroom.nil? %>
                 <%= link_to "Send a message", chatrooms_path(receiver: @user), data: { turbo_method: "post" }, class:"btn btn-primary mx-2" %>
               <% else %>
