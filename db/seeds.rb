@@ -214,6 +214,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
 
 10.times do
   street = sample_address.sample
+  number = rand(1..100)
   full_address = "#{street} #{number}, Berlin"
 
   new_user = User.create(
