@@ -172,7 +172,7 @@ roger.profile_picture.attach(
 )
 roger.multimedia.attach(
   io: URI.open(user_images.sample),
-  filename: "#{current_user.full_name}.jpeg",
+  filename: "#photo{rand(1..60)}.jpeg",
   content_type: "image/jpg"
 )
 
