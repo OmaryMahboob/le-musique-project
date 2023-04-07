@@ -19,6 +19,8 @@
           <div class="mt-3">
             <h4><%= @user.full_name %> <%= @user.nickname %></h4>
             <p><strong><%= @user.skills %></strong> | <%= @user.style %></p>
+               <%= @user.description %>
+               <br><br>
             <% if @user == current_user %>
               <%# this function is just hidding the button to any other user, with the url is still accesible %>
               <%= link_to "Edit your profile", edit_user_path, class:"btn btn-primary mx-2" %>
@@ -65,6 +67,7 @@
       </ul>
     </div>
   </div>
+
   <div class="col-md-8 my-3">
     <div class="card mb-3 bordered">
       <div class="card-body light bordered">
@@ -79,3 +82,4 @@
     <%= render "user_bands", bands: @bands %>
   </div>
 </div>
+<img src=<%=@user.multimedia%> alt="">

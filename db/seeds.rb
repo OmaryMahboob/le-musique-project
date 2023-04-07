@@ -11,7 +11,7 @@ require "cloudinary"
 
 Band.destroy_all
 User.destroy_all
-description1 = "La Musique is a relatively new musical band that has recently emerged in the vibrant city of Berlin, Germany. Despite being a young band, they have already made a name for themselves by putting on outstanding musical shows that captivate their audience. La Musique is quickly gaining popularity and it is only..."
+
 skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
           "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
           "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
@@ -38,6 +38,8 @@ bios = [
       "As a musician, I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
 ]
 
+
+
 mahboob = User.create!(
   full_name: "mahboob",
   nickname: "omary",
@@ -48,11 +50,17 @@ mahboob = User.create!(
   description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
-  experience: experience.sample
+  experience: experience.sample,
+  looking_for_member: [true, false].sample
 )
 
 mahboob.profile_picture.attach(
   io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667037206/tri21is6dulhoce0cocq.jpg"),
+  filename: "profile_picture_mahboob.jpeg",
+  content_type: "image/jpg"
+)
+mahboob.multimedia.attach(
+  io: URI.open("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"),
   filename: "profile_picture_mahboob.jpeg",
   content_type: "image/jpg"
 )
@@ -97,7 +105,8 @@ jane = User.create!(
   description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
-  experience: experience.sample
+  experience: experience.sample,
+  looking_for_member: [true, false].sample
 )
 
 jane_Band = Band.create!(
@@ -131,7 +140,9 @@ roger = User.create(
   description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
-  experience: experience.sample
+  experience: experience.sample,
+  looking_for_member: [true, false].sample
+
 )
 
 roger.profile_picture.attach(
@@ -156,7 +167,7 @@ roger_Band.photos.attach(
 roger.save
 
 
-bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi"]
+bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
 band_images =
           ["://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
@@ -170,7 +181,6 @@ band_images =
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816233/11_kz7sk5.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
             ]
-users = User.all
 
 cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
 
@@ -186,7 +196,8 @@ descriptions = [
     "Evvol is a darkwave electronic duo, comprised of Irish singer Julie Chance and Australian instrumentalist Jane Arnison. Currently based in Kreuzberg, they have stunned at their live shows and festivals appearances around the city. The band creates a unique sound under their prominent theme of the human condition.",
     "Rammstein is Berlins most iconic and influential German rock band. Forming in 1994, they helped found a subgenre of German hard rock and metal that became known as Neue Deutsche Härte. Their influential style and German-centric songs are an insight into Berlins early rock scene and the evolving styles that came out of the city.",
     "Wir Sind Helden, meaning We are Heroes in English, are a German pop-rock band established in Hamburg and based in Berlin. Their pop-rock sound has tones of the New German Wave style, deriving from punk roots but bringing a fresh, new sound. Popular in Berlin and around Germany, Wir Sind Helden shows the countrys love for new rock and thumping songs.",
-    "Laisse-Moi, a Berlin-based synth pop trio, was born in a analysts office. As a teenager, Manon Heugel grew up as the “girl singer” in “guys bands,” but got sick of singing the funk rock fashionable in 90s Paris, moved to Berlin, and found work as an actress. But then, in her analysts office, she decided she wanted to sing her own songs. She found a German bassist, Christina Riesenweber, and a classically-trained French pianist, Marie Klock, and with a drum machine and vintage analog synthesizers, they formed a synthpop band inspired by German no-wave and 80s French pop, narrating stories of Berlin nightlife with a sexy, feminist bent."
+    "Laisse-Moi, a Berlin-based synth pop trio, was born in a analysts office. As a teenager, Manon Heugel grew up as the “girl singer” in “guys bands,” but got sick of singing the funk rock fashionable in 90s Paris, moved to Berlin, and found work as an actress. But then, in her analysts office, she decided she wanted to sing her own songs. She found a German bassist, Christina Riesenweber, and a classically-trained French pianist, Marie Klock, and with a drum machine and vintage analog synthesizers, they formed a synthpop band inspired by German no-wave and 80s French pop, narrating stories of Berlin nightlife with a sexy, feminist bent.",
+    "La Musique is a relatively new musical band that has recently emerged in the vibrant city of Berlin, Germany. Despite being a young band, they have already made a name for themselves by putting on outstanding musical shows that captivate their audience. La Musique is quickly gaining popularity and it is only..."
 ]
 first_names = ["Avery", "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Eliot", "Emerson", "Frankie", "Harley",
                "Hayden", "Hunter", "Jamie", "Jesse", "Jordan", "Jules", "Kai", "Kelly", "Kendall", "Lee", "Logan",
@@ -201,9 +212,8 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
                   "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
                   "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
 
-13.times do
+10.times do
   street = sample_address.sample
-  number = rand(1..70)
   full_address = "#{street} #{number}, Berlin"
 
   new_user = User.create(
@@ -216,7 +226,8 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     description: bios.sample,
     skills: skills.sample(2),
     style: styles.sample,
-    experience: experience.sample
+    experience: experience.sample,
+    looking_for_band: [true, false].sample
   )
   new_user.profile_picture.attach(
     io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
@@ -227,7 +238,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   p new_user.full_name
 end
 
-13.times do
+10.times do
   actual_user = User.order("RANDOM()").first
   band_name = bands_name.shift
   band_image = band_images.shift
@@ -239,7 +250,8 @@ end
     city: cities.sample,
     experience: experience.sample,
     content: descriptions.shift,
-    looking_for_member: [true, false].sample
+    looking_for_member: [true, false].sample,
+    style: styles.sample,
     #photo: band_image
   )
   new_band.save
