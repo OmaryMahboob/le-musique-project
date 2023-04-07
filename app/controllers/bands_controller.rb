@@ -30,7 +30,7 @@ class BandsController < ApplicationController
 
   def create
     @user = current_user
-    @band = @user.bands.build(band_params)
+    @band = @user.bands.new(band_params)
     @band.user_id = current_user.id
 
     if @band.save
