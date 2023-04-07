@@ -3,6 +3,7 @@ class BandMembersController < ApplicationController
     @band = Band.find(params[:band_id])
     @band_members = BandMember.all
     @user = User.find(params[:user_id])
+    
 
   end
 
