@@ -51,7 +51,7 @@ mahboob = User.create!(
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample,
-  looking_for_member: [true, false].sample
+  looking_for_band: [true, false].sample
 )
 
 mahboob.profile_picture.attach(
