@@ -20,7 +20,23 @@ styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experime
 
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
               "Between 2 years to 5 years", "More than 5 years"]
-
+bios = [
+      "As a musician, I have spent countless hours honing my craft and developing a sound that blends different genres together, creating a unique style that is truly my own.",
+      "When writing lyrics for my songs, I draw inspiration from my own life experiences and struggles, making my music deeply personal and introspective in a way that resonates with listeners.",
+      "I take great pride in my live performances, always giving 110% and leaving everything on the stage to create an unforgettable experience for my fans, connecting with them on a personal and emotional level.",
+      "With multiple platinum-selling albums and hit singles, I am grateful for the success I've had in the music industry and the opportunity to connect with fans around the world, creating a lasting impact through my music.",
+      "Throughout my career, I have strived to evolve my sound and push boundaries with each new release, constantly challenging myself as an artist to innovate and experiment with new styles and sounds.",
+      "As a musician, I believe that the power of music lies in its ability to move and inspire people, and I always strive to connect with my audience on a deep and emotional level, creating a meaningful and lasting impact.",
+      "I take great care in crafting infectious beats and catchy hooks that make it impossible for listeners not to dance along to my music, creating a universal appeal that transcends genre and culture.",
+      "As a multi-hyphenate artist, I am grateful for the opportunity to explore my creativity in both music and acting, connecting with fans across multiple industries and inspiring them through my art.",
+      "My music is a reflection of my deeply held beliefs and values, and I use my platform to address issues of social justice and inequality with a powerful and urgent message, making a meaningful impact on society.",
+      "Despite my success, I always remain true to my roots and my vision, never compromising my artistry for the sake of popularity, creating a lasting legacy that transcends time.",
+      "As a musician, I strive to create music that transcends genre and time, appealing to fans of all ages and backgrounds, making a universal impact through my art.",
+      "I take great pride in my ability to innovate and experiment with new sounds and styles, constantly pushing boundaries to create something truly unique that resonates with listeners on a deep and emotional level.",
+      "My music is deeply personal and often reflects my own struggles and emotions, with a voice that is both haunting and beautiful, creating a powerful and lasting impact on listeners.",
+      "I believe that great music is defined by intricate instrumentation and complex arrangements, showcasing the incredible talent and skill of the musician, creating a memorable and impactful experience for listeners.",
+      "As a musician, I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
+]
 
 mahboob = User.create!(
   full_name: "mahboob",
@@ -29,7 +45,7 @@ mahboob = User.create!(
   address: "Magazinstraße 15-16, 10179 Berlin",
   email: "mahboob@gmail.com",
   password: "123456",
-  description: description1,
+  description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample
@@ -78,7 +94,7 @@ jane = User.create!(
   address: "Straßmannstraße 1, 10249 Berlin",
   email: "martins@test.com",
   password: "0123423453456",
-  description: description1,
+  description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample
@@ -112,7 +128,7 @@ roger = User.create(
   address: "Goslarer Ufer 3, 10589 Berlin",
   email: "roger.silva@live.cl",
   password: "1986223456",
-  description: description1,
+  description: bios.sample,
   skills: skills.sample(3),
   style: styles.sample,
   experience: experience.sample
@@ -197,7 +213,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     address: full_address,
     email: Faker::Internet.unique.email,
     password: "123456",
-    description: descriptions.shift,
+    description: bios.sample,
     skills: skills.sample(2),
     style: styles.sample,
     experience: experience.sample
