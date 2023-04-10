@@ -216,10 +216,10 @@ end
 users = User.all
 skills = Skill.all
 
-30.times do
+20.times do
   UserSkill.create(
-    user_id: users.sample.id,
-    skill_id: skills.sample.id
+    user: users.sample,
+    skill: skills.sample
   )
 end
 
