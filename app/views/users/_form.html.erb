@@ -20,7 +20,7 @@
         <%= f.input :profile_picture, as: :file %>
       </div>
       <div class="col-md-12">
-        <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
+        <%= f.input :multimedia, as: :file, input_html: { multiple: true }%>
       </div>
       <div class="col-md-12">
         <%= f.input :description %>
@@ -32,11 +32,13 @@
         <%= f.input :experience, collection: User::EXPERIENCE %>
       </div>
       <div class="col-md-6">
-        <%= f.input :skills, collection: User::SKILLS %>
+        <%= f.input :skills, collection: Skill.all.map(&:skill), as: :select, input_html: { multiple: true }, include_hidden: false %>
       </div>
       <div class="col-md-6">
-        <%= f.input :style, collection: User::STYLE, as: :check_boxes %>
+        <%= f.input :styles, collection: Style.all.map(&:style), as: :select, input_html: { multiple: true }, include_hidden: false %>
       </div>
+
+
     </div>
     <div class="col text-center pt-3">
       <%= f.button :submit, "Update my account", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>

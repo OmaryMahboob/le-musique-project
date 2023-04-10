@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_many_attached :multimedia
 
+
   STYLE = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
            "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
   # validates :style, inclusion: { in: STYLE }, allow_blank: true

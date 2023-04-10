@@ -21,6 +21,10 @@ class UsersController < ApplicationController
   end
 
   def update
+
+    # if params[:user][:multimedia] != []
+    #   params[:user].delete(:multimedia)
+    # end
     if @user.update(user_params)
       redirect_to @user, notice: "user was succesfully updated"
     else
@@ -40,6 +44,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :full_name, :nickname, :phone, :address, :description, :looking_for_band,
-                                 :experience, :profile_picture, :skills, :style, multimedia: [])
+                                 :experience, :profile_picture, multimedia: [])
   end
 end
