@@ -3,7 +3,10 @@ class UserBandStyle < ApplicationRecord
   belongs_to :style, optional: true
   belongs_to :band
 
+  validates :style, user_or_band_present
+
   private
+  
   def user_or_band_present
     unless user.present? || band.present?
       errors.add(:base, "User or Band must be present")

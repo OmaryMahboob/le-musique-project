@@ -54,8 +54,6 @@ mahboob = User.new(
   email: "mahboob@gmail.com",
   password: "123456",
   description: bios.sample,
-  # skills: skills.sample,
-  # style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
@@ -81,8 +79,7 @@ jane = User.new(
   email: "martins@test.com",
   password: "0123456",
   description: bios.sample,
-  # skills: skills.sample,
-  # style: styles.sample,
+
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
@@ -108,8 +105,7 @@ roger = User.new(
   email: "roger.silva@live.cl",
   password: "123456",
   description: bios.sample,
-  # skills: skills.sample,
-  # style: styles.sample,
+
   experience: experience.sample,
   looking_for_band: [true, false].sample
 
@@ -211,7 +207,7 @@ end
 
   new_band = Band.new(
     band_name: bands_name.shift,
-    band_style: styles.sample,
+    # band_style: styles.sample,
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
