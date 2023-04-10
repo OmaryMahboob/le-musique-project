@@ -11,6 +11,12 @@ require "cloudinary"
 
 Band.destroy_all
 User.destroy_all
+Skill.destroy_all
+Style.destroy_all
+UserBandStyle.destroy_all
+UserSkill.destroy_all
+BandMember.destroy_all
+
 
 
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
