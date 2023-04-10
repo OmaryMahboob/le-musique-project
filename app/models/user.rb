@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :band_members
   has_many :chatroom_senders, class_name: "Chatroom", foreign_key: :sender
   has_many :chatroom_receivers, class_name: "Chatroom", foreign_key: :recever
-  has_many :user_skills
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
-  has_many :user_band_styles
+  has_many :user_band_styles, dependent: :destroy
   has_many :styles, through: :user_band_styles
 
 

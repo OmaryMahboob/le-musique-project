@@ -17,20 +17,6 @@ UserBandStyle.destroy_all
 UserSkill.destroy_all
 BandMember.destroy_all
 
-styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
-
-styles_list.each do |style|
-  s = Style.new(style: style)
-  s.save
-end
-
-skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
-
-skills_list.each do |skill|
-  s = Skill.new(skill: skill)
-  s.save
-end
-
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
               "Between 2 years to 5 years", "More than 5 years"]
 bios = [
@@ -213,15 +199,6 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   new_user.save
   p new_user.full_name
 end
-users = User.all
-skills = Skill.all
-
-20.times do
-  UserSkill.create(
-    user: users.sample,
-    skill: skills.sample
-  )
-end
 
 10.times do
   actual_user = User.order("RANDOM()").first
@@ -229,7 +206,6 @@ end
 
   new_band = Band.new(
     band_name: bands_name.shift,
-    # band_style: styles.sample,
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
@@ -243,4 +219,44 @@ end
   )
   new_band.save
   p new_band.band_name
+end
+
+# Creating the styles, skills and their associations tables in their databases
+
+styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
+
+styles_list.each do |style|
+  s = Style.new(style: style)
+  s.save
+end
+
+skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
+
+skills_list.each do |skill|
+  s = Skill.new(skill: skill)
+  s.save
+end
+
+users = User.all
+bands = Band.all
+skills = Skill.all
+styles = Style.all
+
+20.times do
+  # Creating the UserBandStyle table for bands
+  UserBandStyle.create(
+    band: bands.sample,
+    style: styles.sample
+  )
+  # Creating the UserBandStyle table for users
+  UserBandStyle.create(
+    user: users.sample,
+    style: styles.sample
+  )
+
+  # Creating the UserSkill table for users
+  UserSkill.create(
+    user: users.sample,
+    skill: skills.sample
+  )
 end
