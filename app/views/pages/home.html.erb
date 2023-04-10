@@ -44,7 +44,7 @@
               </div>
               <div class="card-body">
                 <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-                <p class="card-text"> <%= band.content %> </p>
+                <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
               </div>
 
           </div>

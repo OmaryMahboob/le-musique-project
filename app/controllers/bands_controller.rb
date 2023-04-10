@@ -15,7 +15,9 @@ class BandsController < ApplicationController
   def edit
     @user = current_user
     @band = Band.find(params[:id])
+
   end
+
 
   def show
     # @user_id = current_user
@@ -28,7 +30,7 @@ class BandsController < ApplicationController
 
   def create
     @user = current_user
-    @band = @user.bands.build(band_params)
+    @band = @user.bands.new(band_params)
     @band.user_id = current_user.id
 
     if @band.save
@@ -41,6 +43,7 @@ class BandsController < ApplicationController
   def update
     set_band
     @band.update(band_params)
+    redirect_to user_path(id: current_user.id), notice: "Band was successfully updated."
   end
 
   def destroy
@@ -60,6 +63,6 @@ class BandsController < ApplicationController
 
   def band_params
     params.require(:band).permit(:band_name, :band_style, :looking_for_member, :experience, :content, :city,
-                                 multimedia: [])
+                                  multimedia: [])
   end
 end
