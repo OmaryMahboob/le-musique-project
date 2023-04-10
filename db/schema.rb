@@ -63,10 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_110834) do
   create_table "bands", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "band_name"
-    t.string "band_style"
     t.boolean "looking_for_member"
     t.text "multimedia"
-    t.string "style"
     t.text "experience"
     t.text "content"
     t.string "city"
@@ -107,9 +105,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_110834) do
   end
 
   create_table "user_band_styles", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.bigint "style_id", null: false
-    t.bigint "band_id", null: false
+    t.bigint "band_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["band_id"], name: "index_user_band_styles_on_band_id"
@@ -142,8 +140,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_110834) do
     t.string "multimedia"
     t.string "description"
     t.boolean "looking_for_band"
-    t.string "skills"
-    t.string "style"
     t.string "experience"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

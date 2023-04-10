@@ -17,7 +17,19 @@ UserBandStyle.destroy_all
 UserSkill.destroy_all
 BandMember.destroy_all
 
+styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
 
+styles_list.each do |style|
+  s = Style.new(style: style)
+  s.save
+end
+
+skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
+
+skills_list.each do |skill|
+  s = Skill.new(skill: skill)
+  s.save
+end
 
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
               "Between 2 years to 5 years", "More than 5 years"]
@@ -33,7 +45,6 @@ bios = [
   "My music is deeply personal and often reflects my own struggles and emotions, with a voice that is both haunting and beautiful, creating a powerful and lasting impact on listeners.",
   "I believe that great music is defined by intricate instrumentation and complex arrangements, showcasing the incredible talent and skill of the musician, creating a memorable and impactful experience for listeners.",
   "I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
-
 ]
 
 user_images = [
@@ -111,10 +122,8 @@ roger = User.new(
   email: "roger.silva@live.cl",
   password: "123456",
   description: bios.sample,
-
   experience: experience.sample,
   looking_for_band: [true, false].sample
-
 )
 
 roger.profile_picture.attach(
@@ -188,8 +197,6 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     email: Faker::Internet.unique.email,
     password: "123456",
     description: bios.shift,
-    # skills: skills.sample,
-    # style: styles.shift,
     experience: experience.sample,
     looking_for_band: [true, false].sample
   )
@@ -205,6 +212,15 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   )
   new_user.save
   p new_user.full_name
+end
+users = User.all
+skills = Skill.all
+
+30.times do
+  UserSkill.create(
+    user_id: users.sample.id,
+    skill_id: skills.sample.id
+  )
 end
 
 10.times do
@@ -227,27 +243,4 @@ end
   )
   new_band.save
   p new_band.band_name
-end
-
-# styles = ["Pop", "Rock", "Hip-hop", "Jazz", "Blues", "Country", "Electronic",
-#   "Classical", "Reggae", "Folk", "Metal", "Punk", "Funk", "Soul", "Gospel",
-#   "Opera", "Latin Music", "K-Pop", "J-Pop", "Indie", "Alternative", "Heavy Metal",
-#   "Grunge", "Dubstep", "Techno", "House", "Trance", "Ambient"]
-# 28.times do
-#   style = styles.shift
-#   Style.create!(style: style)
-# end
-styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
-
-
-styles.each do |style|
-  s = Style.new(style: style)
-  s.save
-end
-
-skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
-
-skills.each do |skill|
-  s = Skill.new(skill: skill)
-  s.save
 end
