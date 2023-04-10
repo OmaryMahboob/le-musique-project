@@ -241,13 +241,13 @@ styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experime
 
 
 styles.each do |style|
-  style = Style.new(style: style)
-  style.save
+  s = Style.new(style: style)
+  s.save
 end
 
 skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
 
 skills.each do |skill|
-  Skill.new(skill: skill)
-  skill.save
+  s = Skill.new(skill: skill)
+  s.save
 end
