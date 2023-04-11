@@ -20,7 +20,7 @@
         <%= f.input :profile_picture, as: :file %>
       </div>
       <div class="col-md-12">
-        <%= f.input :multimedia, as: :file, input_html: { multiple: true }%>
+        <%= f.input :multimedia, as: :file, input_html: { multiple: true , include_hidden: false}%>
       </div>
       <div class="col-md-12">
         <%= f.input :description %>
