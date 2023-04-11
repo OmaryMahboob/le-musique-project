@@ -1,12 +1,7 @@
-$main-green: #79dd09 !default;
-$main-green-rgb-015: rgba(121, 221, 9, 0.1) !default;
-$main-yellow: #bdbb49 !default;
-$main-yellow-rgb-015: rgba(189, 187, 73, 0.1) !default;
-$main-red: #bd150b !default;
-$main-red-rgb-015: rgba(189, 21, 11, 0.1) !default;
-$main-blue: #E0E9EB !default;
+$main-blue: #007A78 !default;
 $main-blue-rgb-015: rgba(224, 233, 235, 1) !default;
 
+// cards for the user#show
 .bordered {
   border-radius: 10px;
 }
@@ -30,24 +25,15 @@ a, a:hover {
 	transition: color 0.3s ease-in-out;
 }
 
-#pageHeaderTitle {
-	margin: 2rem 0;
-	text-transform: uppercase;
-	text-align: center;
-	font-size: 2.5rem;
-}
-
-/* Cards */
+// cards for the bands
 .postcard {
   flex-wrap: wrap;
   display: flex;
-
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
   margin: 0 0 2rem 0;
   overflow: hidden;
   position: relative;
-  color: #ffffff;
 
 	&.dark {
 		background-color: #18151f;
@@ -66,8 +52,8 @@ a, a:hover {
 
 	h1,	.h1 {
 		margin-bottom: 0.5rem;
-		font-weight: 500;
-		line-height: 1.2;
+		font-weight: 400;
+		line-height: 1;
 	}
 
 	.small {
@@ -91,11 +77,11 @@ a, a:hover {
 
   .postcard__bar {
     width: 50px;
-    height: 10px;
+    height: 1px;
     margin: 10px 0;
     border-radius: 5px;
     background-color: #424242;
-    transition: width 0.2s ease;
+    transition: width 0.5s ease;
   }
 
   .postcard__text {
@@ -119,21 +105,6 @@ a, a:hover {
     margin: 20px 0 0 0;
 		padding: 0;
     justify-content: center;
-
-    .tag__item {
-      display: inline-block;
-      background: rgba(83, 83, 83, 0.4);
-      border-radius: 3px;
-      padding: 2.5px 10px;
-      margin: 0 5px 5px 0;
-      cursor: default;
-      user-select: none;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background: rgba(47, 47, 47, 0.8);
-      }
-    }
   }
 
   &:before {
@@ -168,7 +139,13 @@ a, a:hover {
     .postcard__img {
       max-width: 300px;
       max-height: 100%;
-      transition: transform 0.3s ease;
+      transition: transform 0.5s ease;
+    }
+
+    .postcard__img_avatar {
+      max-width: 300px;
+      max-height: 100%;
+      transition: transform 0.5s ease;
     }
 
     .postcard__text {
@@ -187,6 +164,10 @@ a, a:hover {
     }
 
     &:hover .postcard__img {
+      transform: scale(1.1);
+    }
+
+    &:hover .postcard__img_avatar {
       transform: scale(1.1);
     }
 
@@ -236,28 +217,7 @@ a, a:hover {
   }
 }
 
-/* COLORS */
-.postcard .postcard__tagbox .green.play:hover {
-	background: $main-green;
-	color: black;
-}
-.green .postcard__title:hover {
-	color: $main-green;
-}
-.green .postcard__bar {
-	background-color: $main-green;
-}
-.green::before {
-	background-image: linear-gradient(
-		-30deg,
-		$main-green-rgb-015,
-		transparent 50%
-	);
-}
-.green:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-green-rgb-015, transparent 50%);
-}
-
+// COLORS
 .postcard .postcard__tagbox .blue.play:hover {
 	background: $main-blue;
 }
@@ -274,63 +234,7 @@ a, a:hover {
 	background-image: linear-gradient(30deg, $main-blue-rgb-015, transparent 50%);
 }
 
-.postcard .postcard__tagbox .red.play:hover {
-	background: $main-red;
-}
-.red .postcard__title:hover {
-	color: $main-red;
-}
-.red .postcard__bar {
-	background-color: $main-red;
-}
-.red::before {
-	background-image: linear-gradient(-30deg, $main-red-rgb-015, transparent 50%);
-}
-.red:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-red-rgb-015, transparent 50%);
-}
-
-.postcard .postcard__tagbox .yellow.play:hover {
-	background: $main-yellow;
-	color: black;
-}
-.yellow .postcard__title:hover {
-	color: $main-yellow;
-}
-.yellow .postcard__bar {
-	background-color: $main-yellow;
-}
-.yellow::before {
-	background-image: linear-gradient(
-		-30deg,
-		$main-yellow-rgb-015,
-		transparent 50%
-	);
-}
-.yellow:nth-child(2n)::before {
-	background-image: linear-gradient(
-		30deg,
-		$main-yellow-rgb-015,
-		transparent 50%
-	);
-}
-
 @media screen and (min-width: 769px) {
-	.green::before {
-		background-image: linear-gradient(
-			-80deg,
-			$main-green-rgb-015,
-			transparent 50%
-		);
-	}
-	.green:nth-child(2n)::before {
-		background-image: linear-gradient(
-			80deg,
-			$main-green-rgb-015,
-			transparent 50%
-		);
-	}
-
 	.blue::before {
 		background-image: linear-gradient(
 			-80deg,
@@ -340,27 +244,5 @@ a, a:hover {
 	}
 	.blue:nth-child(2n)::before {
 		background-image: linear-gradient(80deg, $main-blue-rgb-015, transparent 50%);
-	}
-
-	.red::before {
-		background-image: linear-gradient(-80deg, $main-red-rgb-015, transparent 50%);
-	}
-	.red:nth-child(2n)::before {
-		background-image: linear-gradient(80deg, $main-red-rgb-015, transparent 50%);
-	}
-
-	.yellow::before {
-		background-image: linear-gradient(
-			-80deg,
-			$main-yellow-rgb-015,
-			transparent 50%
-		);
-	}
-	.yellow:nth-child(2n)::before {
-		background-image: linear-gradient(
-			80deg,
-			$main-yellow-rgb-015,
-			transparent 50%
-		);
 	}
 }
