@@ -1,4 +1,4 @@
-<div class="row gutters-sm">
+<div class="row gutters-sm py-3">
   <div class="col-md-4 my-3">
     <div class="card bordered">
       <div class="card-body light bordered">
@@ -43,7 +43,7 @@
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light bordered-top">
           <% if @user.looking_for_band %>
             <i class="my-2 fa fa-check-square fa-lg"></i>
-            <span class="font-size-sm text-success"><strong>Looking for a band</strong></span>
+            <span class="font-size-sm fw-semibold" style="color: #007A78;">Looking for a band</span>
           <% else %>
             <i class="my-2 fa fa-window-close fa-lg"></i>
             <span class="font-size-sm text-danger">I am not avalaible</span>
@@ -68,7 +68,6 @@
       </ul>
     </div>
   </div>
-
   <div class="col-md-8 my-3">
     <div class="card mb-3 bordered">
       <div class="card-body light bordered">
@@ -83,4 +82,3 @@
     <%= render "user_bands", bands: @bands %>
   </div>
 </div>
-<img src=<%=@user.multimedia%> alt="">

@@ -1,12 +1,127 @@
-<div class="d-flex">
-  <div>
-    <h2>Your Messages</h2>
-    <% @user_chatrooms.each do |chatroom| %>
-      <h2>
-        <a href="<%= chatroom_path(chatroom.id) %>">
-          <%= User.find(chatroom.receiver.id).full_name %> <%= User.find(chatroom.receiver.id).nickname %>
-        </a>
-      </h2>
-    <% end %>
-  </div>
+<div class="text-center">
+  <% if @user_chatrooms.empty? %>
+    <h2 class="postcard__title blue">Hey <%= @user.nickname %>, look that you don't have any messages yet </h2>
+  <% else %>
+    <h2 class="postcard__title blue">Hey <%= @user.nickname %>, here are your messages: </h2>
+    <div class="py-2">
+      <% @user_chatrooms.each do |chatroom| %>
+        <article class="postcard light blue", style="height: 250px;">
+          <a href= <%= chatroom_path(chatroom.id) %>, class="postcard__img_link">
+            <% if current_user == chatroom.sender %>
+              <% if User.find(chatroom.receiver.id).profile_picture.attached? %>
+                <%= cl_image_tag User.find(chatroom.receiver.id).profile_picture.key, class: "postcard__img" %>
+              <% else %>
+                <%= image_tag "no-profile-picture.jpg", class: "postcard__img" %>
+              <% end %>
+            <% else %>
+              <% if User.find(chatroom.sender.id).profile_picture.attached? %>
+                <%= cl_image_tag User.find(chatroom.sender.id).profile_picture.key, class: "postcard__img" %>
+              <% else %>
+                <%= image_tag "no-profile-picture.jpg", class: "postcard__img" %>
+              <% end %>
+            <% end %>
+          </a>
+          <div class="postcard__text t-dark">
+            <% if current_user == chatroom.sender %>
+              <h1 class="postcard__title "><%= User.find(chatroom.receiver.id).nickname %></h1>
+              <div class="postcard__subtitle small">
+                <i class="my-2 fa fa-user-plus fa-lg"></i> <%= User.find(chatroom.receiver.id).experience %> |
+                <i class="my-2 fa fa-map-marker fa-lg"></i> <%= User.find(chatroom.receiver.id).address %> |
+                <% if User.find(chatroom.receiver.id).looking_for_band %>
+                  <i class="my-2 fa fa-check-square fa-lg"></i> <span style="color: #007A78;">Looking for an integrant 😉</span>
+                <% else %>
+                  <i class="my-2 fa fa-window-close fa-lg"></i> <span class="text-danger">Not looking for anyone yet 🙁</span>
+                <% end %>
+              </div>
+              <div class="postcard__bar"></div>
+              <% bands = Band.where(user_id: chatroom.receiver_id) %>
+              <% if bands.empty? %>
+                <div class="postcard__preview-txt"><%= User.find(chatroom.receiver.id).nickname %> has no band</div>
+              <% elsif bands.size == 1 %>
+                <div class="d-flex justify-content-center" style="height: 30px;">
+                  <a href="<%= user_band_path(user_id: Band.find(chatroom.receiver.id).id, id: User.find(chatroom.receiver.id)) %>" class="postcard__img_link">
+                    <div class="card card-bands px-2 mx-2 my-4" style="background: #F4F4F4;">
+                      <div class="card-body col">
+                        <h5 class="card-title"><%= Band.find(chatroom.receiver.id).band_name %></h5>
+                        <h6 class="card-subtitle pb-3 text-body-secondary">
+                          <ul class="postcard__tagbox d-flex justify-content-center">
+                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.receiver.id).band_style %></li>
+                          </ul>
+                        </h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <% else %>
+                <div class="d-flex justify-content-center" style="height: 30px;">
+                  <% bands.each do |band| %>
+                    <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="postcard__img_link">
+                      <div class="card card-bands px-2 mx-2 my-4" style="background: #F4F4F4;">
+                        <div class="card-body col">
+                          <h5 class="card-title"><%= band.band_name %></h5>
+                          <h6 class="card-subtitle pb-3 text-body-secondary">
+                            <ul class="postcard__tagbox d-flex justify-content-center">
+                              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <h1 class="postcard__title"><%= User.find(chatroom.sender.id).nickname %></h1>
+              <div class="postcard__subtitle small">
+                <i class="my-2 fa fa-user-plus fa-lg"></i> <%= User.find(chatroom.sender.id).experience %> |
+                <i class="my-2 fa fa-map-marker fa-lg"></i> <%= User.find(chatroom.sender.id).address %> |
+                <% if User.find(chatroom.sender.id).looking_for_band %>
+                  <i class="my-2 fa fa-check-square fa-lg"></i> <strong class="text-success">Looking for an integrant 😉</strong>
+                <% else %>
+                  <i class="my-2 fa fa-window-close fa-lg"></i> <span class="text-danger">Not looking for anyone yet 🙁</span>
+                <% end %>
+              </div>
+              <div class="postcard__bar"></div>
+              <% bands = Band.where(user_id: chatroom.sender_id) %>
+              <% if bands.empty? %>
+                <div class="postcard__preview-txt"><%= User.find(chatroom.sender.id).nickname %> has no band</div>
+              <% elsif bands.size == 1 %>
+                <div class="d-flex justify-content-center" style="height: 30px;">
+                  <a href="<%= user_band_path(user_id: Band.find(chatroom.sender.id).id, id: User.find(chatroom.receiver.id)) %>" class="postcard__img_link">
+                    <div class="card card-bands px-2 mx-2 my-4" style="background: #F4F4F4;">
+                      <div class="card-body col">
+                        <h5 class="card-title"><%= Band.find(chatroom.sender.id).band_name %></h5>
+                        <h6 class="card-subtitle pb-3 text-body-secondary">
+                          <ul class="postcard__tagbox d-flex justify-content-center">
+                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.sender.id).band_style %></li>
+                          </ul>
+                        </h6>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <% else %>
+                <div class="d-flex justify-content-center" style="height: 30px;">
+                  <% bands.each do |band| %>
+                    <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="postcard__img_link">
+                      <div class="card card-bands px-2 mx-2 my-4" style="background: #F4F4F4;">
+                        <div class="card-body col">
+                          <h5 class="card-title"><%= band.band_name %></h5>
+                          <h6 class="card-subtitle pb-3 text-body-secondary">
+                            <ul class="postcard__tagbox d-flex justify-content-center">
+                              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+                            </ul>
+                          </h6>
+                        </div>
+                      </div>
+                    </a>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
 </div>
