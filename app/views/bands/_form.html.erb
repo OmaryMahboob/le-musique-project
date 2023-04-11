@@ -14,16 +14,16 @@
         <%= f.input :band_name %>
       </div>
       <div class="col-md-6">
-        <%= f.input :band_style %>
+        <%= f.input :styles, collection: Style.all.map(&:style), as: :select, input_html: { multiple: true}, include_hidden: false %>
       </div>
       <div class="col-md-6">
         <%= f.input :city %>
       </div>
       <div class="col-md-12">
-        <%= f.input :multimedia, as: :file, input_html: { multiple: true } %>
+        <%= f.input :multimedia, as: :file, input_html: { multiple: true, include_hidden: false} %>
       </div>
       <div class="col-md-12">
-        <%= f.input :experience %>
+        <%= f.input :experience, collection: User::EXPERIENCE %>
       </div>
       <div class="col-md-12">
         <%= f.input :content %>

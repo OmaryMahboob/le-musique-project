@@ -11,31 +11,26 @@ require "cloudinary"
 
 Band.destroy_all
 User.destroy_all
-
-skills = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
-          "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
-          "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
-styles = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-            "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
+Skill.destroy_all
+Style.destroy_all
+UserBandStyle.destroy_all
+UserSkill.destroy_all
+BandMember.destroy_all
 
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
               "Between 2 years to 5 years", "More than 5 years"]
 bios = [
-      "As a musician, I have spent countless hours honing my craft and developing a sound that blends different genres together, creating a unique style that is truly my own.",
-      "When writing lyrics for my songs, I draw inspiration from my own life experiences and struggles, making my music deeply personal and introspective in a way that resonates with listeners.",
-      "I take great pride in my live performances, always giving 110% and leaving everything on the stage to create an unforgettable experience for my fans, connecting with them on a personal and emotional level.",
-      "With multiple platinum-selling albums and hit singles, I am grateful for the success I've had in the music industry and the opportunity to connect with fans around the world, creating a lasting impact through my music.",
-      "Throughout my career, I have strived to evolve my sound and push boundaries with each new release, constantly challenging myself as an artist to innovate and experiment with new styles and sounds.",
-      "As a musician, I believe that the power of music lies in its ability to move and inspire people, and I always strive to connect with my audience on a deep and emotional level, creating a meaningful and lasting impact.",
-      "I take great care in crafting infectious beats and catchy hooks that make it impossible for listeners not to dance along to my music, creating a universal appeal that transcends genre and culture.",
-      "As a multi-hyphenate artist, I am grateful for the opportunity to explore my creativity in both music and acting, connecting with fans across multiple industries and inspiring them through my art.",
-      "My music is a reflection of my deeply held beliefs and values, and I use my platform to address issues of social justice and inequality with a powerful and urgent message, making a meaningful impact on society.",
-      "Despite my success, I always remain true to my roots and my vision, never compromising my artistry for the sake of popularity, creating a lasting legacy that transcends time.",
-      "As a musician, I strive to create music that transcends genre and time, appealing to fans of all ages and backgrounds, making a universal impact through my art.",
-      "I take great pride in my ability to innovate and experiment with new sounds and styles, constantly pushing boundaries to create something truly unique that resonates with listeners on a deep and emotional level.",
-      "My music is deeply personal and often reflects my own struggles and emotions, with a voice that is both haunting and beautiful, creating a powerful and lasting impact on listeners.",
-      "I believe that great music is defined by intricate instrumentation and complex arrangements, showcasing the incredible talent and skill of the musician, creating a memorable and impactful experience for listeners.",
-      "As a musician, I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
+  "As a musician, I have spent countless hours honing my craft and developing a sound that blends different genres together, creating a unique style that is truly my own.",
+  "When writing lyrics for my songs, I draw inspiration from my own life experiences and struggles, making my music deeply personal and introspective in a way that resonates with listeners.",
+  "I take great pride in my live performances, always giving 110% and leaving everything on the stage to create an unforgettable experience for my fans, connecting with them on a personal and emotional level.",
+  "With multiple platinum-selling albums and hit singles, I am grateful for the success I've had in the music industry and the opportunity to connect with fans around the world, creating a lasting impact through my music.",
+  "Throughout my career, I have strived to evolve my sound and push boundaries with each new release, constantly challenging myself as an artist to innovate and experiment with new styles and sounds.",
+  "As a multi-hyphenate artist, I am grateful for the opportunity to explore my creativity in both music and acting, connecting with fans across multiple industries and inspiring them through my art.",
+  "My music is a reflection of my deeply held beliefs and values, and I use my platform to address issues of social justice and inequality with a powerful and urgent message, making a meaningful impact on society.",
+  "Despite my success, I always remain true to my roots and my vision, never compromising my artistry for the sake of popularity, creating a lasting legacy that transcends time.",
+  "My music is deeply personal and often reflects my own struggles and emotions, with a voice that is both haunting and beautiful, creating a powerful and lasting impact on listeners.",
+  "I believe that great music is defined by intricate instrumentation and complex arrangements, showcasing the incredible talent and skill of the musician, creating a memorable and impactful experience for listeners.",
+  "I am grateful for the opportunity to share my music with the world and to connect with fans in a deep and meaningful way, making a lasting impact on their lives through my art."
 ]
 
 user_images = [
@@ -62,8 +57,6 @@ mahboob = User.new(
   email: "mahboob@gmail.com",
   password: "123456",
   description: bios.sample,
-  skills: skills.sample,
-  style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
@@ -81,35 +74,6 @@ mahboob.multimedia.attach(
 
 mahboob.save
 
-# mahboob_Band = Band.create!(
-#   band_name: "Electric",
-#   band_style: "Fusion of Electric and dancehall.",
-#   # price: rand(2.0..20.0).round(2),
-#   user_id: mahboob.id,
-#   # address: mahboob.address
-# )
-
-# mahboob_Band.photos.attach(
-#   io: URI.open("https://dailymusicroll.s3.us-west-2.amazonaws.com/wp-content/uploads/2022/04/21160802/5499313034_11ba8fdcf8_b.jpg"),
-#   filename: "photo_rubab1.jpeg",
-#   content_type: "image/jpg"
-# )
-# mahboob.save
-
-# mahboob_Band.photos.attach(
-#   io: URI.open("https://i.guim.co.uk/img/media/bdc6551c0615762ef8e523dedfbe72a0daacc722/0_197_1791_1075/master/1791.jpg?width=1200&quality=85&auto=format&fit=max&s=1f7e5f7a7df79bf5936284cc52d2da18"),
-#   filename: "photo_rubab2.jpeg",
-#   content_type: "image/jpg"
-# )
-# mahboob.save
-
-# mahboob_Band.photos.attach(
-#   io: URI.open("https://i.ytimg.com/vi/RCabnDJ8Tgc/maxresdefault.jpg"),
-#   filename: "photo_rubab3.jpeg",
-#   content_type: "image/jpg"
-# )
-# mahboob.save
-
 jane = User.new(
   full_name: "Jane",
   nickname: "Eme",
@@ -118,8 +82,7 @@ jane = User.new(
   email: "martins@test.com",
   password: "0123456",
   description: bios.sample,
-  skills: skills.sample,
-  style: styles.sample,
+
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
@@ -135,20 +98,6 @@ jane.profile_picture.attach(
 )
 jane.save
 
-# jane_Band = Band.create!(
-#   band_name: "Neon skies",
-#   band_style: "Fusion of Electric and Blues",
-#   user_id: jane.id,
-#   # address: jane.address
-# )
-
-# jane_Band.photos.attach(
-#   io: URI.open("https://www.musicalortiz.com/wp-content/uploads/2021/11/Marimba.jpg"),
-#   filename: "photo_marimba.jpeg",
-#   content_type: "image/jpg"
-# )
-# jane.save
-
 
 
 roger = User.new(
@@ -159,11 +108,8 @@ roger = User.new(
   email: "roger.silva@live.cl",
   password: "123456",
   description: bios.sample,
-  skills: skills.sample,
-  style: styles.sample,
   experience: experience.sample,
   looking_for_band: [true, false].sample
-
 )
 
 roger.profile_picture.attach(
@@ -178,20 +124,6 @@ roger.multimedia.attach(
 )
 
 roger.save
-
-# roger_Band = Band.create!(
-#   band_name: "Whiskey Rebels",
-#   band_style: "Fusion of alternative and psychedelic rock.",
-#   # price: rand(2.0..20.0).round(2),
-#   user_id: roger.id,
-#   # address: roger.address
-# )
-# roger_Band.photos.attach(
-#   io: URI.open("https://musiculum.de/wp-content/uploads/2021/02/Charango.jpg"),
-#   filename: "photo_charango1.jpeg",
-#   content_type: "image/jpg"
-# )
-# roger.save
 
 
 bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
@@ -210,7 +142,6 @@ band_images =
             ]
 
 cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
-
 descriptions = [
     "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
     "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
@@ -252,8 +183,6 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     email: Faker::Internet.unique.email,
     password: "123456",
     description: bios.shift,
-    skills: skills.sample,
-    style: styles.shift,
     experience: experience.sample,
     looking_for_band: [true, false].sample
   )
@@ -277,13 +206,11 @@ end
 
   new_band = Band.new(
     band_name: bands_name.shift,
-    band_style: styles.sample,
     user_id: actual_user.id,
     city: cities.sample,
     experience: experience.sample,
     content: descriptions.shift,
-    looking_for_member: [true, false].sample,
-    style: styles.sample,
+    looking_for_member: [true, false].sample
   )
   new_band.multimedia.attach(
     io: URI.open(band_image),
@@ -292,4 +219,44 @@ end
   )
   new_band.save
   p new_band.band_name
+end
+
+# Creating the styles, skills and their associations tables in their databases
+
+styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock"]
+
+styles_list.each do |style|
+  s = Style.new(style: style)
+  s.save
+end
+
+skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals", "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet", "Turntables", "Vocalist", "Violin"]
+
+skills_list.each do |skill|
+  s = Skill.new(skill: skill)
+  s.save
+end
+
+users = User.all
+bands = Band.all
+skills = Skill.all
+styles = Style.all
+
+20.times do
+  # Creating the UserBandStyle table for bands
+  UserBandStyle.create(
+    band: bands.sample,
+    style: styles.sample
+  )
+  # Creating the UserBandStyle table for users
+  UserBandStyle.create(
+    user: users.sample,
+    style: styles.sample
+  )
+
+  # Creating the UserSkill table for users
+  UserSkill.create(
+    user: users.sample,
+    skill: skills.sample
+  )
 end

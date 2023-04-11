@@ -25,7 +25,9 @@
             <div class="postcard__bar"></div>
             <div class="postcard__preview-txt"><%= band.content %></div>
             <ul class="postcard__tagbox">
-              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+            <% band.styles.each do |b| %>
+              <li class="tag__item"> 🎵 <%= b.style %></li>
+            <% end %>
             </ul>
           </div>
         </article>

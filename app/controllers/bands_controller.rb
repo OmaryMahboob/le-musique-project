@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_action :set_band, only: %i[show edit update destroy]
 
   def new
     @band = Band.new
@@ -15,12 +16,9 @@ class BandsController < ApplicationController
   def edit
     @user = current_user
     @band = Band.find(params[:id])
-
   end
 
-
   def show
-    # @user_id = current_user
     @band = Band.find(params[:id])
     @user = @band.user
     @band_members = BandMember.all
@@ -30,8 +28,15 @@ class BandsController < ApplicationController
 
   def create
     @user = current_user
-    @band = @user.bands.new(band_params)
+    @band = Band.new(band_params)
     @band.user_id = current_user.id
+
+    if params[:band][:styles].present?
+      params[:band][:styles].each do |style|
+        new_style = Style.find_by(style: [style])
+        UserBandStyle.create(band: @band, style: new_style)
+      end
+    end
 
     if @band.save
       redirect_to user_path(id: current_user.id)
@@ -41,19 +46,22 @@ class BandsController < ApplicationController
   end
 
   def update
-    set_band
+    if params[:band][:styles].present?
+      @band.styles.destroy_all
+      params[:band][:styles].each do |s|
+        new_style = Style.find_by(style: [s])
+        UserBandStyle.create(band: @band, style: new_style)
+      end
+    end
+
     @band.update(band_params)
     redirect_to user_path(id: current_user.id), notice: "Band was successfully updated."
   end
 
   def destroy
-    set_band
     @band.destroy
     redirect_to user_path(id: current_user.id), notice: "Band was successfully deleted."
-
   end
-
-
 
   private
 
@@ -62,7 +70,7 @@ class BandsController < ApplicationController
   end
 
   def band_params
-    params.require(:band).permit(:band_name, :band_style, :looking_for_member, :experience, :content, :city,
+    params.require(:band).permit(:band_name, :looking_for_member, :experience, :content, :city,
                                   multimedia: [])
   end
 end
