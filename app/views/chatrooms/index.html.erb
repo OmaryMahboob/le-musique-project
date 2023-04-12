@@ -61,7 +61,7 @@
                           <h5 class="card-title"><%= band.band_name %></h5>
                           <h6 class="card-subtitle pb-3 text-body-secondary">
                             <ul class="postcard__tagbox d-flex justify-content-center">
-                              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+                              <li class="tag__item"> 🎵 <%= band.styles.map(&:style).join(", ") %></li>
                             </ul>
                           </h6>
                         </div>
