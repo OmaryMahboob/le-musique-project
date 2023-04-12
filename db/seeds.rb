@@ -123,37 +123,6 @@
 # roger.save
 
 
-# bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
-# band_images =
-#           ["https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/3_dfdw1v.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816174/4_mgjqct.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816073/5_ghppgs.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816247/6_yucugn.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816232/8_mga8zi.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816184/9_uhhb0z.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816137/10_z6n7cs.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816233/11_kz7sk5.png",
-#           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
-#             ]
-
-# cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
-# descriptions = [
-#     "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
-#     "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
-#     "Slow Steve is the Berlin-based, smooth sounding synth-pop band that is charming its horde of followers. With a mellow, indie pop tone and analogue synth, Slow Steve is the ever-so-cool group who are signed to influential Berlin indie label Morr Music.",
-#     "Jahcoozi is a multicultural Berlin-based trio, offering up a fresh sound that shies away from the mainstream. Fronted by London-born Sasha Perera and backed by producers/multi-instrumentalists, Teuton Robot Koch and Oren Gerlitz, together they put on energetic performances and electric nights at some of the citys wildest clubs and bars. Their pop-electro sound and body-shaking songs are impossible not to dance to or love.",
-#     "Seeed is a beloved eleven-person Berlin band. Known for their catchy contemporary fusion of German hip-hop, reggae and dancehall styles, this large band formed in 1998 and has found huge success in Germany and the surrounding countries. With a funky, unique sound, theyre a well-established Berlin band thats worth checking out.",
-#     "Beatsteaks have been around since the mid-90s, blasting alternative German rock from Berlin. Playing alongside German punk legends Die Ärzte and Die Toten Hosen brought the band a wider audience. Theyre still rocking on today, touring and putting on huge shows for adoring and wild fans.",
-#     "Jennifer Rostock is fronted by German-born singer and TV-host Jennifer Weist. Drawing on elements of hard rock, urban electronics and new-metal, the band produces a rocking, heavy and grunge sound with a female-driven point of view.",
-#     "Super700 are a less well-known but amazing rock band from Berlin. Formed in 2003 by Ramadani and Michael Have, they have toured across Europe, and in Canada, Asia and America, bringing their English-sung rock hits across the globe.",
-#     "Evvol is a darkwave electronic duo, comprised of Irish singer Julie Chance and Australian instrumentalist Jane Arnison. Currently based in Kreuzberg, they have stunned at their live shows and festivals appearances around the city. The band creates a unique sound under their prominent theme of the human condition.",
-#     "Rammstein is Berlins most iconic and influential German rock band. Forming in 1994, they helped found a subgenre of German hard rock and metal that became known as Neue Deutsche Härte. Their influential style and German-centric songs are an insight into Berlins early rock scene and the evolving styles that came out of the city.",
-#     "Wir Sind Helden, meaning We are Heroes in English, are a German pop-rock band established in Hamburg and based in Berlin. Their pop-rock sound has tones of the New German Wave style, deriving from punk roots but bringing a fresh, new sound. Popular in Berlin and around Germany, Wir Sind Helden shows the countrys love for new rock and thumping songs.",
-#     "Laisse-Moi, a Berlin-based synth pop trio, was born in a analysts office. As a teenager, Manon Heugel grew up as the “girl singer” in “guys bands,” but got sick of singing the funk rock fashionable in 90s Paris, moved to Berlin, and found work as an actress. But then, in her analysts office, she decided she wanted to sing her own songs. She found a German bassist, Christina Riesenweber, and a classically-trained French pianist, Marie Klock, and with a drum machine and vintage analog synthesizers, they formed a synthpop band inspired by German no-wave and 80s French pop, narrating stories of Berlin nightlife with a sexy, feminist bent.",
-#     "La Musique is a relatively new musical band that has recently emerged in the vibrant city of Berlin, Germany. Despite being a young band, they have already made a name for themselves by putting on outstanding musical shows that captivate their audience. La Musique is quickly gaining popularity and it is only..."
-# ]
 # first_names = ["Avery", "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Eliot", "Emerson", "Frankie", "Harley",
 #                "Hayden", "Hunter", "Jamie", "Jesse", "Jordan", "Jules", "Kai", "Kelly", "Kendall", "Lee", "Logan",
 #                "Max", "Morgan", "Noah", "Parker", "Phoenix", "Quinn", "Reagan", "Reese", "River", "Robin", "Rowan",
@@ -197,6 +166,38 @@
 #   p new_user.full_name
 # end
 
+
+bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein", "Wir Sind Helden", "Laisse-Moi", "La Musique"]
+band_images =
+          ["https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/3_dfdw1v.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816174/4_mgjqct.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816073/5_ghppgs.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816247/6_yucugn.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816232/8_mga8zi.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816184/9_uhhb0z.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816137/10_z6n7cs.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816233/11_kz7sk5.png",
+          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
+            ]
+
+cities = ["Berlin", "Hamburg", "Munchen", "Bon", "Leipzig", "Dresden", "Gelsenkirchen"]
+descriptions = [
+    "Gurr is Berlins beloved by hipsters, all-girl band that is making waves across the city and abroad. The duo Andreya Casablanca and Laura Lee Jenkins formed their band after meeting in their American studies class in Berlin. They then spent some time in the US to soak up West Coast culture, coining the term for their own genre, First Wave Gurrlcore. Their debut album, In My Head was recorded in the city at Funkhaus, which was once an East German radio studio.",
+    "Mia is one of Germanys brightest new-age/pop/rock/indie band from Berlin. Formed in 1997, the group has found considerable success on their home turf and across the globe. With an edgy sound and grounded roots in the city, Mia is an energetic band from Germanys capital.",
+    "Slow Steve is the Berlin-based, smooth sounding synth-pop band that is charming its horde of followers. With a mellow, indie pop tone and analogue synth, Slow Steve is the ever-so-cool group who are signed to influential Berlin indie label Morr Music.",
+    "Jahcoozi is a multicultural Berlin-based trio, offering up a fresh sound that shies away from the mainstream. Fronted by London-born Sasha Perera and backed by producers/multi-instrumentalists, Teuton Robot Koch and Oren Gerlitz, together they put on energetic performances and electric nights at some of the citys wildest clubs and bars. Their pop-electro sound and body-shaking songs are impossible not to dance to or love.",
+    "Seeed is a beloved eleven-person Berlin band. Known for their catchy contemporary fusion of German hip-hop, reggae and dancehall styles, this large band formed in 1998 and has found huge success in Germany and the surrounding countries. With a funky, unique sound, theyre a well-established Berlin band thats worth checking out.",
+    "Beatsteaks have been around since the mid-90s, blasting alternative German rock from Berlin. Playing alongside German punk legends Die Ärzte and Die Toten Hosen brought the band a wider audience. Theyre still rocking on today, touring and putting on huge shows for adoring and wild fans.",
+    "Jennifer Rostock is fronted by German-born singer and TV-host Jennifer Weist. Drawing on elements of hard rock, urban electronics and new-metal, the band produces a rocking, heavy and grunge sound with a female-driven point of view.",
+    "Super700 are a less well-known but amazing rock band from Berlin. Formed in 2003 by Ramadani and Michael Have, they have toured across Europe, and in Canada, Asia and America, bringing their English-sung rock hits across the globe.",
+    "Evvol is a darkwave electronic duo, comprised of Irish singer Julie Chance and Australian instrumentalist Jane Arnison. Currently based in Kreuzberg, they have stunned at their live shows and festivals appearances around the city. The band creates a unique sound under their prominent theme of the human condition.",
+    "Rammstein is Berlins most iconic and influential German rock band. Forming in 1994, they helped found a subgenre of German hard rock and metal that became known as Neue Deutsche Härte. Their influential style and German-centric songs are an insight into Berlins early rock scene and the evolving styles that came out of the city.",
+    "Wir Sind Helden, meaning We are Heroes in English, are a German pop-rock band established in Hamburg and based in Berlin. Their pop-rock sound has tones of the New German Wave style, deriving from punk roots but bringing a fresh, new sound. Popular in Berlin and around Germany, Wir Sind Helden shows the countrys love for new rock and thumping songs.",
+    "Laisse-Moi, a Berlin-based synth pop trio, was born in a analysts office. As a teenager, Manon Heugel grew up as the “girl singer” in “guys bands,” but got sick of singing the funk rock fashionable in 90s Paris, moved to Berlin, and found work as an actress. But then, in her analysts office, she decided she wanted to sing her own songs. She found a German bassist, Christina Riesenweber, and a classically-trained French pianist, Marie Klock, and with a drum machine and vintage analog synthesizers, they formed a synthpop band inspired by German no-wave and 80s French pop, narrating stories of Berlin nightlife with a sexy, feminist bent.",
+    "La Musique is a relatively new musical band that has recently emerged in the vibrant city of Berlin, Germany. Despite being a young band, they have already made a name for themselves by putting on outstanding musical shows that captivate their audience. La Musique is quickly gaining popularity and it is only..."
+]
 10.times do
   actual_user = User.order("RANDOM()").first
   band_image = band_images.shift
