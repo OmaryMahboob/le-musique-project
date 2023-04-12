@@ -225,8 +225,8 @@ end
 
 styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop", "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock"]
 
-styles_list.each do |style|
-  s = Style.new(style: style)
+styles_list.each do |i|
+  s = Style.new(style: i)
   s.save
 end
 
@@ -242,21 +242,26 @@ bands = Band.all
 skills = Skill.all
 styles = Style.all
 
-20.times do
+15.times do
   # Creating the UserBandStyle table for bands
   UserBandStyle.create(
     band: bands.sample,
-    style: styles.sample
+    style: styles.shift
   )
+end
+
+15.times do
   # Creating the UserBandStyle table for users
   UserBandStyle.create(
     user: users.sample,
-    style: styles.sample
+    style: styles.shift
   )
+end
 
-  # Creating the UserSkill table for users
-  UserSkill.create(
+15.times do
+   # Creating the UserSkill table for users
+   UserSkill.create(
     user: users.sample,
-    skill: skills.sample
+    skill: skills.shift
   )
 end
