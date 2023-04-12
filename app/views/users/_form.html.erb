@@ -32,10 +32,10 @@
         <%= f.input :experience, collection: User::EXPERIENCE %>
       </div>
       <div class="col-md-6">
-        <%= f.input :skills, collection: Skill.all.map(&:skill), as: :select, input_html: { multiple: true }, include_hidden: false %>
+        <%= f.input :skills, collection: Skill.all.map(&:skill), as: :check_boxes, input_html: { multiple: true }, include_hidden: false %>
       </div>
       <div class="col-md-6">
-        <%= f.input :styles, collection: Style.all.map(&:style), as: :select, input_html: { multiple: true }, include_hidden: false %>
+        <%= f.input :styles, collection: Style.all.map(&:style), as: :check_boxes, input_html: { multiple: true }, include_hidden: false %>
       </div>
 
 
