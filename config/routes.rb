@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       resources :band_members
     end
   end
-
   resources :chatrooms, only: [:create, :show, :index] do
     resources :messages, only: :create
   end

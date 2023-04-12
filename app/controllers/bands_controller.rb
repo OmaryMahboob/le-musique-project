@@ -9,8 +9,13 @@ class BandsController < ApplicationController
   end
 
   def index
+    if params[:query].present?
+      sql_query = "band_name ILIKE :query OR style ILIKE :query"
+      @bands = Band.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bands = Band.all
+    end
     @user = current_user
-    @bands = Band.all
   end
 
   def edit
