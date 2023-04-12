@@ -45,7 +45,6 @@ user_images = [
   "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830256/muha-ajjan-7hntt9oeebc-unsplash_qpj19c.jpg",
   "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830242/kyle-wong-rrHtkX1rLP0-unsplash_1_wc8jhx.jpg",
   "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830240/milo-bauman-oih02bWCm3Y-unsplash_sdlagl.jpg",
-  "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680830240/milo-bauman-oih02bWCm3Y-unsplash_sdlagl.jpg"
 ]
 
 
@@ -97,8 +96,6 @@ jane.profile_picture.attach(
   content_type: "image/jpg"
 )
 jane.save
-
-
 
 roger = User.new(
   full_name: "Roger",
