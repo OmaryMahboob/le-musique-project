@@ -7,4 +7,9 @@ class Band < ApplicationRecord
   has_many :styles, through: :user_band_styles
   has_many_attached :multimedia
   validates :band_name, uniqueness: true, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_band_name,
+  against: [ :band_name],
+  using: { tsearch: { prefix: true } }
 end

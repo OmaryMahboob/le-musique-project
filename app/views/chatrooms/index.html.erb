@@ -39,7 +39,7 @@
                 <div class="postcard__preview-txt"><%= User.find(chatroom.receiver.id).nickname %> has no band</div>
               <% elsif bands.size == 1 %>
                 <div class="d-flex justify-content-center" style="height: 30px;">
-                  <a href="<%= user_band_path(user_id: Band.find(chatroom.receiver.id).id, id: User.find(chatroom.receiver.id)) %>" class="postcard__img_link">
+                  <a href="<%= user_band_path(user: Band.find(chatroom.receiver.id), id: User.find(chatroom.receiver.id)) %>" class="postcard__img_link">
                     <div class="card card-bands px-2 mx-2 my-4" style="background: #F4F4F4;">
                       <div class="card-body col">
                         <h5 class="card-title"><%= Band.find(chatroom.receiver.id).band_name %></h5>
