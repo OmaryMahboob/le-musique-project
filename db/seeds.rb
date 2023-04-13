@@ -168,7 +168,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
   p new_user.full_name
 end
 
-bands_name = ["Gurr", "Mia j", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein"]
+bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein"]
 band_images =
           ["https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
@@ -179,7 +179,6 @@ band_images =
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816232/8_mga8zi.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816184/9_uhhb0z.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816137/10_z6n7cs.png",
-          "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816233/11_kz7sk5.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816311/12_gmmk53.png"
             ]
 
@@ -199,15 +198,15 @@ descriptions = [
 10.times do
   actual_user = User.all.sample
   new_band = Band.new(
-    band_name: bands_name.sample,
+    band_name: bands_name.shift,
     user: actual_user,
     city: cities.sample,
     experience: experience.sample,
-    content: descriptions.sample,
+    content: descriptions.shift,
     looking_for_member: [true, false].sample
   )
   new_band.multimedia.attach(
-    io: URI.open(band_images.sample),
+    io: URI.open(band_images.shift),
     filename: "#{rand(50..90)}photo.jpeg",
     content_type: "image/jpg"
   )
