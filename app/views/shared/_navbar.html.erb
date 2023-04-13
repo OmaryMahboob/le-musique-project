@@ -4,15 +4,14 @@
       <%= link_to root_path, class: "d-flex align-items-center link-logo" do %>
         <%= image_tag "logo_navbar.png", alt:"logo-webpage", class:"logo-navbar" %>
       <% end %>
-    <div class="centered-form mx-auto">
-      <%= form_with url: bands_path, method: :get, class: "d-flex search-button" do %>
-        <%= text_field_tag :query, params[:query], class: "form-control me-2 center", placeholder: "Search" %>
-        <%= submit_tag "Search", class: "btn btn-outline-success" %>
-      <% end %>
-    </div>    </div>
+    </div>
     <div class="text-end px-5">
       <ul class="navbar-nav flex-row action-logo align-items-center">
-        <div class="searchBox">
+        <div >
+          <%= form_with url: user_bands_path(user_id: current_user.id), method: :get, class: "searchBox" do %>
+            <%= text_field_tag :query, params[:query], class: "searchInput", placeholder: "Search" %>
+            <%= submit_tag "", class: "searchButton"%>
+          <% end %>
           <input class="searchInput"type="text" name="" placeholder="Search">
           <button class="searchButton" href="#">
             <i class="material-icons">
