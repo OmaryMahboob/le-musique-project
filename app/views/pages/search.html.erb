@@ -1,0 +1,66 @@
+<% if @all_users.length > 0 %>
+  <div class="container">
+    <h1 style="text-align: center">Users</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @all_users.each do |user|%>
+        <div class="col">
+          <div class="card card-bands">
+            <a href="<%= user_path(user) %>" class="link">
+              <div class="box-image">
+                <% if user.profile_picture.present? %>
+                  <div class="background-image" style="background-image: url('<%= cl_image_path(user.profile_picture.key, :effect=>"blur:200") %>');"></div>
+                <% else %>
+                  <div class="background-image" style="background-image: url('<%= image_path("no-profile-picture.jpg", :effect=>"blur:200") %>');"></div>
+                <% end %>
+                <% if user.profile_picture.attached? %>
+                  <%= cl_image_tag user.profile_picture.key, class: "mh-100 image-card" %>
+                <% else %>
+                  <%= image_tag "no-profile-picture.jpg", class: "mh-100 image-card" %>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <h4 style="margin-top: 5px;" ><strong><%= user.nickname %></strong></h4>
+                <p class="card-text"> <%= user.description %> </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<% if @bands.length > 0 %>
+  <div class="container">
+    <h1 style="text-align: center">bands</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @bands.each do |band|%>
+        <div class="col">
+          <div class="card card-bands">
+            <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
+              <div class="box-image">
+                <% if band.multimedia.first.present? %>
+                  <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
+                <% else %>
+                  <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
+                <% end %>
+                <% if band.multimedia.attached? %>
+                  <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
+                <% else %>
+                  <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
+                <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
+
+              </div>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<% if @all_users.length == 0 && @bands.length == 0 %>
+  <h3>No result matchs your search</h3>
+<% end %>

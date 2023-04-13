@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :user_band_styles, dependent: :destroy
   has_many :styles, through: :user_band_styles
 
-
   # validates :full_name, presence: true
   # validates :nickname, presence: true
 
@@ -41,4 +40,9 @@ class User < ApplicationRecord
   #           "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
   #           "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
   # # validates :skills, inclusion: { in: SKILLS }, allow_blank: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_full_name_and_nickname,
+  against: [ :full_name, :nickname ],
+  using: { tsearch: { prefix: true } }
 end
