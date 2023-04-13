@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <% Band.all.each do |band|%>
+    <% @bands.each do |band|%>
       <div class="col">
         <div class="card card-bands">
           <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
@@ -19,7 +19,11 @@
             <div class="card-body">
               <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
               <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
+
             </div>
           </a>
         </div>
+      </div>
+    <% end %>
+  </div>
 </div>

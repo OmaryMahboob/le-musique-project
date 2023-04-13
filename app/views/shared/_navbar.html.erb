@@ -7,18 +7,12 @@
     </div>
     <div class="text-end px-5">
       <ul class="navbar-nav flex-row action-logo align-items-center">
-        <div >
+
           <%= form_with url: user_bands_path(user_id: current_user.id), method: :get, class: "searchBox" do %>
             <%= text_field_tag :query, params[:query], class: "searchInput", placeholder: "Search" %>
-            <%= submit_tag "", class: "searchButton"%>
+            <%= submit_tag "", class:"fa fa-search fa-2x nav-link active", style:"color: #007A7"%>
           <% end %>
-          <input class="searchInput"type="text" name="" placeholder="Search">
-          <button class="searchButton" href="#">
-            <i class="material-icons">
-              <a href="", class="fa fa-search fa-2x nav-link active", style="color: #007A78;"></a>
-            </i>
-          </button>
-        </div>
+
         <% if user_signed_in? %>
           <li class="nav-item col">
             <%= link_to root_path, class: "nav-link active" do %>
