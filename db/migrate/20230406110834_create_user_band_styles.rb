@@ -4,7 +4,6 @@ class CreateUserBandStyles < ActiveRecord::Migration[7.0]
       t.references :user, foreign_key: true
       t.references :style, null: false, foreign_key: true
       t.references :band, foreign_key: true
-
       t.timestamps
     end
   end

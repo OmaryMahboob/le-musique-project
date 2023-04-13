@@ -16,7 +16,7 @@ class User < ApplicationRecord
   # validates :full_name, presence: true
   # validates :nickname, presence: true
 
-  # validates :nickname, length: { minimum: 4, maximum: 20 }, allow_blank: true
+  # validates :nickname, length: { minimum: 3, maximum: 20 }, allow_blank: true
 
   # validates :description, length: { maximum: 200 }
 
