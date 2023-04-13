@@ -1,8 +1,8 @@
-<div class="text-center">
+<div class="text-center py-2">
   <% if @user_chatrooms.empty? %>
-    <h2 class="postcard__title blue">Hey <%= @user.nickname %>, look that you don't have any messages yet </h2>
+    <h2 class="postcard__title blue py-2">Hey <%= @user.nickname %>, look that you don't have any messages yet </h2>
   <% else %>
-    <h2 class="postcard__title blue">Hey <%= @user.nickname %>, here are your messages: </h2>
+    <h2 class="postcard__title blue py-2">Hey <%= @user.nickname %>, here are your messages: </h2>
     <div class="py-2">
       <% @user_chatrooms.each do |chatroom| %>
         <article class="postcard light blue", style="height: 250px;">
@@ -45,7 +45,7 @@
                         <h5 class="card-title"><%= Band.find(chatroom.receiver.id).band_name %></h5>
                         <h6 class="card-subtitle pb-3 text-body-secondary">
                           <ul class="postcard__tagbox d-flex justify-content-center">
-                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.receiver.id).band_style %></li>
+                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.receiver.id).styles.map(&:style).join(" / ") %></li>
                           </ul>
                         </h6>
                       </div>
@@ -61,7 +61,7 @@
                           <h5 class="card-title"><%= band.band_name %></h5>
                           <h6 class="card-subtitle pb-3 text-body-secondary">
                             <ul class="postcard__tagbox d-flex justify-content-center">
-                              <li class="tag__item"> 🎵 <%= band.styles.map(&:style).join(", ") %></li>
+                              <li class="tag__item"> 🎵 <%= band.styles.map(&:style).join(" / ") %></li>
                             </ul>
                           </h6>
                         </div>
@@ -93,7 +93,7 @@
                         <h5 class="card-title"><%= Band.find(chatroom.sender.id).band_name %></h5>
                         <h6 class="card-subtitle pb-3 text-body-secondary">
                           <ul class="postcard__tagbox d-flex justify-content-center">
-                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.sender.id).band_style %></li>
+                            <li class="tag__item"> 🎵 <%= Band.find(chatroom.sender.id).styles.map(&:style).join(" / ") %></li>
                           </ul>
                         </h6>
                       </div>
@@ -109,7 +109,7 @@
                           <h5 class="card-title"><%= band.band_name %></h5>
                           <h6 class="card-subtitle pb-3 text-body-secondary">
                             <ul class="postcard__tagbox d-flex justify-content-center">
-                              <li class="tag__item"> 🎵 <%= band.band_style %></li>
+                              <li class="tag__item"> 🎵 <%= band.styles.map(&:style).join(" / ") %></li>
                             </ul>
                           </h6>
                         </div>
