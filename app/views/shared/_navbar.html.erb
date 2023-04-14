@@ -7,12 +7,12 @@
     </div>
     <div class="text-end px-5">
       <ul class="navbar-nav flex-row action-logo align-items-center">
-
-          <%= form_with url: search_path(user_id: current_user.id), method: :get, class: "searchBox" do %>
-            <%= text_field_tag :query, params[:query], class: "searchInput", placeholder: "Search" %>
-            <%= submit_tag "", class:"fa fa-search fa-2x nav-link active", style:"color: #007A7"%>
+        <%= form_with url: search_path, method: :get, class: "searchBox" do |f| %>
+          <%= text_field_tag :query, params[:query], class: "searchInput", placeholder: "Search" %>
+          <%= button_tag(type: "submit", class: "searchButton", style: "background-color: transparent; border: none;") do %>
+            <i class="material-icons fa fa-search fa-2x" style="color: #007A78;"></i>
           <% end %>
-
+        <% end %>
         <% if user_signed_in? %>
           <li class="nav-item col">
             <%= link_to root_path, class: "nav-link active" do %>
@@ -23,7 +23,6 @@
             <%= link_to chatrooms_path, class: "nav-link active" do %>
               <%= image_tag "mensajes-logo.png", alt:"logo-messages", class:"icon-navbar", style:"color: #007A78;" %>
             <% end %>
-
           </li>
           <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
