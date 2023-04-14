@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
       @bands = Band.where(sql_query1, query: "%#{params[:query]}%")
       sql_query2 = "nickname ILIKE :query OR full_name ILIKE :query"
       @users = User.where(sql_query2, query: "%#{params[:query]}%")
-      @user_result = User.joins(:skills).where("skills.skill ILIKE ?", "%#{params[:query]}%")
-      @all_users = (@users + @user_result).uniq
+      @skill_result = User.joins(:skills).where("skills.skill ILIKE ?", "%#{params[:query]}%")
+      @style_result = User.joins(:styles).where("styles.style ILIKE ?", "%#{params[:query]}%")
+      @all_users = (@users + @skill_result + @style_result).uniq
     else
       @bands = Band.all
       @all_users = User.all
