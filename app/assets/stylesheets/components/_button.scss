@@ -1,0 +1,19 @@
+.green-button{
+  background-color: #007A78;
+  color: #FFFFFF;
+  opacity: 0.7;
+  border: none;
+  text-shadow: 1px 1px 2px black;
+  border-radius: 20px;
+}
+
+.green-button:hover{
+  background-color: #007A78;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px black;
+  opacity: 1;
+}
+
+.green-button:active{
+  background-color: #007A78 !important;
+}
