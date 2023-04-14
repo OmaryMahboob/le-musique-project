@@ -41,7 +41,7 @@ class BandsController < ApplicationController
     if @band.save
       redirect_to user_path(id: current_user.id)
     else
-      render "products/show", status: :unprocessable_entity
+      render "bands/show", status: :unprocessable_entity
     end
   end
 

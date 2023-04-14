@@ -1,13 +1,15 @@
 .chatroom {
   background: white;
   margin-top: 9px;
+  border-radius: 15px;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 
-  h1 {
+
+  h2 {
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
@@ -27,4 +29,65 @@
       margin-bottom: 0;
     }
   }
+}
+
+.speech-bubble-sender {
+  background-color: #007A78;
+  opacity: 0.7;
+  color: #FFFFFF;
+  border-radius: 15px;
+  padding: 8px 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.speech-bubble-sender::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-left: 5px solid #007A78;
+  border-bottom: 5px solid transparent;
+}
+
+.speech-bubble-receiver {
+  background-color: #e5e5ea;
+  color: #000;
+  border-radius: 15px;
+  padding:  8px 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.speech-bubble-receiver::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-right: 5px solid #e5e5ea;
+  border-bottom: 5px solid transparent;
+}
+
+
+.speech-bubble-sender small, .speech-bubble-receiver small {
+  margin-bottom: 4px;
+}
+
+.speech-bubble-sender p, .speech-bubble-receiver p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+
+.form-message {
+  border-radius: 20px;
+  width: 150px;
+}
+
+#message_private_message {
+  border-radius: 20px;
 }
