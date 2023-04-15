@@ -5,11 +5,11 @@ class BandMembersController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def new
-    @band_member = BandMember.new
-  #  @band.id = Band.find(params[:id])
-    create
-  end
+  # def new
+  #   @band_member = BandMember.new
+  # #  @band.id = Band.find(params[:id])
+  #   create
+  # end
 
   def create
     @band_member = BandMember.new
