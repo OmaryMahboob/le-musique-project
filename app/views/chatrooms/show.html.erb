@@ -2,22 +2,26 @@
   <div class="col col-lg-2 py-5">
     <% @user_chatrooms.each do |chatroom| %>
       <a href="<%= chatroom_path(chatroom.id) %>">
-        <p>
-          <% if current_user == chatroom.sender %>
-            <% if User.find(chatroom.receiver.id).profile_picture.attached? %>
-              <%= cl_image_tag User.find(chatroom.receiver.id).profile_picture.key, class: "avatar-large" %>
+        <div class="info-chatroom">
+          <p class="px-2">
+            <% if current_user == chatroom.sender %>
+                <% if User.find(chatroom.receiver.id).profile_picture.attached? %>
+                  <%= cl_image_tag User.find(chatroom.receiver.id).profile_picture.key, class: "avatar-large" %>
+                <% else %>
+                  <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
+                <% end %>
+                <%= User.find(chatroom.receiver.id).nickname %>
+              </p>
             <% else %>
-              <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
+              <p class="px-2">
+                <% if User.find(chatroom.sender.id).profile_picture.attached? %>
+                  <%= cl_image_tag User.find(chatroom.sender.id).profile_picture.key, class: "avatar-large" %>              <% else %>
+                  <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
+                <% end %>
+                <%= User.find(chatroom.sender.id).nickname %>
             <% end %>
-            <small class="px-2"> <%= User.find(chatroom.receiver.id).nickname %></small>
-          <% else %>
-            <% if User.find(chatroom.sender.id).profile_picture.attached? %>
-              <%= cl_image_tag User.find(chatroom.sender.id).profile_picture.key, class: "avatar-large" %>              <% else %>
-              <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
-            <% end %>
-            <small class="px-2"><%= User.find(chatroom.sender.id).nickname %></small>
-          <% end %>
-        </p>
+          </p>
+        </div>
       </a>
     <% end %>
   </div>

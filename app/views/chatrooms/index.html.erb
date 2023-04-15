@@ -2,7 +2,7 @@
   <% if @user_chatrooms.empty? %>
     <h2 class="postcard__title blue py-2">Hey <%= @user.nickname %>, look that you don't have any messages yet </h2>
   <% else %>
-    <h2 class="postcard__title blue py-2">Hey <%= @user.nickname %>, here are your messages: </h2>
+  <h2 class="postcard__title blue py-2">Hey <%= @user.nickname %>, here are your messages: </h2>
     <div class="py-2">
       <% @user_chatrooms.each do |chatroom| %>
         <article class="postcard light blue", style="height: 250px;">
