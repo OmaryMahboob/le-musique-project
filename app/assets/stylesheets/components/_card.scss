@@ -246,3 +246,43 @@ a, a:hover {
 		background-image: linear-gradient(80deg, $main-blue-rgb-015, transparent 50%);
 	}
 }
+
+.image-card {
+  width: 100%;
+  height: 250px;
+  padding-top: 10px;
+  object-fit: contain;
+  position: relative;
+}
+
+.card-bands {
+  height: 500px;
+  background: #E0E9EB;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.card-bands:hover {
+  transform:scale(1.03);
+  transition: 0.3s;
+}
+
+.card-text {
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color:  black;
+  display: -webkit-box;
+  max-width: 400px;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color:  black;
+  text-align: center;
+}

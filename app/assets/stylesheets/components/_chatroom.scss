@@ -8,7 +8,6 @@
   justify-content: space-between;
   flex-grow: 1;
 
-
   h2 {
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
@@ -90,4 +89,14 @@
 
 #message_private_message {
   border-radius: 20px;
+}
+
+.info-chatroom {
+  color: black;
+  font-size: 1rem;
+}
+
+.info-chatroom:hover {
+  transform:scale(1.03);
+  transition: 0.3s;
 }

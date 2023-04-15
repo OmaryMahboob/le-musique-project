@@ -19,7 +19,7 @@
                 <% end %>
               </div>
               <div class="card-body">
-                <h4 style="margin-top: 5px;" ><strong><%= user.nickname %></strong></h4>
+                <p class="card-title"><%= user.nickname %></p>
                 <p class="card-text"> <%= user.description %> </p>
               </div>
             </a>
@@ -50,9 +50,8 @@
                 <% end %>
               </div>
               <div class="card-body">
-                <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-                <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
-
+                <p class="card-title"><%= band.band_name %></p>
+                <p class="card-text"><%= band.content %></p>
               </div>
             </a>
           </div>
@@ -63,4 +62,5 @@
 <% end %>
 <% if @all_users.length == 0 && @bands.length == 0 %>
   <h3>No result matchs your search</h3>
+  <%= raise %>
 <% end %>
