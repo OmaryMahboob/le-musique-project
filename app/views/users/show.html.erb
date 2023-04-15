@@ -5,15 +5,15 @@
         <div class="d-flex flex-column align-items-center text-center">
           <% if @user.looking_for_band %>
             <% if @user.profile_picture.attached? %>
-              <%= cl_image_tag @user.profile_picture.key, class:"avatar-bordered", style:"border: green 3px solid;" %>
+              <%= cl_image_tag @user.profile_picture.key, class:"avatar-bordered", style:"border: green 4px solid;" %>
             <% else %>
-              <%= image_tag "no-profile-picture.jpg", class:"avatar-bordered", style:"border: green 3px solid;" %>
+              <%= image_tag "no-profile-picture.jpg", class:"avatar-bordered", style:"border: green 4px solid;" %>
             <% end %>
           <% else %>
             <% if @user.profile_picture.attached? %>
-              <%= cl_image_tag @user.profile_picture.key, class:"avatar-bordered", style:"border: red 3px solid;" %>
+              <%= cl_image_tag @user.profile_picture.key, class:"avatar-bordered", style:"border: red 4px solid;" %>
             <% else %>
-              <%= image_tag "no-profile-picture.jpg", class:"avatar-bordered", style:"border: red 3px solid;" %>
+              <%= image_tag "no-profile-picture.jpg", class:"avatar-bordered", style:"border: red 4px solid;" %>
             <% end %>
           <% end %>
           <div class="mt-3">

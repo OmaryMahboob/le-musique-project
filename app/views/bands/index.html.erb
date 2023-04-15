@@ -17,9 +17,8 @@
               <% end %>
             </div>
             <div class="card-body">
-              <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-              <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
-
+              <p class="card-title"><%= band.band_name %></p>
+              <p class="card-text"><%= band.content %></p>
             </div>
           </a>
         </div>

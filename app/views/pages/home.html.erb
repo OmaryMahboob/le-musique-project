@@ -1,27 +1,25 @@
 <%# imagen, podria ser un carrusel (?) %>
 <%= image_tag "homepage-1.jpg", alt:"homepage-1", class:"homepage_image" %>
-<%# Texto, podria ser mas lindo usando esto: https://mattboldt.com/demos/typed-js/  https://kitt.lewagon.com/camps/1098/lectures/05-Rails%2F04-Rails-mister-cocktail#source %>
-<div class="hometext-left">
-  <span class="hometext-yellow">Connect with</span>
-  <span class="hometext-white">musicians</span>
-</div>
-<div class="hometext-right">
-  <span class="hometext-white">Create with</span>
-  <span class="hometext-yellow">passion!</span>
-</div>
-<%# tarjetas de las bandas %>
-<br><br>
-  <div class="row">
-    <div class="col-12">
-      <h1 class="text-center">
-        <span class="hometext-green">Welcome to</span>
-        <span class="hometext-yellow">La Musique</span></h1>
-      <p class="text-center">La Musique is a platform for musicians to connect and collaborate with each other. Whether you are a singer, a guitarist, a drummer, a pianist, a composer, a producer, or a music lover, you are welcome to join us!</p>
-    </div>
+
+<%# text-homepage %>
+<span data-controller="typed-js"></span>
+
+<%# band-cards %>
+<div class="container py-4">
+  <h1 class="text-center py-4">
+    <span class="hometext-green">Welcome to</span>
+    <span class="hometext-yellow">La Musique</span></h1>
+  <div calss="container py-3">
+    <span class="fs-4">
+      La Musique is more than just a platform; it's a vibrant community that brings together musicians from all over the world. Our mission is to create a space where artists can connect, collaborate, and share their passion for music.
+      Whether you are a singer, a guitarist, a drummer, a pianist, a composer, a producer, or a music lover, you are welcome to join us!
+    </span> <br><br>
+    <span class="fs-4">
+      Joining La Musique is easy and free. Once you become a member, you gain access to a wealth of resources and opportunities. Connect with fellow musicians, form bands, collaborate on projects, and showcase your music in your profile.
+    </span>
   </div>
 
-<div class="container">
-  <div class="body-left">
+  <div class="body-left pt-4">
     <span class="hometext-yellow">Connect with</span>
     <span class="hometext-green">new bands</span>
   </div>
@@ -30,30 +28,29 @@
       <div class="col">
         <a href="<%= user_band_path(id: band.id, user_id: band.user_id) %>"class="link">
           <div class="card card-bands">
-              <div class="box-image">
-                <% if band.multimedia.first.present? %>
-                  <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
-                <% else %>
-                  <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
-                <% end %>
-                <% if band.multimedia.attached? %>
-                  <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
-                <% else %>
-                  <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
-                <% end %>
-              </div>
-              <div class="card-body">
-                <h4 style="margin-top: 5px;" ><strong><%= band.band_name %></strong></h4>
-                <p class="card-text"> <%= truncate(band.content, length: 260) %> </p>
-              </div>
-
-          </div>
+            <div class="box-image">
+              <% if band.multimedia.first.present? %>
+                <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
+              <% else %>
+                <div class="background-image" style="background-image: url('<%= image_path("no-image.png", :effect=>"blur:200") %>');"></div>
+              <% end %>
+              <% if band.multimedia.attached? %>
+                <%= cl_image_tag band.multimedia.first.key, class: "image-card" %>
+              <% else %>
+                <%= image_tag "no-image.png", class: "mh-100 image-card", style: "background-size: fill;" %>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <p class="card-title"><%= band.band_name %></p>
+              <p class="card-text"><%= band.content %></p>
+            </div>
+  	      </div>
         </a>
       </div>
     <% end %>
   </div>
 
-  <div class="body-right">
+  <div class="body-right pt-4">
     <span class="hometext-green">Looking for</span>
     <span class="hometext-yellow">passion</span>
   </div>
@@ -75,13 +72,12 @@
               <% end %>
             </div>
             <div class="card-body">
-              <h4 style="margin-top: 5px;" ><strong><%= user.nickname %></strong></h4>
-              <p class="card-text"> <%= user.description %> </p>
+              <p class="card-title"><%= user.nickname %></p>
+              <p class="card-text"><%= user.description %></p>
             </div>
           </a>
         </div>
       </div>
     <% end %>
   </div>
-  <%= link_to "View all profiles", users_path  %>
 </div>

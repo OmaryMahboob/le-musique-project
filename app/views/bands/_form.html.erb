@@ -13,30 +13,39 @@
       <div class="col-md-12">
         <%= f.input :band_name %>
       </div>
-      <div class="col-md-6">
-        <%= f.input :styles, collection: Style.all.map(&:style), as: :select, input_html: { multiple: true}, include_hidden: false %>
+      <div class="col-md-12">
+        <%= f.input :styles,
+                    collection: Style.all.map(&:style),
+                    as: :check_boxes,
+                    input_html: { multiple: true, class: "tag-selector" },
+                    item_wrapper_class: 'tag-item',
+                    include_hidden: false %>
       </div>
       <div class="col-md-6">
         <%= f.input :city %>
       </div>
-      <div class="col-md-12">
-        <%= f.input :multimedia, as: :file, input_html: { multiple: true, include_hidden: false} %>
+      <div class="col-md-6">
+        <%= f.input :experience,
+                    collection: User::EXPERIENCE %>
       </div>
       <div class="col-md-12">
-        <%= f.input :experience, collection: User::EXPERIENCE %>
+        <%= f.input :multimedia,
+                    as: :file,
+                    input_html: { multiple: true, include_hidden: false} %>
       </div>
       <div class="col-md-12">
         <%= f.input :content %>
       </div>
       <div class="col-md-12">
-        <%= f.input :looking_for_member%>
+        <%= f.input :looking_for_member,
+                    as: :radio_buttons %>
       </div>
     </div>
     <div class="col text-center pt-3">
       <% if band.new_record? %>
-        <%= f.button :submit, "Create band", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>
+        <%= f.button :submit, "Create band", class: "btn btn-primary btn-lg green-button mb-4 col-6" %>
       <% else %>
-        <%= f.button :submit, "Update band", class: "btn btn-primary btn-lg boton-verde mb-4 col-6" %>
+        <%= f.button :submit, "Update band", class: "btn btn-primary btn-lg green-button mb-4 col-6" %>
       <% end %>
     </div>
   <% end %>
