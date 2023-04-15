@@ -17,25 +17,40 @@
         <%= f.input :address %>
       </div>
       <div class="col-md-12">
-        <%= f.input :profile_picture, as: :file %>
+        <%= f.input :profile_picture,
+                    as: :file %>
       </div>
       <div class="col-md-12">
-        <%= f.input :multimedia, as: :file, input_html: { multiple: true , include_hidden: false}%>
+        <%= f.input :multimedia,
+                    as: :file,
+                    input_html: { multiple: true , include_hidden: false}%>
       </div>
       <div class="col-md-12">
         <%= f.input :description %>
       </div>
       <div class="col-md-12">
-        <%= f.input :looking_for_band, as: :radio_buttons %>
+        <%= f.input :looking_for_band,
+                    as: :radio_buttons %>
       </div>
       <div class="col-md-12">
-        <%= f.input :experience, collection: User::EXPERIENCE %>
+        <%= f.input :experience,
+                    collection: User::EXPERIENCE %>
       </div>
-      <div class="col-md-6">
-        <%= f.input :skills, collection: Skill.all.map(&:skill), as: :check_boxes, input_html: { multiple: true }, include_hidden: false %>
+      <div class="col-md-12">
+        <%= f.input :skills,
+                    collection: Skill.all.map(&:skill),
+                    as: :check_boxes,
+                    input_html: { multiple: true, class: "tag-selector" },
+                    item_wrapper_class: 'tag-item',
+                    include_hidden: false %>
       </div>
-      <div class="col-md-6">
-        <%= f.input :styles, collection: Style.all.map(&:style), as: :check_boxes, input_html: { multiple: true }, include_hidden: false %>
+      <div class="col-md-12">
+        <%= f.input :styles,
+                    collection: Style.all.map(&:style),
+                    as: :check_boxes,
+                    input_html: { multiple: true, class: "tag-selector" },
+                    item_wrapper_class: 'tag-item',
+                    include_hidden: false %>
       </div>
 
 
