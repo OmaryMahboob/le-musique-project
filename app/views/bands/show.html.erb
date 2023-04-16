@@ -97,7 +97,7 @@
                   <h3><%= my_band.user.full_name %> <%= my_band.user.nickname %></h3>
                 </a>
                 <% if my_band.approved? %>
-                  <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
+                  <%= button_to "Remove member", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
                 <% else %>
                   <p class=""><%= "waiting for approval" if my_band.user == current_user%></p>
                   <div class="d-flex">
