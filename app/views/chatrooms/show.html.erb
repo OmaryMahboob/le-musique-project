@@ -49,7 +49,7 @@
       <% last_date = nil %>
       <% last_time = nil %>
       <% @chatroom.messages.each do |message| %>
-        <% if message.user == @current_user %>
+        <% if message.private_message.length > 0 && message.user == @current_user %>
           <div style="text-align: right; padding: 2px;" id="message-<%= message.id %>">
             <% if last_date.nil? || message.created_at.to_date != last_date %>
               <div class="text-center">
@@ -68,7 +68,7 @@
               </div>
             </div>
           </div>
-        <% else %>
+        <% elsif message.user != @current_user && message.private_message.length > 0 %>
           <div style="text-align: left; padding: 2px;" id="message-<%= message.id %>">
             <% if last_date.nil? || message.created_at.to_date != last_date %>
               <div class="text-center">
