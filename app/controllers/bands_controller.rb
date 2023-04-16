@@ -62,7 +62,7 @@ class BandsController < ApplicationController
     end
 
     @band.update(band_params)
-    redirect_to user_path(id: current_user.id), notice: "Band was successfully updated."
+    redirect_to user_band_path(band_id: params[:id]), notice: "Band was successfully updated."
   end
 
   def destroy
