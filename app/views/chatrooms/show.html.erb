@@ -1,28 +1,30 @@
 <div class="row justify-content-md-center">
   <div class="col col-lg-2 py-5">
     <% @user_chatrooms.each do |chatroom| %>
-      <a href="<%= chatroom_path(chatroom.id) %>">
         <div class="info-chatroom">
           <p class="px-2">
             <% if current_user == chatroom.sender %>
+              <a href=<%= user_path(id: chatroom.receiver_id)%>>
                 <% if User.find(chatroom.receiver.id).profile_picture.attached? %>
                   <%= cl_image_tag User.find(chatroom.receiver.id).profile_picture.key, class: "avatar-large" %>
                 <% else %>
                   <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
                 <% end %>
                 <%= User.find(chatroom.receiver.id).nickname %>
-              </p>
+              </a>
+          </p>
             <% else %>
               <p class="px-2">
+              <a href=<%= user_path(id: chatroom.sender_id)%>>
                 <% if User.find(chatroom.sender.id).profile_picture.attached? %>
                   <%= cl_image_tag User.find(chatroom.sender.id).profile_picture.key, class: "avatar-large" %>              <% else %>
                   <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
                 <% end %>
                 <%= User.find(chatroom.sender.id).nickname %>
+              </a>
+              </p>
             <% end %>
-          </p>
         </div>
-      </a>
     <% end %>
   </div>
 
@@ -49,7 +51,7 @@
       <% last_date = nil %>
       <% last_time = nil %>
       <% @chatroom.messages.each do |message| %>
-        <% if message.user == @current_user %>
+        <% if message.private_message.length > 0 && message.user == @current_user %>
           <div style="text-align: right; padding: 2px;" id="message-<%= message.id %>">
             <% if last_date.nil? || message.created_at.to_date != last_date %>
               <div class="text-center">
@@ -68,7 +70,7 @@
               </div>
             </div>
           </div>
-        <% else %>
+        <% elsif message.user != @current_user && message.private_message.length > 0 %>
           <div style="text-align: left; padding: 2px;" id="message-<%= message.id %>">
             <% if last_date.nil? || message.created_at.to_date != last_date %>
               <div class="text-center">

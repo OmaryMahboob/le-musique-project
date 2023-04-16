@@ -1,11 +1,10 @@
 <H1>DONDE ESTOY????</H1>
-
 <div class="container chatroom">
   <h1>#<%= @chatroom_name %></h1>
   <% @preview_chatroom =  %>
   <div class="messages">
     <% chatroom.messages.each do |message| %>
-      <% if message.user == @current_user %>
+      <% if message.private_message.length > 3 && message.user == @current_user%>
         <div style="text-align: right;" id="message-<%= message.id %>">
           <small>
             <strong><%= message.user.full_name %></strong>
@@ -24,6 +23,7 @@
           <% end %>
     <% end %>
   </div>
+
  <%# @fel.new %>
   <% @message = Message.new %>
   <%= simple_form_for [chatroom, @message],

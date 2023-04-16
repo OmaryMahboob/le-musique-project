@@ -27,7 +27,8 @@ class BandsController < ApplicationController
   def show
     @band = Band.find(params[:id])
     @user = @band.user
-    @band_members = BandMember.all
+    @my_bands = @band.band_members
+    # @band_where_member = BandMember.where(user_id: params[:user_id], band_id: params[:id])
     @owner = User.find(params[:user_id])
     @current_user = current_user
   end
@@ -61,7 +62,7 @@ class BandsController < ApplicationController
     end
 
     @band.update(band_params)
-    redirect_to user_path(id: current_user.id), notice: "Band was successfully updated."
+    redirect_to user_band_path(band_id: params[:id]), notice: "Band was successfully updated."
   end
 
   def destroy

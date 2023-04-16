@@ -5,10 +5,13 @@ class BandMembersController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def new
-    @band_member = BandMember.new
-    #  @band.id = Band.find(params[:id])
-    create
+  def approve
+    @band_member = BandMember.find(params[:id])
+    @band_member.update(approved: true)
+    redirect_to user_band_path(
+                    band_id: @band_member.band_id,
+                    user_id: @band_member.user_id,
+                    id: @band_member)
   end
 
   def create
@@ -19,16 +22,18 @@ class BandMembersController < ApplicationController
     @band_member.approved = false
     if @band_member.save
       flash[:notice] = "your request is sent to the band owner for approval."
+      redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
     else
       flash[:alert] = "you have already submited your request to join this band."
+      redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
     end
-    redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
+
   end
 
   def destroy
     @band_member = BandMember.find(params[:id])
-    @band_member.destroy(band_member_params)
-    redirect_to user_band_band_member_path(user_id: @band.user_id, band_id: @band.id, id: @band_member.id), notice: "You have succesfully left this band."
+    @band_member.destroy
+    redirect_to user_band_band_member_path, notice: "Request to join band is denied."
   end
 
   def show
