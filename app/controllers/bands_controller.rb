@@ -31,7 +31,6 @@ class BandsController < ApplicationController
     # @band_where_member = BandMember.where(user_id: params[:user_id], band_id: params[:id])
     @owner = User.find(params[:user_id])
     @current_user = current_user
-    # raise
   end
 
   def create

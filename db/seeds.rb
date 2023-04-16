@@ -261,3 +261,10 @@ end
     skill: skills.sample
   )
 end
+
+User.all.each do |user|
+  number = rand(2..5)
+  sample = User.all.sample(number)
+  sample.each do BandMember.create(
+    user: user_,
+  )
