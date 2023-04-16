@@ -25,9 +25,9 @@
             <div class="postcard__bar"></div>
             <div class="postcard__preview-txt"><%= band.content %></div>
             <ul class="postcard__tagbox">
-            <% band.styles.each do |b| %>
-              <li class="tag__item"> 🎵 <%= b.style %></li>
-            <% end %>
+            	<% unless band.styles.map(&:style).empty? %>
+                <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= band.styles.map(&:style).join(" / ") %></li>
+              <% end %>
             </ul>
           </div>
         </article>

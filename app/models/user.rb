@@ -25,24 +25,11 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_many_attached :multimedia
 
-
-  # STYLE = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-  #          "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
-  # # validates :style, inclusion: { in: STYLE }, allow_blank: true
-  # # enum style ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-  # # "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
-
   EXPERIENCE = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
                 "Between 2 years to 5 years", "More than 5 years"]
-  # # validates :experience, inclusion: { in: EXPERIENCE }, allow_blank: true
-
-  # SKILLS = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
-  #           "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer",
-  #           "Trumpet", "Turntables", "Vocalist", "Violin", "Other"]
-  # # validates :skills, inclusion: { in: SKILLS }, allow_blank: true
 
   include PgSearch::Model
   pg_search_scope :search_by_full_name_and_nickname,
-  against: [ :full_name, :nickname ],
-  using: { tsearch: { prefix: true } }
+                  against: [ :full_name, :nickname ],
+                  using: { tsearch: { prefix: true } }
 end
