@@ -4,7 +4,7 @@
         <div class="info-chatroom">
           <p class="px-2">
             <% if current_user == chatroom.sender %>
-              <a href=<%= user_path(id: chatroom.receiver_id)%>>
+              <a href=<%= chatroom_path(id: chatroom.id)%>>
                 <% if User.find(chatroom.receiver.id).profile_picture.attached? %>
                   <%= cl_image_tag User.find(chatroom.receiver.id).profile_picture.key, class: "avatar-large" %>
                 <% else %>
