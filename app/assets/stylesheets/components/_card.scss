@@ -103,8 +103,7 @@ a, a:hover {
     flex-flow: row wrap;
     font-size: 14px;
     margin: 20px 0 0 0;
-		padding: 0;
-    justify-content: center;
+		padding: 10px;
   }
 
   &:before {
@@ -273,7 +272,7 @@ a, a:hover {
   color:  black;
   display: -webkit-box;
   max-width: 400px;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

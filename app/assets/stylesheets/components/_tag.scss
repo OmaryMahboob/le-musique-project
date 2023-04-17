@@ -1,15 +1,19 @@
 .tag__item {
   display: inline-block;
-  background: rgba(80, 80, 80, 0.2);
-  border-radius: 3px;
-  padding: 2.5px 10px;
-  margin: 0 5px 5px 0;
-  cursor: default;
-  user-select: none;
-  transition: background-color 0.3s;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.9rem;
+  border-radius: 50rem;
+  padding: 0.2rem 1rem;
+  background-color: transparent;
+  color: black !important;
+  border: 1px solid #007A78;
+  margin-right: 0.7rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
 
   &:hover {
-    background: rgba(80, 80, 80, 0.5);
+    opacity: 1;
   }
 }
 
