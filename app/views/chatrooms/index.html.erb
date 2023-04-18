@@ -28,7 +28,7 @@
                 <i class="my-2 fa fa-user-plus fa-lg"></i> <%= User.find(chatroom.receiver.id).experience %> |
                 <i class="my-2 fa fa-map-marker fa-lg"></i> <%= User.find(chatroom.receiver.id).address %> |
                 <% if User.find(chatroom.receiver.id).looking_for_band %>
-                  <i class="my-2 fa fa-check-square fa-lg"></i> <span style="color: #007A78;">Looking for an integrant 😉</span>
+                  <i class="my-2 fa fa-check-square fa-lg"></i> <span style="color: #007A78;">Looking for a member 😉</span>
                 <% else %>
                   <i class="my-2 fa fa-window-close fa-lg"></i> <span class="text-danger">Not looking for anyone yet 🙁</span>
                 <% end %>
@@ -76,7 +76,7 @@
                 <i class="my-2 fa fa-user-plus fa-lg"></i> <%= User.find(chatroom.sender.id).experience %> |
                 <i class="my-2 fa fa-map-marker fa-lg"></i> <%= User.find(chatroom.sender.id).address %> |
                 <% if User.find(chatroom.sender.id).looking_for_band %>
-                  <i class="my-2 fa fa-check-square fa-lg"></i> <strong class="text-success">Looking for an integrant 😉</strong>
+                  <i class="my-2 fa fa-check-square fa-lg"></i> <strong class="text-success">Looking for a member 😉</strong>
                 <% else %>
                   <i class="my-2 fa fa-window-close fa-lg"></i> <span class="text-danger">Not looking for anyone yet 🙁</span>
                 <% end %>
