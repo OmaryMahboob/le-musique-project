@@ -217,7 +217,7 @@ end
 # Creating the styles, skills and their associations tables in their databases
 
 styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock"]
+  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
 
 styles_list.each do |i|
   s = Style.new(style: i)
@@ -226,7 +226,7 @@ end
 
 skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
               "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet",
-              "Turntables", "Vocalist", "Violin"]
+              "Turntables", "Vocalist", "Violin", "Other"]
 
 skills_list.each do |skill|
   s = Skill.new(skill: skill)

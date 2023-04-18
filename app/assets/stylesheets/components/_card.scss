@@ -259,11 +259,11 @@ a, a:hover {
   background: #E0E9EB;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  transition: transform 0.3s ease;
 }
 
 .card-bands:hover {
   transform:scale(1.03);
-  transition: 0.3s;
 }
 
 .card-text {

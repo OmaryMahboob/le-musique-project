@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       @user.styles.destroy_all
       params[:user][:styles].each do |style|
         # style_id = Style.find_by(style: style).id
-        UserBandStyle.create(user_id: @user.id, style_id: style_id = Style.find_by(style: style).id)
+        UserBandStyle.create(user_id: @user.id, style_id: Style.find_by(style: style).id)
       end
     end
 
