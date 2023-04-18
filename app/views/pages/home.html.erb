@@ -4,7 +4,6 @@
 <%# text-homepage %>
 <span data-controller="typed-js"></span>
 
-<%# band-cards %>
 <div class="container py-4">
   <h1 class="text-center py-4">
     <span class="hometext-green">Welcome to</span>
@@ -18,11 +17,12 @@
       Joining La Musique is easy and free. Once you become a member, you gain access to a wealth of resources and opportunities. Connect with fellow musicians, form bands, collaborate on projects, and showcase your music in your profile.
     </span>
   </div>
-
+  <%# band-text %>
   <div class="body-left pt-4">
     <span class="hometext-yellow">Connect with</span>
     <span class="hometext-green">new bands</span>
   </div>
+  <%# band-cards %>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% Band.all.sample(3).each do |band|%>
       <div class="col">
@@ -53,12 +53,16 @@
         </a>
       </div>
     <% end %>
+    <% if user_signed_in? %>
+      <span class="fs-4 link-text"><%= link_to "View all bands", user_bands_url(user_id: @user.id) %></span>
+    <% end %>
   </div>
-
+  <%# user-text %>
   <div class="body-right pt-4">
     <span class="hometext-green">Looking for</span>
     <span class="hometext-yellow">passion</span>
   </div>
+  <%# user-cards %>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% User.all.sample(3).each do |user|%>
       <div class="col">
@@ -81,16 +85,21 @@
               <p class="card-text"><%= user.description %></p>
               <ul class="postcard__tagbox">
                 <% unless user.skills.map(&:skill).empty? %>
-                  <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= user.skills.map(&:skill).join(" / ") %></li><br>
+                  <li class="tag__item"><%= image_tag("icon-band.png", style:"height: 16px;") %> <%= user.skills.map(&:skill).join(" / ") %></li><br>
                 <% end %>
                 <% unless user.styles.map(&:style).empty? %>
-                  <li class="tag__item">  <%= image_tag("icon-band.png", style:"height: 16px;") %> <%= user.styles.map(&:style).join(" / ") %></li>
+                  <li class="tag__item"><i class="fa fa-music" aria-hidden="true"></i> <%= user.styles.map(&:style).join(" / ") %></li>
                 <% end %>
               </ul>
             </div>
           </a>
         </div>
       </div>
+    <% end %>
+  </div>
+  <div class="body-right pt-3">
+    <% if user_signed_in? %>
+      <span class="fs-4 link-text"><%= link_to "View all profiles", users_path %></span>
     <% end %>
   </div>
 </div>

@@ -19,6 +19,11 @@
             <div class="card-body">
               <p class="card-title"><%= band.band_name %></p>
               <p class="card-text"><%= band.content %></p>
+              <ul class="postcard__tagbox">
+                <% unless band.styles.map(&:style).empty? %>
+                  <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= band.styles.map(&:style).join(" / ") %></li>
+                <% end %>
+              </ul>
             </div>
           </a>
         </div>
