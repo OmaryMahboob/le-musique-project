@@ -19,14 +19,14 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="d-flex flex-column align-items-center">
-                <span class="fs-5 mb-3 text-center"><%= @user.full_name %> <%= @user.nickname %></span>
-                <span class="fs-6 text-center"><strong><%= @user.skills.map(&:skill).join(" / ") %></strong></span>
-                <span class="fs-6 text-center"><%= @user.styles.map(&:style).join(" / ") %></span>
+                <span class="fs-5 mb-3 text-center"><%= @band_owner.full_name %> <%= @band_owner.nickname %></span>
+                <span class="fs-6 text-center"><strong><%= @band_owner.skills.map(&:skill).join(" / ") %></strong></span>
+                <span class="fs-6 text-center"><%= @band_owner.styles.map(&:style).join(" / ") %></span>
               </div>
             </div>
             <div class="col-md-6 text-md-end">
-              <% if @user.profile_picture.attached? %>
-                <%= cl_image_tag @user.profile_picture.key, class:"avatar-square" %>
+              <% if @band_owner.profile_picture.attached? %>
+                <%= cl_image_tag @band_owner.profile_picture.key, class:"avatar-square" %>
               <% else %>
                 <%= image_tag "no-profile-picture.jpg", class:"avatar-square" %>
               <% end %>
@@ -34,20 +34,20 @@
           </div>
           <div class="d-flex flex-column align-items-center text-center">
             <div class="mt-3">
-              <% if @user == current_user %>
+              <% if @band_owner == current_user %>
                 <%# this function is just hidding the button to any other user, with the url is still accesible %>
                 <%= link_to "Edit this band", edit_user_band_path(user_id: @band.user_id, id: @band.id), class:"btn btn-primary mx-2" %>
-                <%= link_to "Create your band", new_user_band_path(user_id: @user.id), class:"btn btn-primary mx-2" %>
+                <%= link_to "Create your band", new_user_band_path(user_id: @band_owner.id), class:"btn btn-primary mx-2" %>
                 <%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), class:"btn btn-danger mx-2 my-2 btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %>
               <% end %>
-              <% if @user != current_user %>
+              <% if @band_owner != current_user %>
               <div class="d-flex">
                 <% if @band_member %>
                 <%= button_to "Leave this band", user_band_band_member_path(user_id: @band.user_id, band_id: @band.id, id: @band_member.id), method: :delete, class:"btn btn-primary mx-2" %>
                 <% end %>
                 <%= button_to "Join to this band", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary mx-2" %>
                 <% if @chatroom.nil? %>
-                  <%= link_to "Send a message", chatrooms_path(receiver: @user), data: { turbo_method: "post" }, class:"btn btn-primary mx-2" %>
+                  <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: "post" }, class:"btn btn-primary mx-2" %>
                 <% else %>
                   <%= link_to "Send a message", @chatroom, class:"btn btn-primary mx-2" %>
                 <% end %>
@@ -86,34 +86,29 @@
       </ul>
     </div>
     <% #joining a band %>
-    <%if @my_bands.each do |my_band| my_band.user_id == params[:user_id] %>
+    <%@my_bands.each do |my_band|%>
      <div class="card mt-3 bordered">
-
         <div class="card-body light bordered">
           <h4 class="text-center">band Members</h4>
           <span class="text-secondary">
+            <div>
               <div class="d-flex justify-content-between">
                 <a href="<%= user_path(my_band.user) %>">
                   <h3><%= my_band.user.full_name %> <%= my_band.user.nickname %></h3>
                 </a>
-                <% if my_band.approved? %>
+                <% if my_band.approved? && @current_user == @band_owner%>
                   <%= button_to "Remove member", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
-                <% else %>
-                  <p class=""><%= "waiting for approval" if my_band.user == current_user%></p>
-                  <div class="d-flex">
-                    <% if my_band.user != current_user %>
-                      <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
-                      <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
-                    <% end %>
-                  </div>
-                  <% end %>
+                <% elsif @current_user == @band_owner%>
+                  <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
+                  <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
+                <% elsif !my_band.approved? %>
+                  <p class=""><%= "waiting for approval"%></p>
                 <% end %>
-
-              </div>
-      <% end %>
+                </div>
+    <% end %>
+            </div>
           </span>
         </div>
       </div>
   </div>
-
 </div>

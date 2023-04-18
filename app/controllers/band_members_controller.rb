@@ -8,7 +8,7 @@ class BandMembersController < ApplicationController
   def approve
     @band_member = BandMember.find(params[:id])
     @band_member.update(approved: true)
-    redirect_to user_band_path(
+    redirect_to user_band_band_member_path(
                     band_id: @band_member.band_id,
                     user_id: @band_member.user_id,
                     id: @band_member)
