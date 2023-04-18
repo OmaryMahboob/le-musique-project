@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     @messages = Message.all
     @message = Message.new
     @chatroom = Chatroom.find_chat_room(current_user, @user)
+    @membered_bands = @current_user.band_members.where(approved: true)
+    @new_bands = Band.where(id: @membered_bands.pluck(:band_id))
+    @user_bands = Band.where(user_id: params[:id]).or(Band.where(id: @membered_bands.pluck(:band_id)))
+
   end
 
   def edit

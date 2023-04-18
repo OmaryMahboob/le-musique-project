@@ -26,10 +26,8 @@ class BandsController < ApplicationController
 
   def show
     @band = Band.find(params[:id])
-    @user = @band.user
+    @band_owner = @band.user
     @my_bands = @band.band_members
-    # @band_where_member = BandMember.where(user_id: params[:user_id], band_id: params[:id])
-    @owner = User.find(params[:user_id])
     @current_user = current_user
   end
 

@@ -14,15 +14,15 @@
               </a>
           </p>
             <% else %>
-              <p class="px-2">
-              <a href=<%= user_path(id: chatroom.sender_id)%>>
+          <p class="px-2">
+              <a href=<%= chatroom_path(id: chatroom.id)%>>
                 <% if User.find(chatroom.sender.id).profile_picture.attached? %>
                   <%= cl_image_tag User.find(chatroom.sender.id).profile_picture.key, class: "avatar-large" %>              <% else %>
                   <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
                 <% end %>
                 <%= User.find(chatroom.sender.id).nickname %>
               </a>
-              </p>
+          </p>
             <% end %>
         </div>
     <% end %>
