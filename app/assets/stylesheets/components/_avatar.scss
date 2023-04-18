@@ -27,7 +27,6 @@
 
 .avatar-wrapper-square {
   position: relative;
-
   overflow: hidden;
 }
 
@@ -51,22 +50,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .avatar-wrapper:hover .avatar-hover {
   opacity: 1;
   font-size: 1.4em;
-  transition: 0.3s ease;
+  transition: 0.3s ease-in-out;
+  color: white;
 }
+
+.avatar-hover:active {
+  opacity: 1;
+  font-size: 1.4em;
+  transition: 0.3s ease-in-out;
+  color: white;
+}
+
 
 .avatar-wrapper-square:hover .avatar-hover {
   opacity: 1;
   font-size: 1.4em;
-  transition: 0.3s ease;
+  transition: 0.3s ease-in-out;
 }
 
 .edit-link {
   color: white;
   text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-link:hover {
+  color: white;
+  transform: scale(1.1);
 }

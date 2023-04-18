@@ -34,7 +34,7 @@
                <br><br>
             <% if @user == current_user %>
               <%# this function is just hidding the button to any other user, with the url is still accesible %>
-              <%= link_to "Create your band", new_user_band_path(user_id: @user.id), class:"btn btn-primary green-button px-4" %>
+              <%= link_to "Create your band", new_user_band_path(user_id: @user.id), class:"btn btn-primary principal-button px-4" %>
             <% else %>
               <% if @chatroom.nil? %>
                 <%= link_to "Send a message", chatrooms_path(receiver: @user), data: { turbo_method: "post" }, class:"btn btn-primary green-button px-4" %>
