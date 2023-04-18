@@ -36,17 +36,23 @@ class BandsController < ApplicationController
     @band = Band.new(band_params)
     @band.user_id = current_user.id
 
-    if params[:band][:styles].present?
-      params[:band][:styles].each do |style|
-        new_style = Style.find_by(style: [style])
-        UserBandStyle.create(band: @band, style: new_style)
+    if params[:band][:band_name].present? # Check if band_name is present
+      if params[:band][:styles].present?
+        params[:band][:styles].each do |style|
+          new_style = Style.find_by(style: [style])
+          UserBandStyle.create(band: @band, style: new_style)
+        end
       end
-    end
 
-    if @band.save
-      redirect_to user_path(id: current_user.id)
+      if @band.save
+        redirect_to user_path(id: current_user.id)
+      else
+        render "bands/show", status: :unprocessable_entity
+      end
+
     else
-      render "bands/show", status: :unprocessable_entity
+      # Handle case when band_name is empty
+      render "bands/new", status: :unprocessable_entity
     end
   end
 

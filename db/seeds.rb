@@ -51,8 +51,8 @@ user_images = [
 
 
 mahboob = User.new(
-  full_name: "mahboob",
-  nickname: "omary",
+  full_name: "Mahboob",
+  nickname: "Omary",
   phone: "098876544",
   address: "Magazinstraße 15-16, 10179 Berlin",
   email: "mahboob@gmail.com",
@@ -242,7 +242,7 @@ styles = Style.all
   # Creating the UserBandStyle table for bands
   UserBandStyle.create(
     band: bands.sample,
-    style: styles.sample
+    style: styles.sample(2)
   )
 end
 
@@ -250,7 +250,7 @@ end
   # Creating the UserBandStyle table for users
   UserBandStyle.create(
     user: users.sample,
-    style: styles.sample
+    style: styles.sample(2)
   )
 end
 
@@ -258,14 +258,6 @@ end
    # Creating the UserSkill table for users
    UserSkill.create(
     user: users.sample,
-    skill: skills.sample
+    skill: skills.sample(2)
   )
 end
-
-# User.all.each do |user|
-#   number = rand(2..5)
-#   sample = User.all.sample(number)
-#   sample.each do BandMember.create(
-#     user: user_,
-#   )
-# end
