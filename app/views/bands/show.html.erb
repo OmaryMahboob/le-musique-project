@@ -105,7 +105,7 @@
                   <h3><%= my_band.user.full_name %> <%= my_band.user.nickname %></h3>
                 </a>
                 <% if my_band.approved? && @current_user == @band_owner%>
-                  <%= button_to "Remove member", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
+                  <%= button_to "Remove", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
                 <% elsif @current_user == @band_owner%>
                   <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
                   <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
