@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
     @user = current_user
     if params[:query].present?
       sql_query1 = "band_name ILIKE :query"
-      @bands = Band.where(sql_query1, query: "%#{params[:query]}%")
+      @bands_result = Band.where(sql_query1, query: "%#{params[:query]}%")
+      @Style_band = Band.joins(:styles).where("styles.style ILIKE ?", "%#{params[:query]}%")
+      @bands = (@bands_result + @Style_band).uniq
+      
       sql_query2 = "nickname ILIKE :query OR full_name ILIKE :query"
       @users = User.where(sql_query2, query: "%#{params[:query]}%")
       @skill_result = User.joins(:skills).where("skills.skill ILIKE ?", "%#{params[:query]}%")
@@ -13,7 +16,7 @@ class ApplicationController < ActionController::Base
       @all_users = (@users + @skill_result + @style_result).uniq
     else
       @bands = Band.all
-      @all_users = User.all
+      @all_users = User.all.reject { |user| user == current_user}
     end
   end
 end
