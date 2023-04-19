@@ -8,6 +8,7 @@
 require "open-uri"
 require "faker"
 require "cloudinary"
+require "pry-byebug"
 
 Skill.destroy_all
 Style.destroy_all
@@ -18,6 +19,25 @@ Band.destroy_all
 Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
+
+# Creating the styles, skills and their associations tables in their databases
+
+styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
+  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
+
+styles_list.each do |i|
+  s = Style.new(style: i)
+  s.save
+end
+
+skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
+              "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet",
+              "Turntables", "Vocalist", "Violin", "Other"]
+
+skills_list.each do |skill|
+  s = Skill.new(skill: skill)
+  s.save
+end
 
 experience = ["Less than 6 months", "Between 6 months to 1 year", "Between 1 to 2 years",
               "Between 2 years to 5 years", "More than 5 years"]
@@ -154,6 +174,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     experience: experience.sample,
     looking_for_band: [true, false].sample
   )
+
   new_user.profile_picture.attach(
     io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
     filename: "profile_picture#{rand(1..60)}.jpeg",
@@ -165,10 +186,12 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     content_type: "image/jpg"
   )
   new_user.save
+  new_user.skills << Skill.all.sample(rand(1..3)).uniq
+  new_user.styles << Style.all.sample(rand(1..3)).uniq
   p new_user.full_name
 end
 
-bands_name = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein"]
+band_names = ["Gurr", "Mia", "Slow Steve", "Jahcoozi", "Seeed", "Beatsteaks", "Jennifer Rostock", "Super700", "Evvol", "Rammstein"]
 band_images =
           ["https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816079/1_ravzdf.png",
           "https://res.cloudinary.com/dvrfyi1tt/image/upload/v1680816104/2_buulla.png",
@@ -195,10 +218,10 @@ descriptions = [
     "Evvol is a darkwave electronic duo, comprised of Irish singer Julie Chance and Australian instrumentalist Jane Arnison. Currently based in Kreuzberg, they have stunned at their live shows and festivals appearances around the city. The band creates a unique sound under their prominent theme of the human condition.",
     "Rammstein is Berlins most iconic and influential German rock band. Forming in 1994, they helped found a subgenre of German hard rock and metal that became known as Neue Deutsche Härte. Their influential style and German-centric songs are an insight into Berlins early rock scene and the evolving styles that came out of the city."
 ]
-10.times do
+band_names.each do |band|
   actual_user = User.all.sample
   new_band = Band.new(
-    band_name: bands_name.shift,
+    band_name: band,
     user: actual_user,
     city: cities.sample,
     experience: experience.sample,
@@ -211,53 +234,6 @@ descriptions = [
     content_type: "image/jpg"
   )
   new_band.save
+  new_band.styles << Style.all.sample(rand(1..3)).uniq
   p new_band.band_name
-end
-
-# Creating the styles, skills and their associations tables in their databases
-
-styles_list = ["Acoustic", "Alternative", "Blues", "Country", "Electronic", "Experimental", "Folk", "Funk", "Hip-hop",
-  "Indie", "Jazz", "Latin", "Metal", "Pop", "Progressive", "Punk", "R&B", "Reggae", "Rock", "Other"]
-
-styles_list.each do |i|
-  s = Style.new(style: i)
-  s.save
-end
-
-skills_list = ["Bass", "Bass Guitar", "Drums", "Electric Guitar", "Guitar", "Keyboard", "Lead Guitar", "Lead Vocals",
-              "Percussion", "Piano", "Rhythm Guitar", "Saxophone", "Singer", "Songwriter", "Synthesizer", "Trumpet",
-              "Turntables", "Vocalist", "Violin", "Other"]
-
-skills_list.each do |skill|
-  s = Skill.new(skill: skill)
-  s.save
-end
-
-users = User.all
-bands = Band.all
-skills = Skill.all
-styles = Style.all
-
-15.times do
-  # Creating the UserBandStyle table for bands
-  UserBandStyle.create(
-    band: bands.sample,
-    style: styles.sample(2)
-  )
-end
-
-15.times do
-  # Creating the UserBandStyle table for users
-  UserBandStyle.create(
-    user: users.sample,
-    style: styles.sample(2)
-  )
-end
-
-15.times do
-   # Creating the UserSkill table for users
-   UserSkill.create(
-    user: users.sample,
-    skill: skills.sample(2)
-  )
 end
