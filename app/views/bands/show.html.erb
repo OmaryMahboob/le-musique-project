@@ -1,9 +1,10 @@
 <div class="row gutters-sm pt-3">
-  <h3 class="postcard__title text-center"><%= @band.band_name %></h3>
+  <h3 class="postcard__title text-center"></h3>
   <div class="col-md-8 my-3">
     <div class="card mb-3 bordered card-user-show">
       <div class="card-body light bordered">
         <div class="row">
+          <h4 class="postcard__title text-center">We are <strong> <%= @band.band_name %></strong> </h4>
           <div class="avatar-wrapper-square">
             <%= render "band_carrousel" %>
             <% if @band.user == current_user %>
@@ -14,17 +15,20 @@
           </div>
           <div class="p-3 light bordered-bottom">
             <li class="list-group-item d-flex flex-wrap">
-              <span class="text-secondary"><h4>About us:</h4></span>
-              <span class="text-secondary"><%= @band.content %></span>
+              <span class=""> <strong> About us: </strong> <%= @band.content %></span>
             </li><br>
             <li class="list-group-item d-flex flex-wrap light">
-              <i class="my-2 fa fa-user-plus fa-lg"></i>
-              <span class="text-secondary"> &nbsp We have <%= @band.experience %> of experience</span>
+              <i class="my-2 fa fa-user-plus fa-lg" style="width: 28px;"></i>
+              <% unless @band.experience.empty? %>
+                <span class="text-secondary"> &nbsp We have <%= @band.experience %> of experience</span>
+              <% else %>
+                <span class="text-secondary"> &nbsp We don't have experience</span>
+              <% end %>
             </li><br>
             <li class="list-group-item d-flex flex-wrap light">
-          <i class="my-2 fa fa-map-marker fa-lg"></i>
-          <span class="text-secondary">&nbsp We are in <%= @band.city %></span>
-        </li>
+              <i class="my-2 fa fa-map-marker fa-lg" style="width: 28px;"></i>
+              <span class="text-secondary">&nbsp We are in <%= @band.city %></span>
+            </li>
           </div>
         </div>
       </div>
@@ -71,15 +75,15 @@
                 <%= link_to "Delete this band", user_band_path(user_id: @band.user_id, id: @band.id), class:"btn btn-danger mx-2 my-2 btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" } %>
               <% end %>
               <% if @band_owner != current_user %>
-                <div class="d-flex">
+                <div class="d-flex align-items-center text-center">
                   <% if @band_member %>
-                  <%= button_to "Leave this band", user_band_band_member_path(user_id: @band.user_id, band_id: @band.id, id: @band_member.id), method: :delete, class:"btn btn-primary mx-2" %>
+                  <%= button_to "Leave this band", user_band_band_member_path(user_id: @band.user_id, band_id: @band.id, id: @band_member.id), method: :delete, class:"btn btn-danger mx-2" %>
                   <% end %>
-                  <%= button_to "Join to this band", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary mx-2" %>
+                  <%= button_to "Join to this band", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary principal-button mx-2" %>
                   <% if @chatroom.nil? %>
-                    <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: "post" }, class:"btn btn-primary mx-2" %>
+                    <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: "post" }, class:"btn btn-primary green-button mx-2" %>
                   <% else %>
-                    <%= link_to "Send a message", @chatroom, class:"btn btn-primary mx-2" %>
+                    <%= link_to "Send a message", @chatroom, class:"btn btn-primary green-button mx-2" %>
                   <% end %>
                 </div>
               <% end %>
