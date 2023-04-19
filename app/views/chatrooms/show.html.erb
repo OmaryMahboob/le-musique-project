@@ -28,7 +28,10 @@
     <% end %>
   </div>
 
-  <div class="col col-lg-10 chatroom">
+  <div class="col col-lg-10 chatroom"
+        data-controller="chatroom-subscription"
+        data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+        >
     <h2 class="pt-2 px-2">
       <% if current_user == @chatroom.sender %>
         <% if User.find(@chatroom.receiver.id).profile_picture.attached? %>
@@ -47,7 +50,7 @@
       <% end %>
     </h2>
 
-    <div class="messages">
+    <div class="messages" data-chatroom-subscription-target="messages">
       <% last_date = nil %>
       <% last_time = nil %>
       <% @chatroom.messages.each do |message| %>
@@ -91,8 +94,9 @@
         <% end %>
       <% end %>
     </div>
-
-    <%= simple_form_for [@chatroom, @message], html: {class: "d-flex"} do |f| %>
+    <%= simple_form_for [@chatroom, @message],
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm"},
+      class: "d-flex"} do |f| %>
       <div class="flex-grow-1">
         <%= f.input :private_message,
                     label: false,
