@@ -125,7 +125,3 @@
     </div>
   <% end %>
 </div>
-<% @user_messages = Message.where(chatroom_id: @user_chatrooms.last.id) %>
-<% @user_messages.each do |message| %>
-  <h2><%= message.private_message %></h2>
-<% end %>
