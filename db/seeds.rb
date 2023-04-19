@@ -87,11 +87,11 @@ mahboob.profile_picture.attach(
   filename: "profile_picture_mahboob.jpeg",
   content_type: "image/jpg"
 )
-# mahboob.multimedia.attach(
-#   io: URI.open(user_images.sample),
-#   filename: "photo.jpeg",
-#   content_type: "image/jpg"
-# )
+mahboob.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "photo.jpeg",
+  content_type: "image/jpg"
+)
 
 mahboob.save
 
@@ -107,11 +107,11 @@ jane = User.new(
   experience: experience.sample,
   looking_for_band: [true, false].sample
 )
-# jane.multimedia.attach(
-#   io: URI.open(user_images.sample),
-#   filename: "photo#{rand(1..60)}.jpeg",
-#   content_type: "image/jpg"
-# )
+jane.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "photo#{rand(1..60)}.jpeg",
+  content_type: "image/jpg"
+)
 jane.profile_picture.attach(
   io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667074864/tkaswximthoisj8cucbd.jpg"),
   filename: "profile_picture_jane.jpeg",
@@ -136,11 +136,11 @@ roger.profile_picture.attach(
   filename: "profile_picture_roger.jpeg",
   content_type: "image/jpg"
 )
-# roger.multimedia.attach(
-#   io: URI.open(user_images.sample),
-#   filename: "photo#{rand(1..60)}.jpeg",
-#   content_type: "image/jpg"
-# )
+roger.multimedia.attach(
+  io: URI.open(user_images.sample),
+  filename: "photo#{rand(1..60)}.jpeg",
+  content_type: "image/jpg"
+)
 
 roger.save
 
@@ -175,16 +175,16 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     looking_for_band: [true, false].sample
   )
 
-  # new_user.profile_picture.attach(
-  #   io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
-  #   filename: "profile_picture#{rand(1..60)}.jpeg",
-  #   content_type: "image/jpg"
-  # )
-  # new_user.multimedia.attach(
-  #   io: URI.open(user_images.sample),
-  #   filename: "photo#{rand(1..60)}.jpeg",
-  #   content_type: "image/jpg"
-  # )
+  new_user.profile_picture.attach(
+    io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
+    filename: "profile_picture#{rand(1..60)}.jpeg",
+    content_type: "image/jpg"
+  )
+  new_user.multimedia.attach(
+    io: URI.open(user_images.sample),
+    filename: "photo#{rand(1..60)}.jpeg",
+    content_type: "image/jpg"
+  )
   new_user.save
   new_user.skills << Skill.all.sample(rand(1..3)).uniq
   new_user.styles << Style.all.sample(rand(1..3)).uniq
@@ -228,13 +228,12 @@ band_names.each do |band|
     content: descriptions.shift,
     looking_for_member: [true, false].sample
   )
-  # new_band.multimedia.attach(
-  #   io: URI.open(band_images.shift),
-  #   filename: "#{rand(50..90)}photo.jpeg",
-  #   content_type: "image/jpg"
-  # )
+  new_band.multimedia.attach(
+    io: URI.open(band_images.shift),
+    filename: "#{rand(50..90)}photo.jpeg",
+    content_type: "image/jpg"
+  )
   new_band.save
-  binding.pry
   new_band.styles << Style.all.sample(rand(1..3)).uniq
   p new_band.band_name
 end
