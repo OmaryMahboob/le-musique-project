@@ -18,12 +18,15 @@
             </div>
             <div class="card-body">
               <p class="card-title"><%= band.band_name %></p>
-              <p class="card-text"><%= band.content %></p>
-              <ul class="postcard__tagbox">
-                <% unless band.styles.map(&:style).empty? %>
-                  <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= band.styles.map(&:style).join(" / ") %></li>
-                <% end %>
-              </ul>
+              <p class="card-text-band"><%= band.content %></p>
+              <% unless band.styles.empty? %>
+                <span class="postcard__tagbox">
+                  <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                  <% band.styles.each do |b| %>
+                    <span class="tag__item"><%= b.style %></span>
+                  <% end %>
+                </span>
+              <% end %>
             </div>
           </a>
         </div>

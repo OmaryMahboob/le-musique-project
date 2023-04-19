@@ -83,7 +83,7 @@
           <span class="text-secondary"> <%= @band.experience %> of experience</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light">
-          <i class="my-2 fa fa-music fa-lg"></i>
+          <i><%= image_tag("icon-music.png", style:"height: 24px; width: 24px;") %></i>
           <span class="text-secondary"><%= @band.styles.map(&:style).join(" / ") %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light">
