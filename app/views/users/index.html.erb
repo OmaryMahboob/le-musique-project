@@ -21,7 +21,7 @@
               <p class="card-text"><%= user.description %></p>
               <% unless user.skills.empty? %>
                 <span class="postcard__tagbox">
-                  <%= image_tag("icon-band.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                  <%= image_tag("icon-band.png", style:"height: 31px; width: 31px;") %> &nbsp;
                   <% user.skills.each do |u| %>
                     <span class="tag__item"><%= u.skill %></span>
                   <% end %>
@@ -30,7 +30,7 @@
               <% end %>
               <% unless user.styles.empty? %>
                 <span class="postcard__tagbox">
-                  <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                  <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %> &nbsp;
                   <% user.styles.each do |u| %>
                     <span class="tag__item"><%= u.style %></span>
                   <% end %>
