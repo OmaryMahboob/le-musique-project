@@ -1,7 +1,7 @@
-<div class="row gutters-sm">
-  <h1 class="postcard__title text-center"><%= @band.band_name %> band</h1>
+<div class="row gutters-sm pt-3">
+  <h3 class="postcard__title text-center"><%= @band.band_name %></h3>
   <div class="col-md-8 my-3">
-    <div class="card mb-3 bordered">
+    <div class="card mb-3 bordered card-user-show">
       <div class="card-body light bordered">
         <div class="row">
           <div class="avatar-wrapper-square">
@@ -12,39 +12,59 @@
               </div>
             <% end %>
           </div>
-            <li class=" p-3 list-group-item d-flex justify-content-between align-items-center flex-wrap light bordered-bottom">
-              <span class="text-secondary"><h3>About us:</h3></span>
+          <div class="p-3 light bordered-bottom">
+            <li class="list-group-item d-flex flex-wrap">
+              <span class="text-secondary"><h4>About us:</h4></span>
               <span class="text-secondary"><%= @band.content %></span>
-            </li>
+            </li><br>
+            <li class="list-group-item d-flex flex-wrap light">
+              <i class="my-2 fa fa-user-plus fa-lg"></i>
+              <span class="text-secondary"> &nbsp We have <%= @band.experience %> of experience</span>
+            </li><br>
+            <li class="list-group-item d-flex flex-wrap light">
+          <i class="my-2 fa fa-map-marker fa-lg"></i>
+          <span class="text-secondary">&nbsp We are in <%= @band.city %></span>
+        </li>
           </div>
         </div>
       </div>
     </div>
+  </div>
     <div class="col-md-4 my-3">
-      <div class="card bordered">
-        <div class="card-body light bordered">
-          <h4 class="text-center">Manager of the band 😎</h4>
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="d-flex flex-column align-items-center">
-                <span class="fs-5 mb-3 text-center"><%= @band_owner.nickname %></span>
-                <ul class="postcard__tagbox">
-                  <% unless @band_owner.skills.map(&:skill).empty? %>
-                    <li class="tag__item"> <small> <%= image_tag("icon-band.png", style:"height: 16px;") %> <%= @band_owner.skills.map(&:skill).join(" / ") %> </small></li>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6 text-md-end">
+    <div class="card card-user-show bordered bordered-top">
+      <% unless @band.looking_for_member %>
+        <div class="not-available-bar">
+          <p class="not-available-text">We are full 🙁</p>
+        </div>
+      <% else %>
+        <div class="available-bar">
+          <p class="available-text">We are looking for you 😎</p>
+        </div>
+      <% end %>
+      <div class="card-body light bordered" style="border-radius: 0 0 10px 10px">
+        <div class="d-flex flex-column align-items-center text-center">
+        <h4 class="text-center">Manager</h4>
+          <div class="d-flex flex-column align-items-center text-center">
+            <div class="avatar-wrapper">
               <% if @band_owner.profile_picture.attached? %>
-                <%= cl_image_tag @band_owner.profile_picture.key, class:"avatar-square" %>
+                <%= cl_image_tag @band_owner.profile_picture.key, class: "avatar-bordered" %>
               <% else %>
-                <%= image_tag "no-profile-picture.jpg", class:"avatar-bordered" %>
+                <%= image_tag "no-profile-picture.jpg", class: "avatar-bordered" %>
               <% end %>
             </div>
-          </div>
-          <div class="d-flex flex-column align-items-center text-center">
             <div class="mt-3">
+              <h4><%= @band_owner.nickname %></h4>
+              <ul class="postcard__tagbox">
+                <% unless @band_owner.skills.map(&:skill).empty? %>
+                  <li class="tag__item"><%= image_tag("icon-band.png", style:"height: 16px; width: 16px;") %> <%= @band_owner.skills.map(&:skill).join(" / ") %> </li>
+                  <br>
+                <% end %>
+                <% unless @band_owner.styles.map(&:style).empty? %>
+                  <li class="tag__item"><i><%= image_tag("icon-music.png", style:"height: 16px; width: 16px;") %></i> <%= @band_owner.styles.map(&:style).join(" / ") %> </li>
+                <% end %>
+              </ul>
+                <strong> About me: </strong> <%= @band_owner.description %>
+                <br><br>
               <% if @band_owner == current_user %>
                 <%# this function is just hidding the button to any other user, with the url is still accesible %>
                 <%= link_to "Create your band", new_user_band_path(user_id: @band_owner.id), class:"btn btn-primary mx-2 principal-button" %>
@@ -63,60 +83,37 @@
                   <% end %>
                 </div>
               <% end %>
+              <% @my_bands.each do |my_band| %>
+                <div class="card mt-3 bordered">
+                  <div class="card-body light bordered">
+                    <h4 class="text-center">Members</h4>
+                    <div class="text-secondary">
+                      <div class="d-flex justify-content-between">
+                        <a href="<%= user_path(my_band.user) %>">
+                          <% if my_band.user.profile_picture.attached? %>
+                            <%= cl_image_tag my_band.user.profile_picture.key, class: "avatar-large" %>
+                          <% else %>
+                            <%= image_tag "no-profile-picture.jpg", class: "avatar-large" %>
+                          <% end %>
+                          <h5> <%= my_band.user.nickname %> </h5>
+                        </a>
+                        <% if my_band.approved? && @current_user == @band_owner%>
+                          <%= button_to "Remove", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
+                        <% elsif @current_user == @band_owner%>
+                          <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
+                          <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
+                        <% else %>
+                          <p class=""><%= "waiting for approval"%></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-    <div class="card mt-3 bordered">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light bordered-top">
-          <% if @band.looking_for_member %>
-            <i class="my-2 fa fa-check-square fa-lg"></i>
-            <span class="font-size-sm fw-semibold", style="color: #007A78;">We are looking for you!</span>
-          <% else %>
-            <i class="my-2 fa fa-window-close fa-lg"></i>
-            <span class="font-size-sm text-danger">Sorry, our band is full 🙁</span>
-          <% end %>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light">
-          <i class="my-2 fa fa-user-plus fa-lg"></i>
-          <span class="text-secondary"> <%= @band.experience %> of experience</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light">
-          <i><%= image_tag("icon-music.png", style:"height: 24px; width: 24px;") %></i>
-          <span class="text-secondary"><%= @band.styles.map(&:style).join(" / ") %></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap light">
-          <i class="my-2 fa fa-map-marker fa-lg"></i>
-          <span class="text-secondary"><%= @band.city %></span>
-        </li>
-
-      </ul>
     </div>
-    <% #joining a band %>
-    <%@my_bands.each do |my_band|%>
-     <div class="card mt-3 bordered">
-        <div class="card-body light bordered">
-          <h4 class="text-center">band Members</h4>
-          <span class="text-secondary">
-            <div>
-              <div class="d-flex justify-content-between">
-                <a href="<%= user_path(my_band.user) %>">
-                  <h3><%= my_band.user.full_name %> <%= my_band.user.nickname %></h3>
-                </a>
-                <% if my_band.approved? && @current_user == @band_owner%>
-                  <%= button_to "Remove", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
-                <% elsif @current_user == @band_owner%>
-                  <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
-                  <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
-                <% elsif !my_band.approved? %>
-                  <p class=""><%= "waiting for approval"%></p>
-                <% end %>
-                </div>
-            <% end %>
-            </div>
-          </span>
-        </div>
-      </div>
   </div>
 </div>
