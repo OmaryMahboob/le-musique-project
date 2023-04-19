@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   def index
-    @users = User.all
     @user = current_user
+    @users = User.all.reject { |user| user == current_user }
   end
 
   def show
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @chatroom = Chatroom.find_chat_room(current_user, @user)
     @membered_bands = @user.band_members.where(approved: true)
     @new_bands = Band.where(id: @membered_bands.pluck(:band_id))
-    @user_bands = Band.where(user_id: params[:id]).or(Band.where(id: @membered_bands.pluck(:band_id)))
+    @user_bands = Band.where(user_id: params[:id]) + (Band.where(id: @membered_bands.pluck(:band_id)))
 
   end
 
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
     if params[:user][:styles].present?
       @user.styles.destroy_all
       params[:user][:styles].each do |style|
-        # style_id = Style.find_by(style: style).id
-        UserBandStyle.create(user_id: @user.id, style_id: Style.find_by(style: style).id)
+        style_id = Style.find_by(style: style).id
+        UserBandStyle.create(user_id: @user.id, style_id: style_id)
       end
     end
 

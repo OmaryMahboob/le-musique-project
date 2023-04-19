@@ -8,6 +8,12 @@
             <% else %>
               <%= image_tag "no-image.png", class: "postcard__img" %>
             <% end %>
+            <%# <% if band.user != User.find(params[:id]) %>
+              <a href="" class="p-3">
+                <%= cl_image_tag band.user.profile_picture.key, class: "avatar-large" %>
+                <%= band.user.nickname %>
+              </a>
+            <%# end %>
 
           <div class="postcard__text t-dark">
             <h1 class="postcard__title"><%= band.band_name %></h1>
