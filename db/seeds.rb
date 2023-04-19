@@ -211,6 +211,10 @@ descriptions = [
     content_type: "image/jpg"
   )
   new_band.save
+<<<<<<< Updated upstream
+=======
+  new_band.styles << Style.all.sample(rand(1..3)).uniq
+>>>>>>> Stashed changes
   p new_band.band_name
 end
 
