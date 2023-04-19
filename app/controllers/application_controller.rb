@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
     if params[:query].present?
       sql_query1 = "band_name ILIKE :query"
       @bands_result = Band.where(sql_query1, query: "%#{params[:query]}%")
-      @Style_band = Band.joins(:styles).where("styles.style ILIKE ?", "%#{params[:query]}%")
-      @bands = (@bands_result + @Style_band).uniq
-      
+      @band_style_result = Band.joins(:styles).where("styles.style ILIKE ?", "%#{params[:query]}%")
+      @bands = (@bands_result + @band_style_result).uniq
+
       sql_query2 = "nickname ILIKE :query OR full_name ILIKE :query"
       @users = User.where(sql_query2, query: "%#{params[:query]}%")
       @skill_result = User.joins(:skills).where("skills.skill ILIKE ?", "%#{params[:query]}%")

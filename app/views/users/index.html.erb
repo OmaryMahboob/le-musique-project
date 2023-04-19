@@ -22,7 +22,7 @@
               <% unless user.skills.empty? %>
                 <span class="postcard__tagbox">
                   <%= image_tag("icon-band.png", style:"height: 31px; width: 31px;") %>&nbsp;
-                  <% user.skills.each do |u| %>
+                  <% user.skills.sample(2).each do |u| %>
                     <span class="tag__item"><%= u.skill %></span>
                   <% end %>
                 </span>
@@ -31,7 +31,7 @@
               <% unless user.styles.empty? %>
                 <span class="postcard__tagbox">
                   <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
-                  <% user.styles.each do |u| %>
+                  <% user.styles.sample(2).each do |u| %>
                     <span class="tag__item"><%= u.style %></span>
                   <% end %>
                 </span>

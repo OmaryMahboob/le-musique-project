@@ -22,7 +22,7 @@
               <% unless band.styles.empty? %>
                 <span class="postcard__tagbox">
                   <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
-                  <% band.styles.each do |b| %>
+                  <% band.styles.sample(2).each do |b| %>
                     <span class="tag__item"><%= b.style %></span>
                   <% end %>
                 </span>
