@@ -8,7 +8,6 @@
 require "open-uri"
 require "faker"
 require "cloudinary"
-require "pry-byebug"
 
 Skill.destroy_all
 Style.destroy_all
