@@ -1,6 +1,10 @@
-<% if @all_users.length > 0 %>
-  <div class="container">
-    <h1 style="text-align: center">Users</h1>
+<div class="container">
+  <% if @all_users.length > 0 || @bands.length > 0 %>
+    <h3 class="text-center mt-3">Search results for <strong> <%= params[:query] %> </strong> found!</h3>
+		<h5>We found <%= @all_users.count + @bands.length %>  results for "<%= params[:query] %>".</h5>
+  <% end %>
+  <% if @all_users.length > 0 %>
+    <h4 class="my-4">Users</h4>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @all_users.each do |user|%>
         <div class="col">
@@ -21,27 +25,34 @@
               <div class="card-body">
                 <p class="card-title"><%= user.nickname %></p>
                 <p class="card-text"><%= user.description %></p>
-                <ul class="postcard__tagbox">
-                  <% unless user.skills.map(&:skill).empty? %>
-                    <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= user.skills.map(&:skill).join(" / ") %></li><br>
-                  <% end %>
-                  <% unless user.styles.map(&:style).empty? %>
-                    <li class="tag__item">  <%= image_tag("icon-band.png", style:"height: 16px;") %> <%= user.styles.map(&:style).join(" / ") %></li>
-                  <% end %>
-                </ul>
+                <% unless user.skills.empty? %>
+                  <span class="postcard__tagbox">
+                    <%= image_tag("icon-band.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                    <% user.skills.each do |u| %>
+                      <span class="tag__item"><%= u.skill %></span>
+                    <% end %>
+                  </span>
+                  <br>
+                <% end %>
+                <% unless user.styles.empty? %>
+                  <span class="postcard__tagbox">
+                    <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                    <% user.styles.each do |u| %>
+                      <span class="tag__item"><%= u.style %></span>
+                    <% end %>
+                  </span>
+                <% end %>
               </div>
             </a>
           </div>
         </div>
       <% end %>
     </div>
-  </div>
-<% end %>
-<% if @bands.length > 0 %>
-  <div class="container">
-    <h1 style="text-align: center">bands</h1>
+  <% end %>
+  <% if @bands.length > 0 %>
+    <h4 class="my-4">bands</h4>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <% @bands.each do |band|%>
+        <% @bands.each do |band|%>
         <div class="col">
           <div class="card card-bands">
             <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
@@ -59,21 +70,26 @@
               </div>
               <div class="card-body">
                 <p class="card-title"><%= band.band_name %></p>
-                <p class="card-text"><%= band.content %></p>
-                <ul class="postcard__tagbox">
-                  <% unless band.styles.map(&:style).empty? %>
-                    <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= band.styles.map(&:style).join(" / ") %></li>
-                  <% end %>
-                </ul>
+                <p class="card-text-band"><%= band.content %></p>
+                <% unless band.styles.empty? %>
+                  <span class="postcard__tagbox">
+                    <%= image_tag("icon-music.png", style:"height: 31px; width: 31px;") %>&nbsp;
+                    <% band.styles.each do |b| %>
+                      <span class="tag__item"><%= b.style %></span>
+                    <% end %>
+                  </span>
+                <% end %>
               </div>
-            </div>
             </a>
           </div>
         </div>
       <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
-<% if @all_users.length == 0 && @bands.length == 0 %>
-  <h3>No result matchs your search</h3>
-<% end %>
+  <% end %>
+  <% if @all_users.length == 0 && @bands.length == 0 %>
+    <h3 class="text-center mt-3">No Results Found</h3>
+    <h5>Sorry, we could not find any results for "<%= params[:query] %>".</h5><br>
+    <span class="link-text"> <%= link_to "Go back", :back %> </span>
+  <% end %>
+</div>

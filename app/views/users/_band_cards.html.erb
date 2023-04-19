@@ -1,4 +1,4 @@
-<section class="">
+<section>
 	<div class="container py-2">
     <% @user_bands.each do |band| %>
         <article class="postcard light blue">
@@ -24,7 +24,7 @@
             <div class="postcard__preview-txt"><%= band.content %></div>
             <ul class="postcard__tagbox">
             	<% unless band.styles.map(&:style).empty? %>
-                <li class="tag__item"> <i class="fa fa-music" aria-hidden="true"></i> <%= band.styles.map(&:style).join(" / ") %></li>
+                <li class="tag__item"> <i><%= image_tag("icon-music.png", style:"height: 16px; width: 16px;") %></i> <%= band.styles.map(&:style).join(" / ") %></li>
               <% end %>
             </ul>
           </div>
