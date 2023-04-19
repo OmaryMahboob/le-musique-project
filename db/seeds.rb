@@ -242,7 +242,7 @@ styles = Style.all
   # Creating the UserBandStyle table for bands
   UserBandStyle.create(
     band: bands.sample,
-    style: styles.sample(2)
+    style: styles.sample
   )
 end
 
@@ -250,7 +250,7 @@ end
   # Creating the UserBandStyle table for users
   UserBandStyle.create(
     user: users.sample,
-    style: styles.sample(2)
+    style: styles.sample
   )
 end
 
@@ -258,6 +258,6 @@ end
    # Creating the UserSkill table for users
    UserSkill.create(
     user: users.sample,
-    skill: skills.sample(2)
+    skill: skills.sample
   )
 end
