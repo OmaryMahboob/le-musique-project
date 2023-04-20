@@ -30,7 +30,6 @@ class BandsController < ApplicationController
     @my_bands = @band.band_members
     @current_user = current_user
     @user = User.find(params[:user_id])
-
     @chatroom = Chatroom.find_chat_room(current_user, @user)
 
   end
