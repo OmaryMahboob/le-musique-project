@@ -8,8 +8,7 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        render_to_string(partial: "message", locals: {message: @message, last_date: nil, last_time:nil})
-
+          {user_id: current_user.id, data: render_to_string(partial: "message", locals: {message: @message, last_date: @message.created_at.to_date, last_time: @message.created_at.strftime("%H:%M")})}
       )
       head :ok
     else

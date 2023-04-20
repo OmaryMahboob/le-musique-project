@@ -2,13 +2,20 @@ import { Controller } from "@hotwired/stimulus"
 import { createConsumer } from "@rails/actioncable"
 
 export default class extends Controller {
-  static values = { chatroomId: Number }
+  static values = { chatroomId: Number, currentUserId: Number }
   static targets = ["messages"]
 
   connect() {
+    const currentUserId = this.currentUserIdValue
     this.channel = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
-      { received: data => this.messagesTarget.insertAdjacentHTML("beforeend", data) }
+      { received: data => {
+        const position = data.user_id == currentUserId ? "right" : "left"
+        const message = `<div style="text-align: ${position}; class="speech-bubble-sender">
+                           ${data.data}
+                         </div>`
+        this.messagesTarget.insertAdjacentHTML("beforeend", message)
+      } }
     )
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
   }
@@ -17,6 +24,7 @@ export default class extends Controller {
     this.messagesTarget.insertAdjacentHTML("beforeend", data)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
+
   resetForm(event) {
     event.target.reset()
   }
