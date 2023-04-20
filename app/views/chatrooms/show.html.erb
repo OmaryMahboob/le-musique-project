@@ -94,18 +94,6 @@
         <% end %>
       <% end %>
     </div>
-    <%= simple_form_for [@chatroom, @message],
-      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm"},
-      class: "d-flex"} do |f| %>
-      <div class="flex-grow-1">
-        <%= f.input :private_message,
-                    label: false,
-                    placeholder: "Message...",
-                    wrapper_html: {class: "px-2"},
-                    input_html: {rows: 5, style: "resize: both; overflow-wrap: break-word; word-wrap: break-word;"}
-        %>
-      </div>
-      <%= f.submit "Send", class: "btn btn-primary mb-3 green-button mx-2" %>
-    <% end %>
+      <%= render "message", {chatroom: @chatroom, message: @message, last_date: last_date, last_time: last_time} %>
   </div>
 </div>
