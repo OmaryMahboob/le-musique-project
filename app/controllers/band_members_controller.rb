@@ -5,14 +5,12 @@ class BandMembersController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def approve
+  def update
     @band_member = BandMember.find(params[:id])
     @band_member.update(approved: true)
-    redirect_to user_band_band_member_path(
-                    band_id: @band_member.band_id,
-                    user_id: @band_member.user_id,
-                    id: @band_member
-                  )
+    @band = Band.find(params[:band_id])
+    redirect_to user_band_path(@band.user.id, @band), notice: "Request to join band is approved."
+
   end
 
   def create
@@ -32,7 +30,7 @@ class BandMembersController < ApplicationController
   def destroy
     @band_member = BandMember.find(params[:id])
     @band_member.destroy
-    redirect_to user_band_band_member_path(user_id: @band_member.band.user_id, id: @band_member.band_id), notice: "The request was denied."
+    redirect_to user_band_path, notice: "Request to join band is denied."
   end
 
   def show

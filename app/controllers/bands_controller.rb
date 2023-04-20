@@ -29,6 +29,10 @@ class BandsController < ApplicationController
     @band_owner = @band.user
     @my_bands = @band.band_members
     @current_user = current_user
+    @user = User.find(params[:user_id])
+
+    @chatroom = Chatroom.find_chat_room(current_user, @user)
+
   end
 
   def create

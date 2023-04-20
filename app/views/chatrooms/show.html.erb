@@ -28,7 +28,11 @@
     <% end %>
   </div>
 
-  <div class="col col-lg-10 chatroom">
+  <div class="col col-lg-10 chatroom"
+        data-controller="chatroom-subscription"
+        data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+        data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+        >
     <h2 class="pt-2 px-2">
       <% if current_user == @chatroom.sender %>
         <% if User.find(@chatroom.receiver.id).profile_picture.attached? %>
@@ -47,7 +51,7 @@
       <% end %>
     </h2>
 
-    <div class="messages">
+    <div class="messages" data-chatroom-subscription-target="messages">
       <% last_date = nil %>
       <% last_time = nil %>
       <% @chatroom.messages.each do |message| %>
@@ -91,17 +95,6 @@
         <% end %>
       <% end %>
     </div>
-
-    <%= simple_form_for [@chatroom, @message], html: {class: "d-flex"} do |f| %>
-      <div class="flex-grow-1">
-        <%= f.input :private_message,
-                    label: false,
-                    placeholder: "Message...",
-                    wrapper_html: {class: "px-2"},
-                    input_html: {rows: 5, style: "resize: both; overflow-wrap: break-word; word-wrap: break-word;"}
-        %>
-      </div>
-      <%= f.submit "Send", class: "btn btn-primary mb-3 green-button mx-2" %>
-    <% end %>
+      <%= render "message", {chatroom: @chatroom, message: @message, last_date: last_date, last_time: last_time} %>
   </div>
 </div>

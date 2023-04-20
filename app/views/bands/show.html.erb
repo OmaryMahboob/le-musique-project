@@ -128,7 +128,6 @@
                 </div>
               <% end %>
             <% end %>
-
             <% if @my_bands.pluck(:user_id).include?(current_user.id) || @band_owner == current_user %>
               <% if @my_bands.where(approved: false).size > 0 %>
                 <h4 class="pt-4 my-2">Members waitlist</h4>
@@ -145,6 +144,7 @@
                             <h5><%= my_band.user.nickname %></h5>
                           <% end %>
                         </a>
+
                       </div>
                       <div class="col">
                         <% if @band_owner == current_user %>

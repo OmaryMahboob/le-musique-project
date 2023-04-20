@@ -91,8 +91,9 @@ mahboob.multimedia.attach(
   filename: "photo.jpeg",
   content_type: "image/jpg"
 )
-
 mahboob.save
+mahboob.skills << Skill.all.sample(rand(1..3)).uniq
+mahboob.styles << Style.all.sample(rand(1..3)).uniq
 
 jane = User.new(
   full_name: "Jane",
@@ -117,6 +118,8 @@ jane.profile_picture.attach(
   content_type: "image/jpg"
 )
 jane.save
+jane.skills << Skill.all.sample(rand(1..3)).uniq
+jane.styles << Style.all.sample(rand(1..3)).uniq
 
 roger = User.new(
   full_name: "Roger",
@@ -142,6 +145,8 @@ roger.multimedia.attach(
 )
 
 roger.save
+roger.skills << Skill.all.sample(rand(1..3)).uniq
+roger.styles << Style.all.sample(rand(1..3)).uniq
 
 
 first_names = ["Avery", "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Eliot", "Emerson", "Frankie", "Harley",
