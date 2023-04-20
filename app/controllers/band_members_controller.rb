@@ -1,7 +1,7 @@
 class BandMembersController < ApplicationController
   def index
     @band = Band.find(params[:band_id])
-    @band_members = BandMember.all
+    @band_members = @band.band_members
     @user = User.find(params[:user_id])
   end
 
@@ -10,6 +10,7 @@ class BandMembersController < ApplicationController
     @band_member.update(approved: true)
     @band = Band.find(params[:band_id])
     redirect_to user_band_path(@band.user.id, @band), notice: "Request to join band is approved."
+
   end
 
   def create
@@ -19,13 +20,11 @@ class BandMembersController < ApplicationController
     @band_member.user = current_user
     @band_member.approved = false
     if @band_member.save
-      flash[:notice] = "your request is sent to the band owner for approval."
+      flash[:notice] = "Your request is sent to the manager for approval."
       redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
     else
-      flash[:alert] = "you have already submited your request to join this band."
-      redirect_to user_band_band_member_path(user_id: @band.user_id, id: @band.id)
+      flash[:alert] = "You have already submitted your request to join this band."
     end
-
   end
 
   def destroy
