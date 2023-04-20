@@ -1,0 +1,38 @@
+<% if message.private_message.length > 0 && message.user == @current_user %>
+          <div style="text-align: right; padding: 2px;" id="message-<%= message.id %>">
+            <% if last_date.nil? || message.created_at.to_date != last_date %>
+              <div class="text-center">
+                <small class="text-center"><i><strong><%= message.created_at.strftime("%A %-d %B %Y") %></strong></i></small>
+              </div>
+              <br>
+              <% last_date = message.created_at.to_date %>
+            <% end %>
+            <% if last_time.nil? || message.created_at.strftime("%H:%M") != last_time %>
+              <small><i><%= message.created_at.strftime("%H:%M") %></i></small><br>
+              <% last_time = message.created_at.strftime("%H:%M") %>
+            <% end %>
+            <div class="speech-bubble-sender">
+              <div>
+                <p><%= message.private_message %></p>
+              </div>
+            </div>
+          </div>
+        <% elsif message.user != @current_user && message.private_message.length > 0 %>
+          <div style="text-align: left; padding: 2px;" id="message-<%= message.id %>">
+            <% if last_date.nil? || message.created_at.to_date != last_date %>
+              <div class="text-center">
+                <small><i><strong><%= message.created_at.strftime("%A %-d %B %Y") %></strong></i></small><br>
+              </div>
+              <% last_date = message.created_at.to_date %>
+            <% end %>
+            <% if last_time.nil? || message.created_at.strftime("%H:%M") != last_time %>
+              <small><i><%= message.created_at.strftime("%H:%M") %></i></small><br>
+              <% last_time = message.created_at.strftime("%H:%M") %>
+            <% end %>
+            <div class="speech-bubble-receiver">
+              <div>
+                <p><%= message.private_message %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
