@@ -2,7 +2,11 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @bands.each do |band|%>
       <div class="col">
-        <div class="card card-bands">
+        <% if band.looking_for_member %>
+          <div class="card card-bands" style="border: green 2px solid;">
+        <% else %>
+          <div class="card card-bands" style="border: red 1px solid;">
+        <% end %>
           <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
             <div class="box-image">
               <% if band.multimedia.first.present? %>
