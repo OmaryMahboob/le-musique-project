@@ -90,9 +90,9 @@
                 <div class="d-inline-block">
                   <% if @band_owner != current_user %>
                     <% if @chatroom.nil? %>
-                      <%= link_to "Send a message", @chatroom, class: "btn btn-primary green-button mx-2" %>
-                    <% else %>
                       <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: "post" }, class: "btn btn-primary green-button mx-2" %>
+                    <% else %>
+                      <%= link_to "Send a message", @chatroom, class: "btn btn-primary green-button mx-2" %>
                     <% end %>
                   <% end %>
                 </div>
