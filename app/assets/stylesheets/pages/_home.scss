@@ -29,17 +29,21 @@
 
 .hometext-center {
   position: absolute;
-  height: 66px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  top: 38rem;
-  // align-items: center;
-  // text-align: center;
+  top: 34rem;
+  left: 0;
+  right: 0;
+  text-align: center;
   font-weight: 400;
   font-size: 45px;
-  line-height: 54px;
+  // line-height: 54px;
   text-shadow: 1px 1px 2px black;
+}
+
+.hometext-black {
+  color: black;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px white;
+
 }
 
 .hometext-yellow {
@@ -92,6 +96,27 @@
     --bg-h: 2px;
   }
 }
+
+.link-text-red {
+  margin-bottom: 1rem;
+  font-size: large;
+  a {
+    text-decoration: none;
+    color:  black;
+    background: linear-gradient(0deg, red, red) no-repeat right bottom / 0 var(--bg-h);
+    transition: background-size 350ms;
+    --bg-h: 100%;
+  }
+  a:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+  }
+  a:hover {
+    padding-bottom: 2px;
+    --bg-h: 2px;
+  }
+}
+
 
 .home-text {
   position: relative;

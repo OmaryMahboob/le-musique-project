@@ -333,5 +333,10 @@ a, a:hover {
   color: white;
   font-weight: 600;
   text-shadow: rgba(56, 56, 56, 0.1) 3px 3px 2px;
+}
 
+.band-members-approve {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
