@@ -11,7 +11,8 @@ export default class extends Controller {
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       { received: data => {
         const position = data.user_id == currentUserId ? "right" : "left"
-        const message = `<div style="text-align: ${position}; class="speech-bubble-sender">
+        // const color = data.user_id == currentUserId ? "speech-bubble-sender" : "speech-bubble-receiver"
+        const message = `<div style="text-align: ${position};" >
                            ${data.data}
                          </div>`
         this.messagesTarget.insertAdjacentHTML("beforeend", message)

@@ -81,7 +81,7 @@
                   <% end %>
                   <%= button_to "Join to this band", user_band_band_members_path(user_id: @band.user_id, band_id: @band.id), method: :post, class:"btn btn-primary principal-button mx-2" %>
                   <% if @chatroom.nil? %>
-                    <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: "post" }, class:"btn btn-primary green-button mx-2" %>
+                    <%= link_to "Send a message", chatrooms_path(receiver: @band_owner), data: { turbo_method: :post }, class:"btn btn-primary green-button mx-2" %>
                   <% else %>
                     <%= link_to "Send a message", @chatroom, class:"btn btn-primary green-button mx-2" %>
                   <% end %>
@@ -101,10 +101,12 @@
                           <% end %>
                           <h5> <%= my_band.user.nickname %> </h5>
                         </a>
-                        <% if my_band.approved? && @current_user == @band_owner%>
-                          <%= button_to "Remove", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
+                        <% if my_band.approved? %>
+                          <% if @current_user == @band_owner %>
+                            <%= button_to "Remove", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete if my_band.user != current_user%>
+                          <% end %>
                         <% elsif @current_user == @band_owner%>
-                          <%= button_to "Approve", approve_path(id: my_band.id), method: :patch %>
+                          <%= button_to "Approve", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :patch %>
                           <%= button_to "Reject", user_band_band_member_path(id: my_band.id, band_id: @band.id), method: :delete%>
                         <% else %>
                           <p class=""><%= "waiting for approval"%></p>
