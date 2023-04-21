@@ -1,13 +1,25 @@
 <div class="container">
   <% if @all_users.length > 0 || @bands.length > 0 %>
-    <h3 class="text-center mt-3">We found <%= @all_users.count + @bands.length %> <strong> <%= params[:query] %> </strong>!</h3>
+    <% if (@all_users.count + @bands.length) > 1 %>
+      <h3 class="text-center mt-3">We found <%= @all_users.count + @bands.length %> results for: <strong> <%= params[:query] %> </strong>!</h3>
+    <% else %>
+      <h3 class="text-center mt-3">We found <%= @all_users.count + @bands.length %> result for: <strong> <%= params[:query] %> </strong>!</h3>
+    <% end %>
   <% end %>
   <% if @all_users.length > 0 %>
-    <h4 class="my-4">Users</h4>
+    <% if @all_users.length > 1 %>
+      <h4 class="my-4">Musicians</h4>
+    <% else %>
+      <h4 class="my-4">Musician</h4>
+    <% end %>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @all_users.each do |user|%>
         <div class="col">
-          <div class="card card-bands">
+          <% if user.looking_for_band %>
+            <div class="card card-bands" style="border: green 2px solid;">
+          <% else %>
+            <div class="card card-bands" style="border: red 1px solid;">
+          <% end %>
             <a href="<%= user_path(user) %>" class="link">
               <div class="box-image">
                 <% if user.profile_picture.present? %>
@@ -49,11 +61,19 @@
     </div>
   <% end %>
   <% if @bands.length > 0 %>
-    <h4 class="my-4">bands</h4>
+    <% if @bands.length > 1 %>
+      <h4 class="my-4">Bands</h4>
+    <% else %>
+      <h4 class="my-4">Band</h4>
+    <% end %>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @bands.each do |band|%>
         <div class="col">
-          <div class="card card-bands">
+        <% if band.looking_for_member %>
+            <div class="card card-bands" style="border: green 2px solid;">
+          <% else %>
+            <div class="card card-bands" style="border: red 1px solid;">
+          <% end %>
             <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
               <div class="box-image">
                 <% if band.multimedia.first.present? %>
