@@ -15,7 +15,11 @@
     <% Band.all.sample(3).each do |band|%>
       <div class="col">
         <a href="<%= user_band_path(id: band.id, user_id: band.user_id) %>"class="link">
-          <div class="card card-bands">
+          <% if band.looking_for_member %>
+            <div class="card card-bands" style="border: green 2px solid;">
+          <% else %>
+            <div class="card card-bands" style="border: red 1px solid;">
+          <% end %>
             <div class="box-image">
               <% if band.multimedia.first.present? %>
                 <div class="background-image" style="background-image: url('<%= cl_image_path(band.multimedia.first.key, :effect=>"blur:200") %>');"></div>
@@ -52,15 +56,19 @@
   </div>
   <%# user-text %>
   <div class="body-left pt-4">
-    <span class="hometext-green">Looking for</span>
-    <span class="hometext-yellow">passion</span>
+    <span class="hometext-yellow">Looking for</span>
+    <span class="hometext-green">passion</span>
   </div>
   <%# user-cards %>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @all_users.sample(3).each do |user|%>
       <div class="col">
-        <div class="card card-bands">
-          <a href="<%= user_path(user) %>" class="link">
+        <a href="<%= user_path(user) %>" class="link">
+          <% if user.looking_for_band %>
+            <div class="card card-bands" style="border: green 2px solid;">
+          <% else %>
+            <div class="card card-bands" style="border: red 1px solid;">
+          <% end %>
             <div class="box-image">
               <% if user.profile_picture.present? %>
                 <div class="background-image" style="background-image: url('<%= cl_image_path(user.profile_picture.key, :effect=>"blur:200") %>');"></div>
@@ -106,13 +114,15 @@
   </div>
 
   <%# about-us %>
-  <div class="body-left pt-4 mt-3">
-    <span class="hometext-green">About&nbsp;</span>
-    <span class="hometext-yellow">La Musique</span>
+  <%# <div class="body-left pt-4 mt-3">
+    <span class="hometext-yellow">About&nbsp;</span>
+    <span class="hometext-green">La Musique</span>
   </div>
   <div calss="container py-3">
     <p class="home-text">
-      La Musique is a global community for musicians to connect, collaborate and share their passion. Join for free to access resources and opportunities, form bands, showcase your music, and collaborate on projects with fellow musicians. All music enthusiasts are welcome!
+      La Musique is a global community for musicians to connect, collaborate and share their passion.
+      Join for free to access resources and opportunities, form bands, showcase your music,
+      and collaborate on projects with fellow musicians. All music enthusiasts are welcome!
     </p>
-  </div>
+  </div> %>
 </div>

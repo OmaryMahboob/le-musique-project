@@ -1,7 +1,6 @@
 <div class="container">
   <% if @all_users.length > 0 || @bands.length > 0 %>
-    <h3 class="text-center mt-3">Search results for <strong> <%= params[:query] %> </strong> found!</h3>
-		<h5>We found <%= @all_users.count + @bands.length %>  results for "<%= params[:query] %>".</h5>
+    <h3 class="text-center mt-3">We found <%= @all_users.count + @bands.length %> <strong> <%= params[:query] %> </strong>!</h3>
   <% end %>
   <% if @all_users.length > 0 %>
     <h4 class="my-4">Users</h4>
@@ -52,7 +51,7 @@
   <% if @bands.length > 0 %>
     <h4 class="my-4">bands</h4>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% @bands.each do |band|%>
+      <% @bands.each do |band|%>
         <div class="col">
           <div class="card card-bands">
             <a href="<%= user_band_path(user_id: band.user_id, id: band.id) %>" class="link">
@@ -84,12 +83,12 @@
           </div>
         </div>
       <% end %>
-      </div>
     </div>
   <% end %>
   <% if @all_users.length == 0 && @bands.length == 0 %>
     <h3 class="text-center mt-3">No Results Found</h3>
     <h5>Sorry, we could not find any results for "<%= params[:query] %>".</h5><br>
-    <span class="link-text"> <%= link_to "Go back", :back %> </span>
   <% end %>
+  <br>
+    <span class="link-text"> <%= link_to "Go back", :back %> </span>
 </div>

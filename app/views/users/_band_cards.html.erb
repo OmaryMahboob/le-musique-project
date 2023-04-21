@@ -29,8 +29,9 @@
           </div>
           </a>
           <span href="" class="p-3" style="opacity: 0.99;">
+          <a href="<%= user_path(band.user) %>">
             <%= cl_image_tag band.user.profile_picture.key, class: "avatar-large", style: "box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);" %>
-            <%= band.user.nickname %>
+            <small>Manager</small>
           </span>
         </article>
     <% end %>

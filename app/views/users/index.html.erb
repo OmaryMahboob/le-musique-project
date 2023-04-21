@@ -2,12 +2,12 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @users.each do |user|%>
       <div class="col">
-        <% if user.looking_for_band %>
-          <div class="card card-bands" style="border: green 2px solid;">
-        <% else %>
-          <div class="card card-bands" style="border: red 1px solid;">
-        <% end %>
-          <a href="<%= user_path(user) %>" class="link">
+        <a href="<%= user_path(user) %>" class="link">
+          <% if user.looking_for_band %>
+            <div class="card card-bands" style="border: green 2px solid;">
+          <% else %>
+            <div class="card card-bands" style="border: red 1px solid;">
+          <% end %>
             <div class="box-image">
               <% if user.profile_picture.present? %>
                 <div class="background-image" style="background-image: url('<%= cl_image_path(user.profile_picture.key, :effect=>"blur:200") %>');"></div>
