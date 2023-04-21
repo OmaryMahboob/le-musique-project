@@ -14,7 +14,7 @@
         <% if @user_bands.empty? %>
           <h2 class="postcard__title blue">Looks like <%= @user.nickname %> doesn't have any bands yet </h2>
         <% else %>
-          <h2 class="postcard__title blue">Hey <%= current_user.nickname %>, here are <%= @user.nickname %>'s bands: </h2>
+          <h2 class="postcard__title blue">Hey, look 👀... here are <%= @user.nickname %>'s bands: </h2>
           <div class="col align-self-start">
             <%= render "band_cards" %>
           </div>
