@@ -32,6 +32,7 @@
             </div>
             <div class="mt-3">
               <h4><%= @user.nickname %></h4>
+              <br>
               <ul class="postcard__tagbox">
                 <% unless @user.skills.map(&:skill).empty? %>
                   <li class="tag__item"><%= image_tag("icon-band.png", style:"height: 16px; width: 16px;") %> <%= @user.skills.map(&:skill).join(" / ") %> </li>
@@ -41,7 +42,7 @@
                   <li class="tag__item"><i><%= image_tag("icon-music.png", style:"height: 16px; width: 16px;") %></i> <%= @user.styles.map(&:style).join(" / ") %> </li>
                 <% end %>
               </ul>
-                <%= @user.description %>
+                <div class="px-3" style="text-align: justify;"><%= @user.description %></div>
                 <br><br>
               <% if @user == current_user %>
                 <%# this function is just hidding the button to any other user, with the url is still accesible %>

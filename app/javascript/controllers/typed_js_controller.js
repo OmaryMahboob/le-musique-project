@@ -8,8 +8,7 @@ export default class extends Controller {
       "<div class='hometext-left'><span class='hometext-yellow'>Connect with</span><span class='hometext-white'> Artists</span></div>",
       "<div class='hometext-left'><span class='hometext-yellow'>Connect with</span><span class='hometext-white'> Players</span></div>",
       "<div class='hometext-left'><span class='hometext-yellow'>Connect with</span><span class='hometext-white'> Performers</span></div>",
-      "<div class='hometext-left'><span class='hometext-yellow'>Connect with</span><span class='hometext-white'> YOU</span></div>",
-      "<div class='hometext-center'><span class='hometext-black'>Welcome to musique.wtf</span><br><span class='hometext-yellow' style='font-size: 30px;'>Where's The Funk?</span></div>"
+      "<div class='hometext-left'><span class='hometext-yellow'>Connect with</span><span class='hometext-white'> YOU</span></div><div class='hometext-right'><span class='hometext-white' style='font-size: 40px;'>MUSIQUE.WTF&nbsp;</span><br><span class='hometext-yellow' style='font-size: 30px;'>Where's The Funk?</span></div>"
     ],
       typeSpeed: 30,
       backSpeed: 50,

@@ -10,7 +10,6 @@ class BandMembersController < ApplicationController
     @band_member.update(approved: true)
     @band = Band.find(params[:band_id])
     redirect_to user_band_path(@band.user.id, @band), notice: "Request to join band is approved."
-
   end
 
   def create

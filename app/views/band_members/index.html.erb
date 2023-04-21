@@ -4,4 +4,4 @@
   <h3><%= @user.full_name %></h3>
 
 <% end %>
-<h3><%= link_to "got back to the band", user_band_path(user_id: @band.user_id, id: @band.id) %></h3>
+<h3> <span class="link-text"><%= link_to "got back to the band", user_band_path(user_id: @band.user_id, id: @band.id) %> </span> </h3>
