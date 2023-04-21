@@ -28,8 +28,9 @@ class BandMembersController < ApplicationController
 
   def destroy
     @band_member = BandMember.find(params[:id])
+    @band = Band.find(params[:band_id])
     @band_member.destroy
-    redirect_to user_band_path, notice: "Request to join band is denied."
+    redirect_to user_band_path(@band.user.id, @band), notice: "Request to join band is denied."
   end
 
   def show
