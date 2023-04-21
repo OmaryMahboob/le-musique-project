@@ -99,7 +99,7 @@ user_images = [
 
 mahboob = User.new(
   full_name: "Mahboob Omary",
-  nickname: "_Mahboob_",
+  nickname: "Mahboob",
   phone: "098876544",
   address: "Magazinstraße 15-16, 10179 Berlin",
   email: "mahboob@gmail.com",
